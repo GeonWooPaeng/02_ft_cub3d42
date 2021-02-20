@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:37:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/18 17:19:56 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/18 21:04:13 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "key_press.h"
+#include "ft_cub3d.h"
 
 void	ft_key_W(t_info *info)
 {

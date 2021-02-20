@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/18 17:18:11 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/20 00:17:11 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -694,92 +694,39 @@
 
 
 
-
-
-// #include "mlx.h"
-// #include <math.h>
-// #include <string.h>
-// #include <stdio.h>
-// #include <stdlib.h>
 #include "ft_cub3d.h"
 
-// #define KEY_W 119
-// #define KEY_A 97
-// #define KEY_S 115
-// #define KEY_D 100
-
-// #define K_ESC 65307
-
-// #define mapWidth 24
-// #define mapHeight 24
-// #define screenWidth 640
-// #define screenHeight 480
-
-// #define X_EVENT_KEY_PRESS 2
-// #define X_EVENT_KEY_EXIT 17
-
-// #define texWidth 64
-// #define texHeight 64
-
-// //get_img_data_addr 함수에서 쓸 변수를 갖고 있는 구조체
-// typedef struct	s_img
-// {
-// 	void		*img;
-// 	int			*data;
-// 	int			size_l;
-// 	int			bpp;
-// 	int			endian;
-// 	int			img_width;
-// 	int			img_height;
-// }				t_img;
-
-// typedef struct	s_info
-// {
-// 	double		playerPositionX;
-// 	double		playerPositionY;
-// 	double		directionVectorX;
-// 	double		directionVectorY;
-// 	double		planeX;//카메라 평면X
-// 	double		planeY;//카메라 평면Y
-// 	void		*mlx;
-// 	void		*win;
-// 	double		moveSpeed;
-// 	double		rotSpeed;
-// 	t_img		img;
-// 	int			buf[screenHeight][screenWidth];
-// 	int			**texture;
-// }				t_info;
 
 int	calculateAndSaveToMap(t_info *info);
 void	imageDraw(t_info *info);
 
-// int		worldMap[mapWidth][mapHeight] = 
-// {
-// 	{8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
-// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
-// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},
-// 	{8,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6},
-// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
-// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,6,6,6,0,6,4,6},
-// 	{8,8,8,8,0,8,8,8,8,8,8,4,4,4,4,4,4,6,0,0,0,0,0,6},
-// 	{7,7,7,7,0,7,7,7,7,0,8,0,8,0,8,0,8,4,0,4,0,6,0,6},
-// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,0,0,0,0,0,6},
-// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,0,0,0,0,4},
-// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,6,0,6,0,6},
-// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,4,6,0,6,6,6},
-// 	{7,7,7,7,0,7,7,7,7,8,8,4,0,6,8,4,8,3,3,3,0,3,3,3},
-// 	{2,2,2,2,0,2,2,2,2,4,6,4,0,0,6,0,6,3,0,0,0,0,0,3},
-// 	{2,2,0,0,0,0,0,2,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
-// 	{2,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
-// 	{1,0,0,0,0,0,0,0,1,4,4,4,4,4,6,0,6,3,3,0,0,0,3,3},
-// 	{2,0,0,0,0,0,0,0,2,2,2,1,2,2,2,6,6,0,0,5,0,5,0,5},
-// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
-// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
-// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
-// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
-// 	{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
-// };
+int		worldMap[mapWidth][mapHeight] = 
+{
+	{8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
+	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},
+	{8,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6},
+	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,6,6,6,0,6,4,6},
+	{8,8,8,8,0,8,8,8,8,8,8,4,4,4,4,4,4,6,0,0,0,0,0,6},
+	{7,7,7,7,0,7,7,7,7,0,8,0,8,0,8,0,8,4,0,4,0,6,0,6},
+	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,0,0,0,0,0,6},
+	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,0,0,0,0,4},
+	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,6,0,6,0,6},
+	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,4,6,0,6,6,6},
+	{7,7,7,7,0,7,7,7,7,8,8,4,0,6,8,4,8,3,3,3,0,3,3,3},
+	{2,2,2,2,0,2,2,2,2,4,6,4,0,0,6,0,6,3,0,0,0,0,0,3},
+	{2,2,0,0,0,0,0,2,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+	{2,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+	{1,0,0,0,0,0,0,0,1,4,4,4,4,4,6,0,6,3,3,0,0,0,3,3},
+	{2,0,0,0,0,0,0,0,2,2,2,1,2,2,2,6,6,0,0,5,0,5,0,5},
+	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
+	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+	{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
+};
 
 int		main_loop(t_info *info)
 {
@@ -824,7 +771,7 @@ int calculateAndSaveToMap(t_info *info)
 		double rayDirectionX = info->directionVectorX + info->planeX * cameraX;
 		double rayDirectionY = info->directionVectorY + info->planeY * cameraX;
 
-		//DDA Algorithm
+		//DDA Algorithm - cal
 		//현재 player가 위치한 맵 내 위치(which box of the map)
 		int mapX = (int)(info->playerPositionX);
 		int mapY = (int)(info->playerPositionY);
@@ -924,6 +871,8 @@ int calculateAndSaveToMap(t_info *info)
 			wallX = info->playerPositionX + perpWallDist * rayDirectionX;
 		wallX -= floor(wallX);
 
+
+		// tex 값 계산--------------------------------------------------
 		//texX는 texture의 x좌표를 나타낸다.
 		int texX = (int)(wallX * (double)texWidth);
 		if (side == 0 && rayDirectionX > 0)
@@ -944,52 +893,12 @@ int calculateAndSaveToMap(t_info *info)
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
 		}
+		//----------------------------------------------------------------
 		x++;
 	}
 	return (0);
 }
 
-// int		key_press(int key, t_info *info)
-// {
-// 	if (key == KEY_W)
-// 	{
-// 		if (!worldMap[(int)(info->playerPositionX + info->directionVectorX * info->moveSpeed)][(int)(info->playerPositionY)])
-// 			info->playerPositionX += info->directionVectorX * info->moveSpeed;
-// 		if (!worldMap[(int)(info->playerPositionX)][(int)(info->playerPositionY + info->directionVectorY * info->moveSpeed)])
-// 			info->playerPositionY += info->directionVectorY * info->moveSpeed;
-// 	}
-// 	if (key == KEY_S)
-// 	{
-// 		if (!worldMap[(int)(info->playerPositionX - info->directionVectorX * info->moveSpeed)][(int)(info->playerPositionY)])
-// 			info->playerPositionX -= info->directionVectorX * info->moveSpeed;
-// 		if (!worldMap[(int)(info->playerPositionX)][(int)(info->playerPositionY - info->directionVectorY * info->moveSpeed)])
-// 			info->playerPositionY -= info->directionVectorY * info->moveSpeed;
-// 	}
-
-//    // AD
-// 	if (key == KEY_A)
-// 	{
-// 		double oldDirectionX = info->directionVectorX;
-// 		info->directionVectorX = info->directionVectorX * cos(info->rotSpeed) - info->directionVectorY * sin(info->rotSpeed);
-// 		info->directionVectorY = oldDirectionX * sin(info->rotSpeed) + info->directionVectorY * cos(info->rotSpeed);
-// 		double oldPlaneX = info->planeX;
-// 		info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-// 		info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
-// 	}
-
-// 	if (key == KEY_D)
-// 	{
-// 		double oldDirectionX = info->directionVectorX;
-// 		info->directionVectorX = info->directionVectorX * cos(-info->rotSpeed) - info->directionVectorY * sin(-info->rotSpeed);
-// 		info->directionVectorY = oldDirectionX * sin(-info->rotSpeed) + info->directionVectorY * cos(-info->rotSpeed);
-// 		double oldPlaneX = info->planeX;
-// 		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-// 		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
-// 	}
-// 	if (key == K_ESC)
-// 		exit(0);
-// 	return (0);
-// }
 
 void load_image(t_info *info, int *texture, char *path, t_img *img)
 {
