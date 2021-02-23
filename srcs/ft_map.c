@@ -6,14 +6,15 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:42:57 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 19:01:29 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/23 23:56:09 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
 void	ft_side_dist(t_info *info, t_map *map)
-{
+{// step_x,y, side_dist_x,y 넣어주는 곳
+// 플레이어 기준 어느쪽인지 파악
 	if (map->ray_direction_x < 0)
 	{
 		map->step_x = -1;
@@ -37,7 +38,7 @@ void	ft_side_dist(t_info *info, t_map *map)
 }
 
 void	ft_hit_side(t_info *info, t_map *map)
-{
+{// 벽과 부딪쳤을 때까지 매번 한 칸씩 광선 이동하는 상황 
 	while (map->hit == 0)
 	{
 		if (map->side_dist_x < map->side_dist_y)
@@ -62,7 +63,7 @@ void	ft_hit_side(t_info *info, t_map *map)
 }
 
 void	ft_draw(t_map *map)
-{
+{// 스크린에 그릴 line의 높이 계산
 	int	lineHeight;
 
 	lineHeight = (int)(SCREEN_HEIGHT / map->perp_wall_dist); //스크린에 그릴 line의 높이 계산
@@ -77,6 +78,7 @@ void	ft_draw(t_map *map)
 
 void	ft_wall(t_info *info, t_map *map)
 {// wall_x이 어느 벽에 부딪쳤는지에 따라 값구하기
+// 광선의 시작점에서 벽까지의 이동거리를 계산
 	if (map->side == 0)
 		map->wall_x = info->player_position_y + map->perp_wall_dist * map->ray_direction_y;
 	else
@@ -86,7 +88,7 @@ void	ft_wall(t_info *info, t_map *map)
 
 void	ft_map_init(t_info *info, t_map *map, int x)
 {
-	double	cameraX;
+	double	cameraX; // x값이 카메라 평면 상에 있을 때의 좌표
 
 	cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
 	map->ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;

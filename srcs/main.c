@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 20:22:23 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/24 00:51:27 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -694,6 +694,303 @@
 
 
 
+// #include "ft_cub3d.h"
+
+
+// int	calculateAndSaveToMap(t_info *info);
+// // void	image_draw(t_info *info);
+
+// int		world_map[MAP_WIDTH][MAP_HEIGHT] = 
+// {
+// 	{8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
+// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},
+// 	{8,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6},
+// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
+// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,6,6,6,0,6,4,6},
+// 	{8,8,8,8,0,8,8,8,8,8,8,4,4,4,4,4,4,6,0,0,0,0,0,6},
+// 	{7,7,7,7,0,7,7,7,7,0,8,0,8,0,8,0,8,4,0,4,0,6,0,6},
+// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,0,0,0,0,0,6},
+// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,0,0,0,0,4},
+// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,6,0,6,0,6},
+// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,4,6,0,6,6,6},
+// 	{7,7,7,7,0,7,7,7,7,8,8,4,0,6,8,4,8,3,3,3,0,3,3,3},
+// 	{2,2,2,2,0,2,2,2,2,4,6,4,0,0,6,0,6,3,0,0,0,0,0,3},
+// 	{2,2,0,0,0,0,0,2,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+// 	{2,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
+// 	{1,0,0,0,0,0,0,0,1,4,4,4,4,4,6,0,6,3,3,0,0,0,3,3},
+// 	{2,0,0,0,0,0,0,0,2,2,2,1,2,2,2,6,6,0,0,5,0,5,0,5},
+// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
+// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
+// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+// 	{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
+// };
+
+// int		main_loop(t_info *info)
+// {
+// 	calculateAndSaveToMap(info);
+// 	image_draw(info);
+// 	return (0);
+// }
+
+// // void	image_draw(t_info *info)
+// // {
+// // 	for (int y = 0; y < SCREEN_HEIGHT; y++)
+// // 		for (int x = 0; x < SCREEN_WIDTH; x++)
+// // 			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
+
+// // 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
+// // }
+
+// int calculateAndSaveToMap(t_info *info)
+// {
+// 	// /*
+// 	// 나중에 화면에 옹릴 buf의 위에서 붜 아래로, 아래서부터 위로 다른 색상을 칠해준다.
+// 	// bottom, up color
+// 	// -----------------------------------------------------------------
+// 	// */
+// 	// for (int x = 0; x < SCREEN_WIDTH; x++)
+// 	// {
+// 	// 	for (int y = 0; y < SCREEN_HEIGHT; y++)
+// 	// 	{
+// 	// 		info->buf[y][x] = 0xFFFF00; // 바닥
+// 	// 		info->buf[SCREEN_HEIGHT - y - 1][x] = 0x000000; //천장
+// 	// 	}
+// 	// }
+// 	// //화면 생성 후 게임 루프 시작
+// 	// //while문은 전체 프레임을 그려내고 입력을 읽는 역할을 함
+// 	// //---------------------------------------------------------------
+// 	ft_up_bottom(info);
+// 	int x;
+
+// 	x = 0;
+// 	while (x < SCREEN_WIDTH)
+// 	{
+// 		t_map *map;
+// 		t_tex *tex;
+
+// 		map = malloc(sizeof(t_map));
+// 		tex = malloc(sizeof(t_tex));
+// 		ft_map_init(info, map, x);
+// 		ft_side_dist(info, map);
+// 		ft_hit_side(info, map);
+// 		// // cameraX: for문의 x 값이 카메라 평면 상에 있을 때의 x좌표
+// 		// double cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
+// 		// // cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1; dirVecY = 0;
+// 		// // 광선의 방향은 방향벡터 + 카메라 평면 * 배수
+// 		// double ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
+// 		// double ray_direction_y = info->direction_vector_y + info->plane_y * cameraX;
+
+// 		// //DDA Algorithm - cal
+// 		// //현재 player가 위치한 맵 내 위치(which box of the map)
+// 		// int map_x = (int)(info->player_position_x);
+// 		// int map_y = (int)(info->player_position_y);
+
+// 		// //현재 위치에서 다음 x사이드 또는 y사이드까지의 거리
+// 		// double side_dist_x;
+// 		// double side_dist_y;
+
+// 		// //delta_dist_x는 첫 번째 x면에서 그 다음 x면까지의 광선의 이동거리
+// 		// //이 상황에서 x는 1만큼 이동
+// 		// double delta_dist_x = fabs(1 / ray_direction_x);
+// 		// //delta_dist_y는 첫 번째 y면에서 그 다음 y면까지의 광선의 이동거리
+// 		// //이 상황에서 y는 1만큼 이동
+// 		// double delta_dist_y = fabs(1 / ray_direction_y);
+
+// 		// //광선의 이동거리 계산할 때 필요한 변수
+// 		// double perp_wall_dist;
+
+// 		// //광선의 방향에 따라 어느 방향으로 건너뛰는지 달라진다.
+// 		// int step_x;
+// 		// int step_y;
+
+// 		// //hit: 벽과 부딪혔는지 판단하는 변수
+// 		// //x면에 부딪혔으면 side = 0;
+// 		// //y면에 부딪혔으면 side = 1;
+// 		// // x면, y면은 어떤 칸의 경계가 되는 선
+// 		// int hit = 0;
+// 		// int side;
+		
+// 		// if (ray_direction_x < 0)
+// 		// {
+// 		// 	step_x = -1;
+// 		// 	side_dist_x = (info->player_position_x - map_x) * delta_dist_x;
+// 		// }
+// 		// else
+// 		// {
+// 		// 	step_x = 1;
+// 		// 	side_dist_x = (map_x + 1.0 - info->player_position_x) * delta_dist_x;
+// 		// }
+// 		// if (ray_direction_y < 0)
+// 		// {
+// 		// 	step_y = -1;
+// 		// 	side_dist_y = (info->player_position_y - map_y) * delta_dist_y;
+// 		// }
+// 		// else
+// 		// {
+// 		// 	step_y = 1;
+// 		// 	side_dist_y = (map_y + 1.0 - info->player_position_y) * delta_dist_y;
+// 		// }
+// 		// //벽에 부딪힐 때까지 매번 한 칸씩 광선 이동
+// 		// while (hit == 0)
+// 		// {
+// 		// 	// 다음 map 박스로 이동하거나 x,y 방향 둘 중 하나로 이동
+// 		// 	if (side_dist_x < side_dist_y)
+// 		// 	{
+// 		// 		side_dist_x += delta_dist_x;
+// 		// 		map_x += step_x;
+// 		// 		side = 0;
+// 		// 	}
+// 		// 	else
+// 		// 	{
+// 		// 		side_dist_y += delta_dist_y;
+// 		// 		map_y += step_y;
+// 		// 		side = 1;
+// 		// 	}
+// 		// 	//ray가 벽을 만났는지 확인하는 작업
+// 		// 	if (world_map[map_x][map_y] > 0)
+// 		// 		hit = 1;
+// 		// }
+
+// 		// // 광선의 시작점에서 벽까지의 이동거리 계산
+// 		// if (side == 0)
+// 		// 	perp_wall_dist = (map_x - info->player_position_x + (1 - step_x) / 2) / ray_direction_x;
+// 		// else
+// 		// 	perp_wall_dist = (map_y - info->player_position_y + (1 - step_y) / 2) / ray_direction_y;
+		
+// 		// // 스크린에 그릴 line의 높이 계산
+// 		// int lineHeight = (int)(SCREEN_HEIGHT / perp_wall_dist);
+		
+// 		// //선을 그릴 시작점과 끝점 구하기
+// 		// int draw_start = (-lineHeight / 2) + (SCREEN_HEIGHT / 2);
+// 		// if (draw_start < 0)
+// 		// 	draw_start = 0;
+// 		// int draw_end = (lineHeight / 2) + (SCREEN_HEIGHT / 2);
+// 		// if (draw_end >= SCREEN_HEIGHT)
+// 		// 	draw_end = SCREEN_HEIGHT - 1;
+
+// 		ft_draw(map);
+// 		ft_wall(info, map);
+// 		// // wall_x이 어느 벽에 부딪쳤는지에 따라 값구하기
+// 		// double wall_x;
+// 		// if (side == 0)
+// 		// 	wall_x = info->player_position_y + perp_wall_dist * ray_direction_y;
+// 		// else
+// 		// 	wall_x = info->player_position_x + perp_wall_dist * ray_direction_x;
+// 		// wall_x -= floor(wall_x);
+
+// 		// // tex 값 계산--------------------------------------------------
+// 		// //texturing calculation
+// 		// tex->tex_num = world_map[map->map_x][map->map_y] - 1;
+// 		ft_tex_x(map, tex);
+// 		ft_tex_y(info, map, tex, x);
+// 		// //tex_x는 texture의 x좌표를 나타낸다.
+// 		// int tex_x = (int)(wall_x * (double)TEX_WIDTH);
+// 		// if (side == 0 && ray_direction_x > 0)
+// 		// 	tex_x = TEX_WIDTH - tex_x - 1;
+// 		// if (side == 1 && ray_direction_y < 0)
+// 		// 	tex_x = TEX_WIDTH - tex_x - 1;
+
+// 		// // tex_y를 지정하는 곳
+// 		// // step: 스크린 픽셀당 texture 좌표를 얼마나 증가시켜줄 건지 결정
+// 		// double step = 1.0 * TEX_HEIGHT / lineHeight;
+// 		// double tex_pos = (draw_start - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
+// 		// for (int y = draw_start; y < draw_end; y++)
+// 		// {
+// 		// 	int tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
+// 		// 	tex_pos += step;
+// 		// 	int color = info->texture[tex_num][TEX_HEIGHT * tex_y + tex_x];
+// 		// 	if (side == 1)
+// 		// 		color = (color >> 1) & 8355711;
+// 		// 	info->buf[y][x] = color;
+// 		// }
+// 		// //----------------------------------------------------------------
+// 		free(map);
+// 		free(tex);
+// 		x++;
+// 	}
+// 	return (0);
+// }
+
+
+// // void load_image(t_info *info, int *texture, char *path, t_img *img)
+// // {
+// // 	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
+// // 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
+// // 	for (int y = 0; y < img->img_height; y++)
+// // 	{
+// // 		for (int x = 0; x < img->img_width; x++)
+// // 		{
+// // 			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+// // 		}
+// // 	}
+// // 	mlx_destroy_image(info->mlx, img->img);
+// // }
+
+// // void    load_texture(t_info *info)
+// // {
+// // 	t_img    img;
+
+// // 	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
+// // 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
+// // 	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
+// // 	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
+// // 	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
+// // 	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
+// // 	load_image(info, info->texture[6], "textures/wood.xpm", &img);
+// // 	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
+// // }
+
+// int main()
+// {
+// 	t_info info;
+// 	info.mlx = mlx_init();
+
+// 	info.player_position_x = 22.0;
+// 	info.player_position_y = 11.5;
+// 	info.direction_vector_x = -1.0;
+// 	info.direction_vector_y = 0.0;
+// 	info.plane_x = 0.0;
+// 	info.plane_y = 0.66;
+// 	info.move_speed = 0.05;
+// 	info.rot_speed = 0.05;
+
+// 	if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
+// 		return (-1);
+// 	for (int i = 0; i < 8; i++)
+// 		if (!(info.texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
+// 			return (-1);
+	
+// 	for (int i = 0; i < 8; i++)
+// 		for (int j = 0; j < TEX_HEIGHT * TEX_WIDTH; j++)
+// 			info.texture[i][j] = 0;
+
+// 	load_texture(&info);
+
+// 	info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
+// 	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
+
+// 	mlx_loop_hook(info.mlx, &main_loop, &info);
+// 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
+// 	mlx_loop(info.mlx);
+// }
+
+
+//--------------------------------------
+//--------------------------------------
+//--------------------------------------
+//--------------------------------------
+//--------------------------------------
+//--------------------------------------
+//--------------------------------------
+
+
+
+
+
 #include "ft_cub3d.h"
 
 
@@ -735,37 +1032,13 @@ int		main_loop(t_info *info)
 	return (0);
 }
 
-// void	image_draw(t_info *info)
-// {
-// 	for (int y = 0; y < SCREEN_HEIGHT; y++)
-// 		for (int x = 0; x < SCREEN_WIDTH; x++)
-// 			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
-
-// 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
-// }
-
 int calculateAndSaveToMap(t_info *info)
 {
-	// /*
-	// 나중에 화면에 옹릴 buf의 위에서 붜 아래로, 아래서부터 위로 다른 색상을 칠해준다.
-	// bottom, up color
-	// -----------------------------------------------------------------
-	// */
-	// for (int x = 0; x < SCREEN_WIDTH; x++)
-	// {
-	// 	for (int y = 0; y < SCREEN_HEIGHT; y++)
-	// 	{
-	// 		info->buf[y][x] = 0xFFFF00; // 바닥
-	// 		info->buf[SCREEN_HEIGHT - y - 1][x] = 0x000000; //천장
-	// 	}
-	// }
-	// //화면 생성 후 게임 루프 시작
-	// //while문은 전체 프레임을 그려내고 입력을 읽는 역할을 함
-	// //---------------------------------------------------------------
-	ft_up_bottom(info);
+
 	int x;
 
 	x = 0;
+	ft_up_bottom(info);
 	while (x < SCREEN_WIDTH)
 	{
 		t_map *map;
@@ -776,137 +1049,11 @@ int calculateAndSaveToMap(t_info *info)
 		ft_map_init(info, map, x);
 		ft_side_dist(info, map);
 		ft_hit_side(info, map);
-		// // cameraX: for문의 x 값이 카메라 평면 상에 있을 때의 x좌표
-		// double cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
-		// // cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1; dirVecY = 0;
-		// // 광선의 방향은 방향벡터 + 카메라 평면 * 배수
-		// double ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
-		// double ray_direction_y = info->direction_vector_y + info->plane_y * cameraX;
-
-		// //DDA Algorithm - cal
-		// //현재 player가 위치한 맵 내 위치(which box of the map)
-		// int map_x = (int)(info->player_position_x);
-		// int map_y = (int)(info->player_position_y);
-
-		// //현재 위치에서 다음 x사이드 또는 y사이드까지의 거리
-		// double side_dist_x;
-		// double side_dist_y;
-
-		// //delta_dist_x는 첫 번째 x면에서 그 다음 x면까지의 광선의 이동거리
-		// //이 상황에서 x는 1만큼 이동
-		// double delta_dist_x = fabs(1 / ray_direction_x);
-		// //delta_dist_y는 첫 번째 y면에서 그 다음 y면까지의 광선의 이동거리
-		// //이 상황에서 y는 1만큼 이동
-		// double delta_dist_y = fabs(1 / ray_direction_y);
-
-		// //광선의 이동거리 계산할 때 필요한 변수
-		// double perp_wall_dist;
-
-		// //광선의 방향에 따라 어느 방향으로 건너뛰는지 달라진다.
-		// int step_x;
-		// int step_y;
-
-		// //hit: 벽과 부딪혔는지 판단하는 변수
-		// //x면에 부딪혔으면 side = 0;
-		// //y면에 부딪혔으면 side = 1;
-		// // x면, y면은 어떤 칸의 경계가 되는 선
-		// int hit = 0;
-		// int side;
-		
-		// if (ray_direction_x < 0)
-		// {
-		// 	step_x = -1;
-		// 	side_dist_x = (info->player_position_x - map_x) * delta_dist_x;
-		// }
-		// else
-		// {
-		// 	step_x = 1;
-		// 	side_dist_x = (map_x + 1.0 - info->player_position_x) * delta_dist_x;
-		// }
-		// if (ray_direction_y < 0)
-		// {
-		// 	step_y = -1;
-		// 	side_dist_y = (info->player_position_y - map_y) * delta_dist_y;
-		// }
-		// else
-		// {
-		// 	step_y = 1;
-		// 	side_dist_y = (map_y + 1.0 - info->player_position_y) * delta_dist_y;
-		// }
-		// //벽에 부딪힐 때까지 매번 한 칸씩 광선 이동
-		// while (hit == 0)
-		// {
-		// 	// 다음 map 박스로 이동하거나 x,y 방향 둘 중 하나로 이동
-		// 	if (side_dist_x < side_dist_y)
-		// 	{
-		// 		side_dist_x += delta_dist_x;
-		// 		map_x += step_x;
-		// 		side = 0;
-		// 	}
-		// 	else
-		// 	{
-		// 		side_dist_y += delta_dist_y;
-		// 		map_y += step_y;
-		// 		side = 1;
-		// 	}
-		// 	//ray가 벽을 만났는지 확인하는 작업
-		// 	if (world_map[map_x][map_y] > 0)
-		// 		hit = 1;
-		// }
-
-		// // 광선의 시작점에서 벽까지의 이동거리 계산
-		// if (side == 0)
-		// 	perp_wall_dist = (map_x - info->player_position_x + (1 - step_x) / 2) / ray_direction_x;
-		// else
-		// 	perp_wall_dist = (map_y - info->player_position_y + (1 - step_y) / 2) / ray_direction_y;
-		
-		// // 스크린에 그릴 line의 높이 계산
-		// int lineHeight = (int)(SCREEN_HEIGHT / perp_wall_dist);
-		
-		// //선을 그릴 시작점과 끝점 구하기
-		// int draw_start = (-lineHeight / 2) + (SCREEN_HEIGHT / 2);
-		// if (draw_start < 0)
-		// 	draw_start = 0;
-		// int draw_end = (lineHeight / 2) + (SCREEN_HEIGHT / 2);
-		// if (draw_end >= SCREEN_HEIGHT)
-		// 	draw_end = SCREEN_HEIGHT - 1;
-
 		ft_draw(map);
 		ft_wall(info, map);
-		// // wall_x이 어느 벽에 부딪쳤는지에 따라 값구하기
-		// double wall_x;
-		// if (side == 0)
-		// 	wall_x = info->player_position_y + perp_wall_dist * ray_direction_y;
-		// else
-		// 	wall_x = info->player_position_x + perp_wall_dist * ray_direction_x;
-		// wall_x -= floor(wall_x);
-
-		// // tex 값 계산--------------------------------------------------
-		// //texturing calculation
 		tex->tex_num = world_map[map->map_x][map->map_y] - 1;
 		ft_tex_x(map, tex);
 		ft_tex_y(info, map, tex, x);
-		// //tex_x는 texture의 x좌표를 나타낸다.
-		// int tex_x = (int)(wall_x * (double)TEX_WIDTH);
-		// if (side == 0 && ray_direction_x > 0)
-		// 	tex_x = TEX_WIDTH - tex_x - 1;
-		// if (side == 1 && ray_direction_y < 0)
-		// 	tex_x = TEX_WIDTH - tex_x - 1;
-
-		// // tex_y를 지정하는 곳
-		// // step: 스크린 픽셀당 texture 좌표를 얼마나 증가시켜줄 건지 결정
-		// double step = 1.0 * TEX_HEIGHT / lineHeight;
-		// double tex_pos = (draw_start - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
-		// for (int y = draw_start; y < draw_end; y++)
-		// {
-		// 	int tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
-		// 	tex_pos += step;
-		// 	int color = info->texture[tex_num][TEX_HEIGHT * tex_y + tex_x];
-		// 	if (side == 1)
-		// 		color = (color >> 1) & 8355711;
-		// 	info->buf[y][x] = color;
-		// }
-		// //----------------------------------------------------------------
 		free(map);
 		free(tex);
 		x++;
@@ -914,58 +1061,75 @@ int calculateAndSaveToMap(t_info *info)
 	return (0);
 }
 
+void info_init(t_info *info)
+{
+	info->mlx = mlx_init();
+	info->player_position_x = 22.0;
+	info->player_position_y = 11.5;
+	info->direction_vector_x = -1.0;
+	info->direction_vector_y = 0.0;
+	info->plane_x = 0.0;
+	info->plane_y = 0.66;
+	info->move_speed = 0.05;
+	info->rot_speed = 0.05;
+}
 
-// void load_image(t_info *info, int *texture, char *path, t_img *img)
-// {
-// 	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
-// 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
-// 	for (int y = 0; y < img->img_height; y++)
-// 	{
-// 		for (int x = 0; x < img->img_width; x++)
-// 		{
-// 			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-// 		}
-// 	}
-// 	mlx_destroy_image(info->mlx, img->img);
-// }
-
-// void    load_texture(t_info *info)
-// {
-// 	t_img    img;
-
-// 	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
-// 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
-// 	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
-// 	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
-// 	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
-// 	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
-// 	load_image(info, info->texture[6], "textures/wood.xpm", &img);
-// 	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
-// }
+int info_texture(t_info *info)
+{
+	int i;
+	int j;
+	
+	if (!(info->texture = (int **)malloc(sizeof(int *) * 8)))
+		return (-1);
+	i = 0;
+	while (i < 8)
+	{
+		if (!((info->texture)[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
+			return (-1);
+		i++;
+	}
+	i = 0;
+	while (i < 8)
+	{
+		j = 0;
+		while (j < TEX_HEIGHT * TEX_WIDTH)
+		{	
+			(info->texture)[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int main()
 {
 	t_info info;
-	info.mlx = mlx_init();
+	int check_err;
+	// info.mlx = mlx_init();
 
-	info.player_position_x = 22.0;
-	info.player_position_y = 11.5;
-	info.direction_vector_x = -1.0;
-	info.direction_vector_y = 0.0;
-	info.plane_x = 0.0;
-	info.plane_y = 0.66;
-	info.move_speed = 0.05;
-	info.rot_speed = 0.05;
+	// info.player_position_x = 22.0;
+	// info.player_position_y = 11.5;
+	// info.direction_vector_x = -1.0;
+	// info.direction_vector_y = 0.0;
+	// info.plane_x = 0.0;
+	// info.plane_y = 0.66;
+	// info.move_speed = 0.05;
+	// info.rot_speed = 0.05;
 
-	if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
+	info_init(&info);
+	check_err = info_texture(&info);
+	if (check_err == -1)
 		return (-1);
-	for (int i = 0; i < 8; i++)
-		if (!(info.texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
-			return (-1);
+	// if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
+	// 	return (-1);
+	// for (int i = 0; i < 8; i++)
+	// 	if (!(info.texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
+	// 		return (-1);
 	
-	for (int i = 0; i < 8; i++)
-		for (int j = 0; j < TEX_HEIGHT * TEX_WIDTH; j++)
-			info.texture[i][j] = 0;
+	// for (int i = 0; i < 8; i++)
+	// 	for (int j = 0; j < TEX_HEIGHT * TEX_WIDTH; j++)
+	// 		info.texture[i][j] = 0;
 
 	load_texture(&info);
 
