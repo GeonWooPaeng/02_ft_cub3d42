@@ -1,5 +1,6 @@
 CC = gcc
-FLAGS = -Wextra -Werror -Wall 
+CFLAGS = -Wextra -Werror -Wall
+CFLAGS += -g -fsanitize=address
 NAME = cub3d
 
 DIR_H = ./includes/
@@ -8,6 +9,8 @@ DIR_O = ./
 
 SRC =	main.c			\
 		key_press.c		\
+		ft_map.c		\
+		ft_tex.c
 
 
 
@@ -16,7 +19,7 @@ SRCS = $(addprefix $(DIR_S),$(SRC))
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -I $(DIR_H) -o $@
+	$(CC) $(CFLAGS) -c $< -I $(DIR_H) -o $@
 
 all: $(NAME)
 
@@ -30,8 +33,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re:
-	fclean all
+re: fclean all
 
 .PHONY: clean fclaen all re 
 

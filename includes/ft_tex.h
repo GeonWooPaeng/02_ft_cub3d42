@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press.h                                        :+:      :+:    :+:   */
+/*   ft_tex.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 16:24:59 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 19:02:27 by gpaeng           ###   ########.fr       */
+/*   Created: 2021/02/23 17:25:54 by gpaeng            #+#    #+#             */
+/*   Updated: 2021/02/23 19:14:48 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_PRESS_H
-# define KEY_PRESS_H
+#ifndef FT_TEX_H
+# define FT_TEX_H
 
-#include "ft_cub3d.h"
+typedef struct	s_tex
+{
+	int			tex_num; //texturing
+	int			tex_x; //texture의 x좌표
+	int			tex_y;
+	int			color;
+	double		step; //스크린 픽셀당 texture 좌표를 얼마나 증가시켜줄 것인가.
+	double		tex_pos;
+}				t_tex;
 
-#define KEY_W 119
-#define KEY_A 97
-#define KEY_S 115
-#define KEY_D 100
-
-#define K_ESC 65307
-
-void	ft_key_w(t_info *info);
-void	ft_key_s(t_info *info);
-void	ft_key_a(t_info *info);
-void	ft_key_d(t_info *info);
-int		key_press(int key, t_info *info);
+void	ft_tex_x(t_map *map, t_tex *tex);
+void	ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x);
+void	ft_up_bottom(t_info *info);
 
 #endif
