@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 19:14:48 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/23 20:21:41 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct	s_info
 // map
 extern int		world_map[MAP_WIDTH][MAP_HEIGHT];
 
+//setting 
+#include "ft_img.h"
+void	image_draw(t_info *info);
+void	load_texture(t_info *info);
+void	load_image(t_info *info, int *texture, char *path, t_img *img);
+
 //key_press
 #include "key_press.h"
 // void	ft_key_w(int key, t_info *info);
@@ -84,4 +90,5 @@ void	ft_map_init(t_info *info, t_map *map, int x);
 void	ft_tex_x(t_map *map, t_tex *tex);
 void	ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x);
 void	ft_up_bottom(t_info *info);
+
 #endif

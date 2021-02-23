@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 19:18:19 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/23 20:22:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,7 +394,7 @@
 // }				t_info;
 
 // int	calculateAndSaveToMap(t_info *info);
-// void imageDraw(t_info *info);
+// void image_draw(t_info *info);
 
 // // textured 에서 변경된 map, 요소 추가
 // int		world_map[MAP_WIDTH][MAP_HEIGHT] =
@@ -428,13 +428,13 @@
 // int main_loop(t_info *info)
 // {
 // 	calculateAndSaveToMap(info);
-// 	imageDraw(info);
+// 	image_draw(info);
 
 // 	//warning 방지
 // 	return (0);
 // }
 
-// void imageDraw(t_info *info)
+// void image_draw(t_info *info)
 // {
 // 	for (int y = 0; y < SCREEN_HEIGHT; y++)
 // 		for (int x = 0; x < SCREEN_WIDTH; x++)
@@ -698,7 +698,7 @@
 
 
 int	calculateAndSaveToMap(t_info *info);
-void	imageDraw(t_info *info);
+// void	image_draw(t_info *info);
 
 int		world_map[MAP_WIDTH][MAP_HEIGHT] = 
 {
@@ -731,18 +731,18 @@ int		world_map[MAP_WIDTH][MAP_HEIGHT] =
 int		main_loop(t_info *info)
 {
 	calculateAndSaveToMap(info);
-	imageDraw(info);
+	image_draw(info);
 	return (0);
 }
 
-void	imageDraw(t_info *info)
-{
-	for (int y = 0; y < SCREEN_HEIGHT; y++)
-		for (int x = 0; x < SCREEN_WIDTH; x++)
-			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
+// void	image_draw(t_info *info)
+// {
+// 	for (int y = 0; y < SCREEN_HEIGHT; y++)
+// 		for (int x = 0; x < SCREEN_WIDTH; x++)
+// 			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
 
-	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
-}
+// 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
+// }
 
 int calculateAndSaveToMap(t_info *info)
 {
@@ -915,33 +915,33 @@ int calculateAndSaveToMap(t_info *info)
 }
 
 
-void load_image(t_info *info, int *texture, char *path, t_img *img)
-{
-	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
-	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
-	for (int y = 0; y < img->img_height; y++)
-	{
-		for (int x = 0; x < img->img_width; x++)
-		{
-			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
-		}
-	}
-	mlx_destroy_image(info->mlx, img->img);
-}
+// void load_image(t_info *info, int *texture, char *path, t_img *img)
+// {
+// 	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
+// 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
+// 	for (int y = 0; y < img->img_height; y++)
+// 	{
+// 		for (int x = 0; x < img->img_width; x++)
+// 		{
+// 			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+// 		}
+// 	}
+// 	mlx_destroy_image(info->mlx, img->img);
+// }
 
-void    load_texture(t_info *info)
-{
-	t_img    img;
+// void    load_texture(t_info *info)
+// {
+// 	t_img    img;
 
-	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
-	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
-	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
-	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
-	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
-	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
-	load_image(info, info->texture[6], "textures/wood.xpm", &img);
-	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
-}
+// 	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
+// 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
+// 	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
+// 	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
+// 	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
+// 	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
+// 	load_image(info, info->texture[6], "textures/wood.xpm", &img);
+// 	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
+// }
 
 int main()
 {

@@ -10,7 +10,8 @@ DIR_O = ./
 SRC =	main.c			\
 		key_press.c		\
 		ft_map.c		\
-		ft_tex.c
+		ft_tex.c		\
+		ft_img.c
 
 
 
