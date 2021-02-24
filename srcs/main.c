@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/24 00:51:27 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/24 19:21:50 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1099,44 +1099,23 @@ int info_texture(t_info *info)
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int main()
 {
 	t_info info;
 	int check_err;
-	// info.mlx = mlx_init();
-
-	// info.player_position_x = 22.0;
-	// info.player_position_y = 11.5;
-	// info.direction_vector_x = -1.0;
-	// info.direction_vector_y = 0.0;
-	// info.plane_x = 0.0;
-	// info.plane_y = 0.66;
-	// info.move_speed = 0.05;
-	// info.rot_speed = 0.05;
-
+	
 	info_init(&info);
 	check_err = info_texture(&info);
 	if (check_err == -1)
 		return (-1);
-	// if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
-	// 	return (-1);
-	// for (int i = 0; i < 8; i++)
-	// 	if (!(info.texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
-	// 		return (-1);
-	
-	// for (int i = 0; i < 8; i++)
-	// 	for (int j = 0; j < TEX_HEIGHT * TEX_WIDTH; j++)
-	// 		info.texture[i][j] = 0;
-
 	load_texture(&info);
-
-	info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
+	// info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
+	info.win = mlx_new_window(info.mlx, info.win_x, info.win_y, "mlx");
 	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
-
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
 	mlx_loop(info.mlx);
