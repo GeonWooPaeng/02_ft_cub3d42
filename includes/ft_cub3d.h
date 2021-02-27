@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/25 00:33:23 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 14:35:44 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ typedef struct	s_info
 	double		player_position_y;
 	double		direction_vector_x;
 	double		direction_vector_y;
-	double		plane_x;//카메라 평면X
-	double		plane_y;//카메라 평면Y
+	double		plane_x; //카메라 평면X
+	double		plane_y; //카메라 평면Y
 	void		*mlx;
 	void		*win;
-	int			win_x;
-	int			win_y;
+	int			win_width;
+	int			win_height;
+	int			floor_color;
+	int			ceiling_color;
 	double		move_speed;
 	double		rot_speed;
 	t_img		img;
@@ -109,7 +111,7 @@ int				ft_parse(t_img *img, t_info *info, t_map *map, char *cub);
 int				ft_isspace(char *line, int *i);
 int				ft_atoi(char *line, int *i);
 void			ft_resolution(t_all *all, char *line, int *i);
-void			ft_texture(t_all *all, char *line, int *i);
+void			ft_texture(t_all *all, char *line, int *i, int *idx);
 
 typedef struct	s_all
 {

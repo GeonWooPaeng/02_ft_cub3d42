@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/25 00:31:29 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 14:08:40 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 int		ft_check_line(t_all *all, char *line)
 {// 처음 글자에 따라 check 하는 곳
 	int	i;
+	int idx;
 
 	i = 0;
+	idx = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] == 'R')
 		ft_resolution(all, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
-		ft_texture(all, line, &i);
+		ft_texture(all, line, &i, &idx);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		ft_texture(all, line, &i);
+		ft_texture(all, line, &i, &idx);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		ft_texture(all, line, &i);
+		ft_texture(all, line, &i, &idx);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		ft_texture(all, line, &i);
+		ft_texture(all, line, &i, &idx);
 	else if (line[i] == 'S')
-		ft_texture(all, line, &i);
-	// else if (line[i] == 'F')
-	// 	ft_floor();
-	// else if (line[i] == 'C')
-	// 	ft_ceilling();
-	// else if (line[i] == '1' || line[i] == '0')
-	// 	ft_map();
+		ft_texture(all, line, &i, &idx);
+	else if (line[i] == 'F')
+		ft_color(all, line, &i);
+	else if (line[i] == 'C')
+		ft_color(all, line, &i);
+	return (ft_map());
 }
 
 char	*ft_make_line(char **arr, int *check)

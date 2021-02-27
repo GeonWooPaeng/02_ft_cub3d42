@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/25 00:31:42 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 14:39:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	ft_resolution(t_all *all, char *line, int *i)
 {
 	(*i)++;
 	ft_isspace(line, i);
-	all->info.win_x = ft_atoi(line, i);
-	all->info.win_y = ft_atoi(line, i);
-	if (all->info.win_x > 2560)
-		all->info.win_x = 2560;
-	if (all->info.win_y > 1400)
-		all->info.win_y = 1400;
-	// printf("x: %d, y: %d", all->info.win_x, all->info.win_y);
+	all->info.win_width = ft_atoi(line, i);
+	all->info.win_height = ft_atoi(line, i);
+	if (all->info.win_width > 2560)
+		all->info.win_width = 2560;
+	if (all->info.win_height > 1400)
+		all->info.win_height = 1400;
+	// printf("x: %d, y: %d", all->info.win_width, all->info.win_height);
 	return (1);
 }
 
-void	ft_texture(t_all *all, char *line, int *i)
+void	ft_texture(t_all *all, char *line, int *i, int *idx)
 {
 	int		j;
 	int		cnt;
@@ -47,6 +47,34 @@ void	ft_texture(t_all *all, char *line, int *i)
 	}
 	arr[cnt] = '\0';
 	// printf("s >>> %s", arr);
-	load_image(&(all->info), all->info.texture, arr, &(all->img));
+	load_image(&(all->info), all->info.texture[*idx], arr, &(all->img));
+	(*idx)++;
+	return (1);
+}
+
+void	ft_color(t_all *all, char *line, int *i)
+{
+	int r;
+	int g;
+	int b;
+	int color;
+	int fc_check;
+	
+	fc_check = 1;
+	if (line[*i] == 'C')
+		fc_check = 0;
+	(*i)++;
+	ft_isspace(line, i);
+	r = ft_atoi(line, i);
+	(*i)++;
+	g = ft_atoi(line, i);
+	(*i)++;
+	b = ft_atoi(line, i);
+	color = ((r << 16) || (g << 8) || b);
+	// color = (r * 256 * 256) + g * 256 + b;
+	if (fc_check)
+		all->info.floor_color = color;
+	else
+		all->info.ceiling_color = color;
 	return (1);
 }

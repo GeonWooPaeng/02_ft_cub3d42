@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 20:21:41 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 14:05:33 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void	image_draw(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 }
 
-void	load_texture(t_info *info)
-{
-	t_img	img;
+// void	load_texture(t_info *info)
+// {
+// 	t_img	img;
 	
-	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
-	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
-	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
-	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
-	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
-	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
-	load_image(info, info->texture[6], "textures/wood.xpm", &img);
-	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
-}
+// 	load_image(info, info->texture[0], "textures/eagle.xpm", &img);
+// 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
+// 	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
+// 	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
+// 	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
+// 	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
+// 	load_image(info, info->texture[6], "textures/wood.xpm", &img);
+// 	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
+// }
 
 void	load_image(t_info *info, int *texture, char *path, t_img *img)
 {

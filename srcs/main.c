@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/24 19:21:50 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 14:16:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1034,7 +1034,6 @@ int		main_loop(t_info *info)
 
 int calculateAndSaveToMap(t_info *info)
 {
-
 	int x;
 
 	x = 0;
@@ -1113,7 +1112,7 @@ int main()
 		return (-1);
 	load_texture(&info);
 	// info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
-	info.win = mlx_new_window(info.mlx, info.win_x, info.win_y, "mlx");
+	info.win = mlx_new_window(info.mlx, info.win_width, info.win_height, "mlx");
 	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
 	mlx_loop_hook(info.mlx, &main_loop, &info);
