@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 14:39:23 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:45:16 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,4 @@ void	ft_color(t_all *all, char *line, int *i)
 		all->info.ceiling_color = color;
 	return (1);
 }
+

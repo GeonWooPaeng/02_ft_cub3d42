@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 14:35:44 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:46:50 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,19 @@ typedef struct	s_info
 	int			win_height;
 	int			floor_color;
 	int			ceiling_color;
+	int			map_width;
+	int			map_height;
 	double		move_speed;
 	double		rot_speed;
 	t_img		img;
 	int			buf[SCREEN_HEIGHT][SCREEN_WIDTH];
 	int			**texture;
+	char		**tab;
 }				t_info;
 
 // map
 extern int		world_map[MAP_WIDTH][MAP_HEIGHT];
+
 
 
 //setting 
@@ -98,21 +102,6 @@ void			ft_tex_x(t_map *map, t_tex *tex);
 void			ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x);
 void			ft_up_bottom(t_info *info);
 
-//parsing 
-size_t			ft_strlen(const char *str);
-char			*ft_strndup(const char *str, size_t num);
-char			*ft_strjoin(const char *a, const char *b);
-char			*ft_strchr(const char *str, int c);
-int				ft_make_arr(char **arr, char *buf, ssize_t nr);
-char			*ft_make_line(char **arr, int *check);
-int				get_next_line(int fd, char **line);
-int				ft_check_line(t_img *img, t_info *info, t_map *map, char *line);
-int				ft_parse(t_img *img, t_info *info, t_map *map, char *cub);
-int				ft_isspace(char *line, int *i);
-int				ft_atoi(char *line, int *i);
-void			ft_resolution(t_all *all, char *line, int *i);
-void			ft_texture(t_all *all, char *line, int *i, int *idx);
-
 typedef struct	s_all
 {
 	t_info		info;
@@ -121,6 +110,20 @@ typedef struct	s_all
 	t_tex		tex;
 }				t_all;
 
-
+//parsing 
+size_t			ft_strlen(const char *str);
+char			*ft_strndup(const char *str, size_t num);
+char			*ft_strjoin(const char *a, const char *b);
+char			*ft_strchr(const char *str, int c);
+int				ft_make_arr(char **arr, char *buf, ssize_t nr);
+char			*ft_make_line(char **arr, int *check);
+int				get_next_line(int fd, char **line);
+int				ft_check_line(t_all *all, char *line);
+int				ft_parse(t_all *all, char *cub);
+int				ft_isspace(char *line, int *i);
+int				ft_atoi(char *line, int *i);
+void			ft_resolution(t_all *all, char *line, int *i);
+void			ft_texture(t_all *all, char *line, int *i, int *idx);
+void			ft_map(t_all *all, char *line, int *i);
 
 #endif

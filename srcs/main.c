@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 14:16:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/02/27 15:45:51 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1101,11 +1101,15 @@ int info_texture(t_info *info)
 	return (1);
 }
 
-int main()
+
+int main(int argc, char *argv[])
 {
-	t_info info;
-	int check_err;
+	t_all	*all;
+	t_info	info;
+	int		check_err;
 	
+	all = malloc(sizeof(t_all));
+	ft_parse(all, argv[1]);
 	info_init(&info);
 	check_err = info_texture(&info);
 	if (check_err == -1)
@@ -1118,4 +1122,5 @@ int main()
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
 	mlx_loop(info.mlx);
+	free(all);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 14:08:40 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:48:19 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int		ft_check_line(t_all *all, char *line)
 		ft_color(all, line, &i);
 	else if (line[i] == 'C')
 		ft_color(all, line, &i);
-	return (ft_map());
+	else
+		ft_map(all, line, &i);
+	return (0);
 }
 
 char	*ft_make_line(char **arr, int *check)
@@ -130,5 +132,4 @@ int		ft_parse(t_all *all, char *cub)
 		print("Error");//error
 		return (-1);
 	}
-
 }
