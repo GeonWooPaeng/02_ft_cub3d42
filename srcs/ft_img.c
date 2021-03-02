@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 14:05:33 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 20:39:22 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	image_draw(t_info *info)
 	int y;
 
 	y = 0;
-	while (y < SCREEN_HEIGHT)
+	while (y < info->win_height)
 	{
 		x = 0;
-		while (x < SCREEN_HEIGHT)
+		while (x < info->win_height)
 		{	
-			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
+			info->img.data[y * info->win_width + x] = info->buf[y][x];
 			x++;
 		}
 		y++;

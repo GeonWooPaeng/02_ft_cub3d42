@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/27 15:45:51 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 21:17:27 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1038,7 +1038,7 @@ int calculateAndSaveToMap(t_info *info)
 
 	x = 0;
 	ft_up_bottom(info);
-	while (x < SCREEN_WIDTH)
+	while (x < info->win_width)
 	{
 		t_map *map;
 		t_tex *tex;
@@ -1048,9 +1048,9 @@ int calculateAndSaveToMap(t_info *info)
 		ft_map_init(info, map, x);
 		ft_side_dist(info, map);
 		ft_hit_side(info, map);
-		ft_draw(map);
+		ft_draw(info, map);
 		ft_wall(info, map);
-		tex->tex_num = world_map[map->map_x][map->map_y] - 1;
+		tex->tex_num = info->tab[map->map_x][map->map_y] - 1;
 		ft_tex_x(map, tex);
 		ft_tex_y(info, map, tex, x);
 		free(map);
@@ -1117,7 +1117,7 @@ int main(int argc, char *argv[])
 	load_texture(&info);
 	// info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
 	info.win = mlx_new_window(info.mlx, info.win_width, info.win_height, "mlx");
-	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	info.img.img = mlx_new_image(info.mlx, info.win_width, info.win_height);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);

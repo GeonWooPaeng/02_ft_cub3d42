@@ -7,11 +7,15 @@ DIR_H = ./includes/
 DIR_S = ./srcs/
 DIR_O = ./
 
-SRC =	main.c			\
-		key_press.c		\
-		ft_map.c		\
-		ft_tex.c		\
-		ft_img.c
+SRC =	main.c					\
+		key_press.c				\
+		ft_map.c				\
+		ft_tex.c				\
+		ft_img.c				\
+		parse/get_next_line.c	\
+		parse/parsing_map.c		\
+		parse/parsing_unit.c	\
+		parse/parsing.c			\
 
 
 

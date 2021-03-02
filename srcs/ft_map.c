@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:42:57 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 23:56:09 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 20:38:39 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	ft_hit_side(t_info *info, t_map *map)
 		map->perp_wall_dist = (map->map_y - info->player_position_y + (1 - map->step_y) / 2) / map->ray_direction_y;
 }
 
-void	ft_draw(t_map *map)
+void	ft_draw(t_info *info, t_map *map)
 {// 스크린에 그릴 line의 높이 계산
 	int	lineHeight;
 
-	lineHeight = (int)(SCREEN_HEIGHT / map->perp_wall_dist); //스크린에 그릴 line의 높이 계산
+	lineHeight = (int)(info->win_height / map->perp_wall_dist); //스크린에 그릴 line의 높이 계산
 	// 선을 그릴 시작점과 끝점 구하기
-	map->draw_start = (-lineHeight / 2) + (SCREEN_HEIGHT / 2);
-	map->draw_end = (lineHeight / 2) + (SCREEN_HEIGHT / 2);
+	map->draw_start = (-lineHeight / 2) + (info->win_height / 2);
+	map->draw_end = (lineHeight / 2) + (info->win_height / 2);
 	if (map->draw_start < 0)
 		map->draw_start = 0;
-	if (map->draw_end >= SCREEN_HEIGHT)
-		map->draw_end = SCREEN_HEIGHT - 1;
+	if (map->draw_end >= info->win_height)
+		map->draw_end = info->win_height - 1;
 }
 
 void	ft_wall(t_info *info, t_map *map)
@@ -90,7 +90,7 @@ void	ft_map_init(t_info *info, t_map *map, int x)
 {
 	double	cameraX; // x값이 카메라 평면 상에 있을 때의 좌표
 
-	cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
+	cameraX = (2 * x / (double)(info->win_width)) - 1;
 	map->ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
 	map->ray_direction_y = info->direction_vector_y + info->plane_y * cameraX;
 	map->map_x = (int)(info->player_position_x);

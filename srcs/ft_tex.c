@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:26:11 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/24 00:35:43 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 20:37:02 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x)
 	int y;
 
 	y = map->draw_start;
-	line_height = (int)(SCREEN_HEIGHT / map->perp_wall_dist); //스크린에 그릴 line의 높이 계산
+	line_height = (int)(info->win_height / map->perp_wall_dist); //스크린에 그릴 line의 높이 계산
 	tex->step = 1.0 * TEX_HEIGHT / line_height;
-	tex->tex_pos = (map->draw_start - SCREEN_HEIGHT / 2 + line_height / 2) * tex->step;
+	tex->tex_pos = (map->draw_start - info->win_height / 2 + line_height / 2) * tex->step;
 	while (y < map->draw_end)
 	{
 		tex->tex_y = (int)tex->tex_pos & (TEX_HEIGHT - 1);
@@ -48,13 +48,13 @@ void	ft_up_bottom(t_info *info)
 	int y;
 
 	x = 0;
-	while (x < SCREEN_WIDTH)
+	while (x < info->win_width)
 	{
 		y = 0;
-		while (y < SCREEN_HEIGHT)
+		while (y < info->win_height)
 		{
-			info->buf[y][x] = 0xFFFF00;
-			info->buf[SCREEN_HEIGHT - y - 1][x] = 0x000000;
+			info->buf[y][x] = info->ceiling_color;
+			info->buf[info->win_height - y - 1][x] = info->floor_color;
 			y++;
 		}
 		x++;

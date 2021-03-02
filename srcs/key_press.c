@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:37:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 19:02:27 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 20:30:05 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	ft_key_w(t_info *info)
 {
-	if (!world_map[(int)(info->player_position_x + info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
+	if (!info->tab[(int)(info->player_position_x + info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
 		info->player_position_x += info->direction_vector_x * info->move_speed;
-	if (!world_map[(int)(info->player_position_x)][(int)(info->player_position_y + info->direction_vector_y * info->move_speed)])
+	if (!info->tab[(int)(info->player_position_x)][(int)(info->player_position_y + info->direction_vector_y * info->move_speed)])
 		info->player_position_y += info->direction_vector_y * info->move_speed;
 }
 
 void	ft_key_s(t_info *info)
 {
-	if (!world_map[(int)(info->player_position_x - info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
+	if (!info->tab[(int)(info->player_position_x - info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
 		info->player_position_x -= info->direction_vector_x * info->move_speed;
-	if (!world_map[(int)(info->player_position_x)][(int)(info->player_position_y - info->direction_vector_y * info->move_speed)])
+	if (!info->tab[(int)(info->player_position_x)][(int)(info->player_position_y - info->direction_vector_y * info->move_speed)])
 		info->player_position_y -= info->direction_vector_y * info->move_speed;
 }
 

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 19:46:50 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/02 21:20:30 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include <fcntl.h>
 
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+// #define SCREEN_WIDTH 640
+// #define SCREEN_HEIGHT 480
 
 #define X_EVENT_KEY_PRESS 2
 #define X_EVENT_KEY_EXIT 17
@@ -92,7 +92,7 @@ int				key_press(int key, t_info *info);
 #include "ft_map.h"
 void			ft_side_dist(t_info *info, t_map *map);
 void			ft_hit_side(t_info *info, t_map *map);
-void			ft_draw(t_map *map);
+void			ft_draw(t_info *info, t_map *map);
 void			ft_wall(t_info *info, t_map *map);
 void			ft_map_init(t_info *info, t_map *map, int x);
 
