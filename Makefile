@@ -16,6 +16,7 @@ SRC =	main.c					\
 		parse/parsing_map.c		\
 		parse/parsing_unit.c	\
 		parse/parsing.c			\
+		parse/util.c
 
 
 

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 19:48:19 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:56:41 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ int		ft_parse(t_all *all, char *cub)
 	close(fd);
 	if (fd < 0)
 	{
-		print("Error");//error
+		printf("Error");//error
 		return (-1);
 	}
+	return (1);
 }

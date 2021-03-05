@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:35:22 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/02/23 23:51:01 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/04 20:37:41 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_map
 
 void	ft_side_dist(t_info *info, t_map *map);
 void	ft_hit_side(t_info *info, t_map *map);
-void	ft_draw(t_map *map);
+void	ft_draw(t_info *info, t_map *map);
 void	ft_wall(t_info *info, t_map *map);
 void	ft_map_init(t_info *info, t_map *map, int x);
 

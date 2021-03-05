@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:26:11 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 20:37:02 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:34:10 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x)
 		tex->color = info->texture[tex->tex_num][TEX_HEIGHT * tex->tex_y + tex->tex_x];
 		if (map->side)
 			tex->color = (tex->color >> 1) & 8355711;
-		info->buf[y][x] = tex->color;
+		info->tab[y][x] = (char)tex->color;
 		y++;
 	}
 }
@@ -53,8 +53,8 @@ void	ft_up_bottom(t_info *info)
 		y = 0;
 		while (y < info->win_height)
 		{
-			info->buf[y][x] = info->ceiling_color;
-			info->buf[info->win_height - y - 1][x] = info->floor_color;
+			info->tab[y][x] = (char)info->ceiling_color;
+			info->tab[info->win_height - y - 1][x] = (char)info->floor_color;
 			y++;
 		}
 		x++;

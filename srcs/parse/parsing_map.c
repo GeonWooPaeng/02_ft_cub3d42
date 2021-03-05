@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 20:04:30 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:53:41 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int		ft_rownum(char *line)
 	return (cnt);
 }
 
-char		*ft_row(t_all *all, char *line, int *i)
+char		*ft_row(char *line, int *i)
 {
 	char	*tmp;
 	int		idx;
 	
 	idx = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (ft_rownum(line) + 1))))
-		return (-1);
+		return (NULL);
 	while (line[*i] != '\0')
 	{
 		if (line[*i] == '0' || line[*i] == '1' || line[*i] == '2' || 
@@ -47,7 +47,7 @@ char		*ft_row(t_all *all, char *line, int *i)
 		else if (line[*i] != ' ')
 		{
 			free(tmp);
-			return (-1);
+			return (NULL);
 		}
 		(*i)++;
 	}
@@ -55,20 +55,20 @@ char		*ft_row(t_all *all, char *line, int *i)
 	return (tmp);
 }
 
-void	ft_map(t_all *all, char *line, int *i)
+int		ft_map(t_all *all, char *line, int *i)
 {
 	char	**tmp;
 	int		idx;
 
 	idx = 0;
-	if (!(tmp = (char *)malloc(sizeof(char *) * (all->info.map_height + 2))))
+	if (!(tmp = (char **)malloc(sizeof(char *) * (all->info.map_height + 2))))
 		return (-1);
 	while (idx < all->info.map_height)
 	{
 		tmp[idx] = all->info.tab[idx];
 		idx++;
 	}
-	if ((tmp[all->info.map_height] = ft_row(all, line, i)) == -1)
+	if ((tmp[all->info.map_height] = ft_row(line, i)) == NULL)
 	{
 		free(tmp);
 		return (-1);
@@ -78,5 +78,5 @@ void	ft_map(t_all *all, char *line, int *i)
 		free(all->info.tab);
 	all->info.tab = tmp;
 	all->info.map_height++;
-	return (0);
+	return (1);
 }

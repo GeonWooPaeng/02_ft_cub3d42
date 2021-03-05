@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 21:17:27 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 17:21:29 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1107,14 +1107,15 @@ int main(int argc, char *argv[])
 	t_all	*all;
 	t_info	info;
 	int		check_err;
-	
+
+	printf("argc >> %d", argc);
 	all = malloc(sizeof(t_all));
 	ft_parse(all, argv[1]);
 	info_init(&info);
 	check_err = info_texture(&info);
 	if (check_err == -1)
 		return (-1);
-	load_texture(&info);
+	// load_texture(&info);
 	// info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
 	info.win = mlx_new_window(info.mlx, info.win_width, info.win_height, "mlx");
 	info.img.img = mlx_new_image(info.mlx, info.win_width, info.win_height);
@@ -1123,4 +1124,19 @@ int main(int argc, char *argv[])
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
 	mlx_loop(info.mlx);
 	free(all);
+	return (0);
+}
+
+// ---------------------------------------------------------
+
+int main(int argc, char *argv[])
+{
+	if (argc == 2 && ft_check_name(argv[1]))
+	{
+		ft_init(); // 기본 초기화
+		ft_init_unit(); //map, tex, spr, 등 초기화
+		ft_start(); //mlx 시작 
+	}
+	else
+	
 }

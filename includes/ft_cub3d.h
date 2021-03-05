@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 21:20:30 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 17:24:34 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 
 // #define SCREEN_WIDTH 640
@@ -64,13 +65,13 @@ typedef struct	s_info
 	double		move_speed;
 	double		rot_speed;
 	t_img		img;
-	int			buf[SCREEN_HEIGHT][SCREEN_WIDTH];
+	// int			buf[SCREEN_HEIGHT][SCREEN_WIDTH];
 	int			**texture;
 	char		**tab;
 }				t_info;
 
 // map
-extern int		world_map[MAP_WIDTH][MAP_HEIGHT];
+// extern int		world_map[MAP_WIDTH][MAP_HEIGHT];
 
 
 
@@ -118,12 +119,30 @@ char			*ft_strchr(const char *str, int c);
 int				ft_make_arr(char **arr, char *buf, ssize_t nr);
 char			*ft_make_line(char **arr, int *check);
 int				get_next_line(int fd, char **line);
+int				ft_color(t_all *all, char *line, int *i);
 int				ft_check_line(t_all *all, char *line);
 int				ft_parse(t_all *all, char *cub);
 int				ft_isspace(char *line, int *i);
 int				ft_atoi(char *line, int *i);
-void			ft_resolution(t_all *all, char *line, int *i);
-void			ft_texture(t_all *all, char *line, int *i, int *idx);
-void			ft_map(t_all *all, char *line, int *i);
+int				ft_resolution(t_all *all, char *line, int *i);
+int				ft_texture(t_all *all, char *line, int *i, int *idx);
+int				ft_map(t_all *all, char *line, int *i);
 
 #endif
+
+// --------------------------------------
+
+// #ifndef FT_CUB3D_H
+// # define FT_CUB3D_H
+
+// #include "mlx.h"
+// #include <math.h>
+// #include <string.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <fcntl.h>
+// #include <unistd.h>
+
+
+
+// #endif

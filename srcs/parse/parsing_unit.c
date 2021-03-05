@@ -6,13 +6,13 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 19:45:16 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:52:42 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	ft_resolution(t_all *all, char *line, int *i)
+int		ft_resolution(t_all *all, char *line, int *i)
 {
 	(*i)++;
 	ft_isspace(line, i);
@@ -26,7 +26,7 @@ void	ft_resolution(t_all *all, char *line, int *i)
 	return (1);
 }
 
-void	ft_texture(t_all *all, char *line, int *i, int *idx)
+int		ft_texture(t_all *all, char *line, int *i, int *idx)
 {
 	int		j;
 	int		cnt;
@@ -52,7 +52,7 @@ void	ft_texture(t_all *all, char *line, int *i, int *idx)
 	return (1);
 }
 
-void	ft_color(t_all *all, char *line, int *i)
+int		ft_color(t_all *all, char *line, int *i)
 {
 	int r;
 	int g;
@@ -70,8 +70,8 @@ void	ft_color(t_all *all, char *line, int *i)
 	g = ft_atoi(line, i);
 	(*i)++;
 	b = ft_atoi(line, i);
-	color = ((r << 16) || (g << 8) || b);
-	// color = (r * 256 * 256) + g * 256 + b;
+	// color = ((r << 16) || (g << 8) || b);
+	color = (r * 256 * 256) + g * 256 + b;
 	if (fc_check)
 		all->info.floor_color = color;
 	else

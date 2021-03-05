@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:42:57 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 20:38:39 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:48:28 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_hit_side(t_info *info, t_map *map)
 			map->map_y += map->step_y;
 			map->side = 1;
 		}
-		if (world_map[map->map_x][map->map_y] > 0)
+		if ((int)info->tab[map->map_x][map->map_y] > 0)
 			map->hit = 1;
 	}
 	if (map->side == 0)
