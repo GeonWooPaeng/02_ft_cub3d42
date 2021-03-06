@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:07:01 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/06 20:20:06 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1145,7 +1145,7 @@ void	ft_draw(t_all *all)
 	all->ray = ray;
 	all->hit = hit;
 	// ft_screen(all);
-	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
+	// mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
 	free(all->img.ptr);
 	free(all->img.adr);
 }
@@ -1157,17 +1157,17 @@ int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 	dir->y = 0;
 	all->pos = *pos;
 	all->dir = *dir;
-	all->info.mlx = mlx_init();
+	// all->info.mlx = mlx_init();
 	ft_parsing(all, cub);
 	//
 	//
 	//
 	//
-	all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
+	// all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
 	ft_draw(all);
 	// mlx_hook(all->info.win, 2, 0, ft_key)
 	// mlx_hook(all->info.win, 2, 0, ft_key)
-	mlx_loop(all->info.mlx);
+	// mlx_loop(all->info.mlx);
 	return (1);
 }
 

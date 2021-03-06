@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:09:47 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/06 20:31:57 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int		ft_resolution(t_all *all, char *line, int *i)
 
 int		ft_texture(t_all *all, char *line, int *i, int *idx)
 {
-	int		j;
-	int		cnt;
 	char	*arr;
+	int		j;
 	
 	(*i) += 2;
 	ft_isspace(line, i);
@@ -39,14 +38,11 @@ int		ft_texture(t_all *all, char *line, int *i, int *idx)
 		(*i)++;
 	if (!(arr = (char *)malloc(sizeof(char) * (*i - j + 1))))
 		return (-1);
-	cnt = 0;
-	while (cnt < (*i - j + 1))
-	{	
-		arr[cnt] = line[*i + cnt];
-		cnt++;
-	}
-	arr[cnt] = '\0';
-	// printf("s >>> %s", arr);
+	*i = j;
+	j = 0;
+	while (line[*i] != ' ' && line[*i] != '\0')
+		arr[j++] = line[(*i)++];
+	arr[j] = '\0';
 	// load_image(&(all->info), all->info.texture[*idx], arr, &(all->img));
 	(*idx)++;
 	return (1);
@@ -76,6 +72,7 @@ int		ft_color(t_all *all, char *line, int *i)
 	// 	all->info.floor_color = color;
 	// else
 	// 	all->info.ceiling_color = color;
+	printf("color >> %d, %d, %d\n",r, g, b);
 	return (1);
 }
 
