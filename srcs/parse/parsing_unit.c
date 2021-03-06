@@ -6,22 +6,22 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/05 14:52:42 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/06 20:09:47 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#include "../../includes/ft_cub3d.h"
 
 int		ft_resolution(t_all *all, char *line, int *i)
 {
 	(*i)++;
 	ft_isspace(line, i);
-	all->info.win_width = ft_atoi(line, i);
-	all->info.win_height = ft_atoi(line, i);
-	if (all->info.win_width > 2560)
-		all->info.win_width = 2560;
-	if (all->info.win_height > 1400)
-		all->info.win_height = 1400;
+	all->info.win_x= ft_atoi(line, i);
+	all->info.win_y = ft_atoi(line, i);
+	if (all->info.win_x > 2560)
+		all->info.win_x = 2560;
+	if (all->info.win_y > 1400)
+		all->info.win_y = 1400;
 	// printf("x: %d, y: %d", all->info.win_width, all->info.win_height);
 	return (1);
 }
@@ -47,7 +47,7 @@ int		ft_texture(t_all *all, char *line, int *i, int *idx)
 	}
 	arr[cnt] = '\0';
 	// printf("s >>> %s", arr);
-	load_image(&(all->info), all->info.texture[*idx], arr, &(all->img));
+	// load_image(&(all->info), all->info.texture[*idx], arr, &(all->img));
 	(*idx)++;
 	return (1);
 }
@@ -72,10 +72,10 @@ int		ft_color(t_all *all, char *line, int *i)
 	b = ft_atoi(line, i);
 	// color = ((r << 16) || (g << 8) || b);
 	color = (r * 256 * 256) + g * 256 + b;
-	if (fc_check)
-		all->info.floor_color = color;
-	else
-		all->info.ceiling_color = color;
+	// if (fc_check)
+	// 	all->info.floor_color = color;
+	// else
+	// 	all->info.ceiling_color = color;
 	return (1);
 }
 

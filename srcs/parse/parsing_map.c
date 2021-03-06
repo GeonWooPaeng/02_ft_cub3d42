@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/05 13:53:41 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/06 20:11:47 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#include "../../includes/ft_cub3d.h"
 
 int		ft_rownum(char *line)
 {
@@ -61,22 +61,22 @@ int		ft_map(t_all *all, char *line, int *i)
 	int		idx;
 
 	idx = 0;
-	if (!(tmp = (char **)malloc(sizeof(char *) * (all->info.map_height + 2))))
+	if (!(tmp = (char **)malloc(sizeof(char *) * (all->map.y + 2))))
 		return (-1);
-	while (idx < all->info.map_height)
+	while (idx < all->map.y)
 	{
-		tmp[idx] = all->info.tab[idx];
+		tmp[idx] = all->map.tab[idx];
 		idx++;
 	}
-	if ((tmp[all->info.map_height] = ft_row(line, i)) == NULL)
+	if ((tmp[all->map.y] = ft_row(line, i)) == NULL)
 	{
 		free(tmp);
 		return (-1);
 	}
-	tmp[all->info.map_height + 1] = NULL;
-	if (all->info.map_height > 0)
-		free(all->info.tab);
-	all->info.tab = tmp;
-	all->info.map_height++;
+	tmp[all->map.y + 1] = NULL;
+	if (all->map.y > 0)
+		free(all->map.tab);
+	all->map.tab = tmp;
+	all->map.y++;
 	return (1);
 }

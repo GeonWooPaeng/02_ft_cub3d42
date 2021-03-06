@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/05 13:56:41 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/06 20:07:42 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#include "../../includes/ft_cub3d.h"
 
 int		ft_check_line(t_all *all, char *line)
 {// 처음 글자에 따라 check 하는 곳
@@ -37,7 +37,7 @@ int		ft_check_line(t_all *all, char *line)
 		ft_color(all, line, &i);
 	else if (line[i] == 'C')
 		ft_color(all, line, &i);
-	else
+	else if (line[i] != '\0')
 		ft_map(all, line, &i);
 	return (0);
 }
@@ -92,7 +92,7 @@ int		get_next_line(int fd, char **line)
 	int			check;
 
 	if (!line || fd < 0 || fd >= 256)
-		return (-1);//error
+		return (-1); //error
 	while ((nr = read(fd, buf, 4096)) >= 0)
 	{
 		buf[nr] = '\0';
@@ -110,7 +110,7 @@ int		get_next_line(int fd, char **line)
 	return (1);
 }
 
-int		ft_parse(t_all *all, char *cub)
+int		ft_parsing(t_all *all, char *cub)
 {
 	int		ret;
 	int		fd;
@@ -129,7 +129,7 @@ int		ft_parse(t_all *all, char *cub)
 	close(fd);
 	if (fd < 0)
 	{
-		printf("Error");//error
+		printf("Error"); //error
 		return (-1);
 	}
 	return (1);
