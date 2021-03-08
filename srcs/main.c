@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:20:06 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:25:15 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1158,16 +1158,15 @@ int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 	all->pos = *pos;
 	all->dir = *dir;
 	// all->info.mlx = mlx_init();
-	ft_parsing(all, cub);
 	//
 	//
 	//
 	//
 	// all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
 	ft_draw(all);
+	mlx_hook(all->info.win, 2, 0, key_press, all);
 	// mlx_hook(all->info.win, 2, 0, ft_key)
-	// mlx_hook(all->info.win, 2, 0, ft_key)
-	// mlx_loop(all->info.mlx);
+	mlx_loop(all->info.mlx);
 	return (1);
 }
 
@@ -1195,6 +1194,21 @@ void	ft_init(t_all *all, t_info *info, t_img *img)
 	all->img = *img;
 }
 
+int	ft_check_name(char *a, char *b)
+{
+	int alen;
+	int blen;
+	int idx;
+
+	alen = ft_strlen(a);
+	blen = ft_strlen(b);
+	while (blen > 0)
+	{
+		if (a[alen--] != b[blen--])
+			return (0);
+	}
+	return (1);
+}
 
 int main(int argc, char *argv[])
 {
@@ -1206,12 +1220,17 @@ int main(int argc, char *argv[])
 	t_dir dir;
 	t_spr spr;
 	
-	if (argc == 2)
+	if (argc == 2 && ft_check_name(argv[1], ".cub"))
 	{
-		ft_parsing(&all, argv[1]);
-		// ft_init(&all, &info, &img); // 기본 초기화
-		// ft_init_unit(&all, &map, &spr); //map, tex, spr, 등 초기화
-		// ft_start(&all, &pos, &dir, argv[1]); //mlx 시작 
+		ft_init(&all, &info, &img); // 기본 초기화
+		if (ft_parsing(&all, argv[1]) == -1)
+			return (-1); //error
+		ft_init_unit(&all, &map, &spr); //map, tex, spr, 등 초기화
+		ft_start(&all, &pos, &dir, argv[1]); //mlx 시작 
+	}
+	else
+	{
+		printf("Error");
 	}
 	return (0);
 }

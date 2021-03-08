@@ -6,14 +6,14 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:58:33 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:39:03 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_cub3d.h"
 
 int		ft_rownum(char *line)
-{
+{// 행 길이
 	int	idx;
 	int cnt;
 
@@ -31,7 +31,7 @@ int		ft_rownum(char *line)
 }
 
 char		*ft_row(char *line, int *i)
-{
+{// 행 malloc
 	char	*tmp;
 	int		idx;
 	

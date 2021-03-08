@@ -6,58 +6,58 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:37:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/02 20:30:05 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:12:07 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	ft_key_w(t_info *info)
+void	ft_key_w(t_all *all)
 {
-	if (!info->tab[(int)(info->player_position_x + info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
-		info->player_position_x += info->direction_vector_x * info->move_speed;
-	if (!info->tab[(int)(info->player_position_x)][(int)(info->player_position_y + info->direction_vector_y * info->move_speed)])
-		info->player_position_y += info->direction_vector_y * info->move_speed;
+	if (!all->map.tab[(int)(all->pos.x + all->dir.x * 0.05)][(int)(all->pos.y)])
+		all->pos.x += all->dir.x * 0.05;
+	if (!all->map.tab[(int)(all->pos.x)][(int)(all->pos.y + all->dir.y * 0.05)])
+		all->pos.y += all->dir.y * 0.05;
 }
 
-void	ft_key_s(t_info *info)
+void	ft_key_s(t_all *all)
 {
-	if (!info->tab[(int)(info->player_position_x - info->direction_vector_x * info->move_speed)][(int)(info->player_position_y)])
-		info->player_position_x -= info->direction_vector_x * info->move_speed;
-	if (!info->tab[(int)(info->player_position_x)][(int)(info->player_position_y - info->direction_vector_y * info->move_speed)])
-		info->player_position_y -= info->direction_vector_y * info->move_speed;
+	if (!all->map.tab[(int)(all->pos.x - all->dir.x * 0.05)][(int)(all->pos.y)])
+		all->pos.x -= all->dir.x * 0.05;
+	if (!all->map.tab[(int)(all->pos.x)][(int)(all->pos.y - all->dir.y * 0.05)])
+		all->pos.y -= all->dir.y * 0.05;
 }
 
-void	ft_key_a(t_info *info)
+void	ft_key_a(t_all *all)
 {
-	double oldDirectionX = info->direction_vector_x;
-	info->direction_vector_x = info->direction_vector_x * cos(info->rot_speed) - info->direction_vector_y * sin(info->rot_speed);
-	info->direction_vector_y = oldDirectionX * sin(info->rot_speed) + info->direction_vector_y * cos(info->rot_speed);
+	double oldDirectionX = all->dir.x;
+	all->dir.x = all->dir.x * cos(0.05) - all->dir.y * sin(0.05);
+	all->dir.y = oldDirectionX * sin(0.05) + all->dir.y * cos(0.05);
 	double oldPlaneX = info->plane_x;
-	info->plane_x = info->plane_x * cos(info->rot_speed) - info->plane_y * sin(info->rot_speed);
-	info->plane_y = oldPlaneX * sin(info->rot_speed) + info->plane_y * cos(info->rot_speed);
+	info->plane_x = info->plane_x * cos(0.05) - info->plane_y * sin(0.05);
+	info->plane_y = oldPlaneX * sin(0.05) + info->plane_y * cos(0.05);
 }
 
-void	ft_key_d(t_info *info)
+void	ft_key_d(t_all *all)
 {
-	double oldDirectionX = info->direction_vector_x;
-	info->direction_vector_x = info->direction_vector_x * cos(-info->rot_speed) - info->direction_vector_y * sin(-info->rot_speed);
-	info->direction_vector_y = oldDirectionX * sin(-info->rot_speed) + info->direction_vector_y * cos(-info->rot_speed);
+	double oldDirectionX = all->dir.x;
+	all->dir.x = all->dir.x * cos(-0.05) - all->dir.y * sin(-0.05);
+	all->dir.y = oldDirectionX * sin(-0.05) + all->dir.y * cos(-0.05);
 	double oldPlaneX = info->plane_x;
-	info->plane_x = info->plane_x * cos(-info->rot_speed) - info->plane_y * sin(-info->rot_speed);
-	info->plane_y = oldPlaneX * sin(-info->rot_speed) + info->plane_y * cos(-info->rot_speed);
+	info->plane_x = info->plane_x * cos(-0.05) - info->plane_y * sin(-0.05);
+	info->plane_y = oldPlaneX * sin(-0.05) + info->plane_y * cos(-0.05);
 }
 
-int		key_press(int key, t_info *info)
+int		key_press(int key, t_all *all)
 {
 	if (key == KEY_W)
-		ft_key_w(info);
+		ft_key_w(all);
 	if (key == KEY_S)
-		ft_key_s(info);
+		ft_key_s(all);
 	if (key == KEY_A)
-		ft_key_a(info);
+		ft_key_a(all);
 	if (key == KEY_D)
-		ft_key_d(info);
+		ft_key_d(all);
 	if (key == K_ESC)
 		exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:04:56 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:24:08 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,91 +144,108 @@
 #include <unistd.h>
 
 
-typedef struct	s_info
+typedef struct		s_info
 {
-	void		*mlx;
-	void		*win;
-	int			win_x;
-	int			win_y;
-}				t_info;
+	void			*mlx;
+	void			*win;
+	int				win_x;
+	int				win_y;
+}					t_info;
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	void		*ptr;
-	int			*adr;
-	int			fsh;
-}				t_img;
+	void			*ptr;
+	int				*adr;
+	int				fsh;
+}					t_img;
 
-typedef struct	s_map
+typedef struct		s_map
 {
-	char		**tab;
-	int			x;
-	int			y;
-	int			spr;
-}				t_map;
+	char			**tab;
+	int				x;
+	int				y;
+	int				spr;
+}					t_map;
 
-typedef struct	s_pos
+typedef struct		s_tex
 {
-	double		x;
-	double		y;
-}				t_pos;
+	unsigned int	*n;
+	unsigned int	*s;
+	unsigned int	*e;
+	unsigned int	*w;
+}					t_tex;
 
-typedef struct	s_dir
+typedef struct		s_pos
 {
-	double		x;
-	double		y;
-	double		a;
-}				t_dir;
+	double			x;
+	double			y;
+}					t_pos;
 
-typedef struct	s_ray
+typedef struct		s_dir
 {
-	double		x;
-	double		y;
-	int			i;
-}				t_ray;
+	double			x;
+	double			y;
+	double			a;
+}					t_dir;
 
-typedef struct	s_hit
+typedef struct		s_ray
 {
-	double		x;
-	double		y;
-	double		d;
-}				t_hit;
+	double			x;
+	double			y;
+	int				i;
+}					t_ray;
 
-typedef struct	s_spr
+typedef struct		s_hit
 {
-	double		x;
-	double		y;
-	double		d;
-}				t_spr;
+	double			x;
+	double			y;
+	double			d;
+}					t_hit;
 
-typedef struct	s_all
+typedef struct		s_spr
 {
-	t_info		info;
-	t_img		img;
-	t_map		map;
-	t_pos		pos;
-	t_dir		dir;
-	t_ray		ray;
-	t_hit		hit;
-	t_spr		spr;
-}				t_all;
+	double			x;
+	double			y;
+	double			d;
+}					t_spr;
+
+typedef struct		s_all
+{
+	t_info			info;
+	t_img			img;
+	t_map			map;
+	t_pos			pos;
+	t_dir			dir;
+	t_ray			ray;
+	t_hit			hit;
+	t_spr			spr;
+}					t_all;
 
 
 //parsing 
-size_t			ft_strlen(const char *str);
-char			*ft_strndup(const char *str, size_t num);
-char			*ft_strjoin(const char *a, const char *b);
-char			*ft_strchr(const char *str, int c);
-int				ft_make_arr(char **arr, char *buf, ssize_t nr);
-char			*ft_make_line(char **arr, int *check);
-int				get_next_line(int fd, char **line);
-int				ft_color(t_all *all, char *line, int *i);
-int				ft_check_line(t_all *all, char *line);
-int				ft_parsing(t_all *all, char *cub);
-int				ft_isspace(char *line, int *i);
-int				ft_atoi(char *line, int *i);
-int				ft_resolution(t_all *all, char *line, int *i);
-int				ft_texture(t_all *all, char *line, int *i, int *idx);
-int				ft_map(t_all *all, char *line, int *i);
+size_t				ft_strlen(const char *str);
+char				*ft_strndup(const char *str, size_t num);
+char				*ft_strjoin(const char *a, const char *b);
+char				*ft_strchr(const char *str, int c);
+int					ft_make_arr(char **arr, char *buf, ssize_t nr);
+char				*ft_make_line(char **arr, int *check);
+int					get_next_line(int fd, char **line);
+int					ft_color(t_all *all, char *line, int *i);
+int					ft_check_line(t_all *all, char *line);
+int					ft_parsing(t_all *all, char *cub);
+int					ft_isspace(char *line, int *i);
+int					ft_atoi(char *line, int *i);
+int					ft_resolution(t_all *all, char *line, int *i);
+int					ft_texture(t_all *all, char *line, int *i, int *idx);
+int					ft_map(t_all *all, char *line, int *i);
+int					ft_check_name(char *a, char *b);
+
+//key_press
+#include "key_press.h"
+// void	ft_key_w(int key, t_info *info);
+// void	ft_key_s(int key, t_info *info);
+// void	ft_key_a(int key, t_info *info);
+// void	ft_key_d(int key, t_info *info);
+int					key_press(int key, t_info *info);
 
 #endif
