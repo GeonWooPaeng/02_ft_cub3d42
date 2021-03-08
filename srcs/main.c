@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 14:25:15 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 20:57:53 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1131,23 +1131,65 @@
 
 #include "../includes/ft_cub3d.h"
 
-void	ft_draw(t_all *all)
+int		main_loop(t_all *all)
+{
+	calculateAndSaveToMap(all);
+	image_draw(info);
+	return (0);
+}
+
+int calculateAndSaveToMap(t_all *all)
+{
+	int x;
+
+	x = 0;
+	ft_up_bottom(all);//천장 바닥 color
+	while (x < all->info.win_x)
+	{
+		t_map *map;
+		t_tex *tex;
+
+		map = malloc(sizeof(t_map));
+		tex = malloc(sizeof(t_tex));
+		ft_map_init(all, x);
+		ft_side_dist(info, map);
+		ft_hit_side(info, map);
+		ft_draw(info, map);
+		ft_wall(info, map);
+		tex->tex_num = info->tab[map->map_x][map->map_y] - 1;
+		ft_tex_x(map, tex);
+		ft_tex_y(info, map, tex, x);
+		free(map);
+		free(tex);
+		x++;
+	}
+	return (0);
+}
+
+void	ft_init_draw(t_all *all)
 {
 	t_ray	ray;
 	t_hit	hit;
+	int		bpp;
+	int		size_l;
+	int		endian;
 	
 	ray.x = 0;
 	ray.y = 0;
 	ray.i = 0;
+	ray.step_x = 0;
+	ray.step_y = 0;
 	hit.x = 0;
 	hit.y = 0;
 	hit.d = 0;
 	all->ray = ray;
 	all->hit = hit;
-	// ft_screen(all);
-	// mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
+	all->img.ptr = mlx_new_image(all->info.mlx, all->info.win_x, all->info.win_y);
+	all->img.data = (int *)mlx_get_data_addr(all->img.ptr, &bpp, &size_l, &endian);
+	mlx_loop_hook(all->info.mlx, &main_loop, all);
+	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
 	free(all->img.ptr);
-	free(all->img.adr);
+	free(all->img.data);
 }
 int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 {
@@ -1162,8 +1204,8 @@ int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 	//
 	//
 	//
-	// all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
-	ft_draw(all);
+	all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
+	ft_init_draw(all);
 	mlx_hook(all->info.win, 2, 0, key_press, all);
 	// mlx_hook(all->info.win, 2, 0, ft_key)
 	mlx_loop(all->info.mlx);
@@ -1186,7 +1228,7 @@ void	ft_init(t_all *all, t_info *info, t_img *img)
 	info->mlx = NULL;
 	info->win = NULL;
 	img->ptr = NULL;
-	img->adr = NULL;
+	img->data = NULL;
 	info->win_x = 0;
 	info->win_y = 0;
 	img->fsh = 0;

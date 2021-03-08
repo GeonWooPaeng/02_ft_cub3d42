@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 14:24:08 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 21:21:53 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,21 +148,21 @@ typedef struct		s_info
 {
 	void			*mlx;
 	void			*win;
-	int				win_x;
-	int				win_y;
+	int				win_x; //width
+	int				win_y; //height
 }					t_info;
 
 typedef struct		s_img
 {
 	void			*ptr;
-	int				*adr;
+	int				*data;
 	int				fsh;
 }					t_img;
 
 typedef struct		s_map
 {
 	char			**tab;
-	int				x;
+	int				x; //현재 player가 위치한 맵 내 위치
 	int				y;
 	int				spr;
 }					t_map;
@@ -173,9 +173,11 @@ typedef struct		s_tex
 	unsigned int	*s;
 	unsigned int	*e;
 	unsigned int	*w;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 }					t_tex;
 
-typedef struct		s_pos
+typedef struct		s_pos //player position
 {
 	double			x;
 	double			y;
@@ -183,15 +185,19 @@ typedef struct		s_pos
 
 typedef struct		s_dir
 {
-	double			x;
+	double			x; //direction vector
 	double			y;
 	double			a;
 }					t_dir;
 
 typedef struct		s_ray
 {
-	double			x;
+	double			x; //ray-direction
 	double			y;
+	double			delta_dist_x; //다음 X 까지의 광선의 이동거리
+	double			delta_dist_y;
+	int				step_x; //어느 방향으로 건너 뛰는가
+	int				step_y;
 	int				i;
 }					t_ray;
 
@@ -200,14 +206,15 @@ typedef struct		s_hit
 	double			x;
 	double			y;
 	double			d;
+	int				h; //벽과 부딪혔는지 판별하기 위한 변수
 }					t_hit;
 
-typedef struct		s_spr
+typedef struct		s_plane //spr
 {
 	double			x;
 	double			y;
 	double			d;
-}					t_spr;
+}					t_plane;
 
 typedef struct		s_all
 {
@@ -218,7 +225,8 @@ typedef struct		s_all
 	t_dir			dir;
 	t_ray			ray;
 	t_hit			hit;
-	t_spr			spr;
+	t_plane			plane;
+	t_tex			tex;
 }					t_all;
 
 

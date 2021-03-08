@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:37:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 15:12:07 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 20:55:58 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_key_a(t_all *all)
 	double oldDirectionX = all->dir.x;
 	all->dir.x = all->dir.x * cos(0.05) - all->dir.y * sin(0.05);
 	all->dir.y = oldDirectionX * sin(0.05) + all->dir.y * cos(0.05);
-	double oldPlaneX = info->plane_x;
-	info->plane_x = info->plane_x * cos(0.05) - info->plane_y * sin(0.05);
-	info->plane_y = oldPlaneX * sin(0.05) + info->plane_y * cos(0.05);
+	double oldPlaneX = all->plane.x;
+	all->plane.x = all->plane.x * cos(0.05) - all->plane.y * sin(0.05);
+	all->plane.y = oldPlaneX * sin(0.05) + all->plane.y * cos(0.05);
 }
 
 void	ft_key_d(t_all *all)
@@ -43,9 +43,9 @@ void	ft_key_d(t_all *all)
 	double oldDirectionX = all->dir.x;
 	all->dir.x = all->dir.x * cos(-0.05) - all->dir.y * sin(-0.05);
 	all->dir.y = oldDirectionX * sin(-0.05) + all->dir.y * cos(-0.05);
-	double oldPlaneX = info->plane_x;
-	info->plane_x = info->plane_x * cos(-0.05) - info->plane_y * sin(-0.05);
-	info->plane_y = oldPlaneX * sin(-0.05) + info->plane_y * cos(-0.05);
+	double oldPlaneX = all->plane.x;
+	all->plane.x = all->plane.x * cos(-0.05) - all->plane.y * sin(-0.05);
+	all->plane.y = oldPlaneX * sin(-0.05) + all->plane.y * cos(-0.05);
 }
 
 int		key_press(int key, t_all *all)

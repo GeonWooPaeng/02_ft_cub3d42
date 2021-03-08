@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:42:57 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/05 14:48:28 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 21:22:03 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ void	ft_wall(t_info *info, t_map *map)
 	map->wall_x -= floor(map->wall_x);
 }
 
-void	ft_map_init(t_info *info, t_map *map, int x)
+void	ft_map_init(t_all *all, int x)
 {
 	double	cameraX; // x값이 카메라 평면 상에 있을 때의 좌표
 
-	cameraX = (2 * x / (double)(info->win_width)) - 1;
-	map->ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
-	map->ray_direction_y = info->direction_vector_y + info->plane_y * cameraX;
-	map->map_x = (int)(info->player_position_x);
-	map->map_y = (int)(info->player_position_y);
-	map->delta_dist_x = fabs(1 / map->ray_direction_x);
-	map->delta_dist_y = fabs(1 / map->ray_direction_y);
-	map->hit = 0;
+	cameraX = (2 * x / (double)(all->info.win_x)) - 1;
+	all->ray.x = all->dir.x + all->plane.x * cameraX;
+	all->ray.y = all->dir.y + all->plane.y * cameraX;
+	all->map.x = (int)(all->pos.x);
+	all->map.x = (int)(all->pos.y);
+	all->ray.delta_dist_x = fabs(1 / all->ray.x);
+	all->ray.delta_dist_y = fabs(1 / all->ray.y);
+	all->hit.h = 0;
 }

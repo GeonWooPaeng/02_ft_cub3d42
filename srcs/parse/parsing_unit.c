@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 21:26:55 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/08 20:24:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ int		ft_color(t_all *all, char *line, int *i)
 	b = ft_atoi(line, i);
 	// color = ((r << 16) || (g << 8) || b);
 	color = (r * 256 * 256) + g * 256 + b;
-	// if (fc_check)
-	// 	all->info.floor_color = color;
-	// else
-	// 	all->info.ceiling_color = color;
-	printf("color >> %d, %d, %d\n",r, g, b);
+	if (fc_check)
+		all->tex.floor_color = color;
+	else
+		all->tex.ceiling_color = color;
 	return (1);
 }
 
