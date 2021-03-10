@@ -6,29 +6,29 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/05 13:42:38 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:10:11 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	image_draw(t_info *info)
+void	image_draw(t_all *all)
 {
 	int x;
 	int y;
 
 	y = 0;
-	while (y < info->win_height)
+	while (y < all->info.win_y)
 	{
 		x = 0;
-		while (x < info->win_height)
+		while (x < all->info.win_x)
 		{	
-			info->img.data[y * info->win_width + x] = (int)info->tab[y][x];
+			all->img.data[y * all->info.win_x + x] = (int)all->map.tab[y][x];
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
+	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
 }
 
 // void	load_texture(t_info *info)

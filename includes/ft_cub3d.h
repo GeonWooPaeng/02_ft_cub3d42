@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 21:21:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:12:27 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,15 +156,19 @@ typedef struct		s_img
 {
 	void			*ptr;
 	int				*data;
+	int				draw_start; // 선을 그릴 시작점
+	int				draw_end;
+	int				**texture; //img.data를 color로 바꾸기 위해 변경해주는 곳
+	int				**buf; //texture을 color로 변화시켜 저장한 곳
 	int				fsh;
 }					t_img;
 
 typedef struct		s_map
 {
 	char			**tab;
-	int				x; //현재 player가 위치한 맵 내 위치
+	int				x; //map_x: 현재 player가 위치한 맵 내 위치
 	int				y;
-	int				spr;
+	int				plane;
 }					t_map;
 
 typedef struct		s_tex
@@ -173,6 +177,9 @@ typedef struct		s_tex
 	unsigned int	*s;
 	unsigned int	*e;
 	unsigned int	*w;
+	int				x; //tex_x: texture의 x좌표
+	int				y;
+	int				tex_num; //texturing
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 }					t_tex;
@@ -181,6 +188,8 @@ typedef struct		s_pos //player position
 {
 	double			x;
 	double			y;
+	double			side_dist_x;
+	double			side_dist_y; // 현재 위치에서 다음 사이드 까지의 거리
 }					t_pos;
 
 typedef struct		s_dir
@@ -194,8 +203,10 @@ typedef struct		s_ray
 {
 	double			x; //ray-direction
 	double			y;
+	double			perp_wall_dist; //광선의 이동거리를 계산할 떄 필요한 변수
 	double			delta_dist_x; //다음 X 까지의 광선의 이동거리
 	double			delta_dist_y;
+	double			wall_x; // 광선의 시작점에서 벽까지의 이동거리
 	int				step_x; //어느 방향으로 건너 뛰는가
 	int				step_y;
 	int				i;
@@ -207,6 +218,7 @@ typedef struct		s_hit
 	double			y;
 	double			d;
 	int				h; //벽과 부딪혔는지 판별하기 위한 변수
+	int				side; //어느 면에 부딪혔는지 파악(x == 0, y == 1)
 }					t_hit;
 
 typedef struct		s_plane //spr

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 20:57:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:24:28 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 // #define MAP_WIDTH 24
 // #define MAP_HEIGHT 24
-// #define SCREEN_WIDTH 640
+// #define all->info.win_x 640
 // #define SCREEN_HEIGHT 480
 
 // #define X_EVENT_KEY_PRESS 2
@@ -101,7 +101,7 @@
 // 	int x;
 
 // 	x = 0;
-// 	while (x < SCREEN_WIDTH)
+// 	while (x < all->info.win_x)
 // 	{
 // 		/*
 // 		player_position_x,Y: 광선의 시작점
@@ -111,7 +111,7 @@
 // 		*/
 
 // 		//cameraX는 for문의 x값이 카메라 평면 상에 있을 때의 x좌표
-// 		double cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
+// 		double cameraX = (2 * x / (double)(all->info.win_x)) - 1;
 // 		// cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1, dirVecY = 0;
 // 		// 광선의 방향은 방향벡터 + 카메라 평면 * 배수
 // 		double ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
@@ -310,7 +310,7 @@
 // 	info.rot_speed = 0.05;
 
 // 	//창을 띄움
-// 	info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
+// 	info.win = mlx_new_window(info.mlx, all->info.win_x, SCREEN_HEIGHT, "mlx");
 // 	mlx_loop_hook(info.mlx, &main_loop, &info);
 // 	//key_press에 대한 이벤트
 // 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
@@ -349,7 +349,7 @@
 
 // #define MAP_WIDTH 24
 // #define MAP_HEIGHT 24
-// #define SCREEN_WIDTH 640
+// #define all->info.win_x 640
 // #define SCREEN_HEIGHT 480
 
 // #define X_EVENT_KEY_PRESS 2
@@ -437,8 +437,8 @@
 // void image_draw(t_info *info)
 // {
 // 	for (int y = 0; y < SCREEN_HEIGHT; y++)
-// 		for (int x = 0; x < SCREEN_WIDTH; x++)
-// 			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
+// 		for (int x = 0; x < all->info.win_x; x++)
+// 			info->img.data[y * all->info.win_x + x] = info->buf[y][x];
 	
 // 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 // }
@@ -450,9 +450,9 @@
 // 	int x;
 
 // 	x = 0;
-// 	while (x < SCREEN_WIDTH)
+// 	while (x < all->info.win_x)
 // 	{
-// 		double cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
+// 		double cameraX = (2 * x / (double)(all->info.win_x)) - 1;
 
 // 		double ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
 // 		double ray_direction_y = info->direction_vector_y + info->plane_y * cameraX;
@@ -639,10 +639,10 @@
 // 	*/
 // 	info.buf = (int **)malloc(sizeof(int *) * SCREEN_HEIGHT);
 // 	for (int i = 0; i < SCREEN_HEIGHT; i++)
-// 		info.buf[i] = (int *)malloc(sizeof(int) * SCREEN_WIDTH);
+// 		info.buf[i] = (int *)malloc(sizeof(int) * all->info.win_x);
 	
 // 	for (int i = 0; i < SCREEN_HEIGHT; i++)
-// 		for (int j = 0; j < SCREEN_WIDTH; j++)
+// 		for (int j = 0; j < all->info.win_x; j++)
 // 			info.buf[i][j] = 0;
 
 // 	/*
@@ -677,8 +677,8 @@
 // 		}
 // 	}
 // 	//textured에서 추가된 코드
-// 	info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
-// 	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	info.win = mlx_new_window(info.mlx, all->info.win_x, SCREEN_HEIGHT, "mlx");
+// 	info.img.img = mlx_new_image(info.mlx, all->info.win_x, SCREEN_HEIGHT);
 // 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bit_per_pixel, &info.img.size_l, &info.img.endian);
 
 // 	mlx_loop_hook(info.mlx, &main_loop, &info);
@@ -738,8 +738,8 @@
 // // void	image_draw(t_info *info)
 // // {
 // // 	for (int y = 0; y < SCREEN_HEIGHT; y++)
-// // 		for (int x = 0; x < SCREEN_WIDTH; x++)
-// // 			info->img.data[y * SCREEN_WIDTH + x] = info->buf[y][x];
+// // 		for (int x = 0; x < all->info.win_x; x++)
+// // 			info->img.data[y * all->info.win_x + x] = info->buf[y][x];
 
 // // 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 // // }
@@ -751,7 +751,7 @@
 // 	// bottom, up color
 // 	// -----------------------------------------------------------------
 // 	// */
-// 	// for (int x = 0; x < SCREEN_WIDTH; x++)
+// 	// for (int x = 0; x < all->info.win_x; x++)
 // 	// {
 // 	// 	for (int y = 0; y < SCREEN_HEIGHT; y++)
 // 	// 	{
@@ -766,7 +766,7 @@
 // 	int x;
 
 // 	x = 0;
-// 	while (x < SCREEN_WIDTH)
+// 	while (x < all->info.win_x)
 // 	{
 // 		t_map *map;
 // 		t_tex *tex;
@@ -777,7 +777,7 @@
 // 		ft_side_dist(info, map);
 // 		ft_hit_side(info, map);
 // 		// // cameraX: for문의 x 값이 카메라 평면 상에 있을 때의 x좌표
-// 		// double cameraX = (2 * x / (double)(SCREEN_WIDTH)) - 1;
+// 		// double cameraX = (2 * x / (double)(all->info.win_x)) - 1;
 // 		// // cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1; dirVecY = 0;
 // 		// // 광선의 방향은 방향벡터 + 카메라 평면 * 배수
 // 		// double ray_direction_x = info->direction_vector_x + info->plane_x * cameraX;
@@ -969,8 +969,8 @@
 
 // 	load_texture(&info);
 
-// 	info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
-// 	info.img.img = mlx_new_image(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	info.win = mlx_new_window(info.mlx, all->info.win_x, SCREEN_HEIGHT, "mlx");
+// 	info.img.img = mlx_new_image(info.mlx, all->info.win_x, SCREEN_HEIGHT);
 // 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
 
 // 	mlx_loop_hook(info.mlx, &main_loop, &info);
@@ -1116,7 +1116,7 @@
 // 	if (check_err == -1)
 // 		return (-1);
 // 	// load_texture(&info);
-// 	// info.win = mlx_new_window(info.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "mlx");
+// 	// info.win = mlx_new_window(info.mlx, all->info.win_x, SCREEN_HEIGHT, "mlx");
 // 	info.win = mlx_new_window(info.mlx, info.win_width, info.win_height, "mlx");
 // 	info.img.img = mlx_new_image(info.mlx, info.win_width, info.win_height);
 // 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
@@ -1131,10 +1131,11 @@
 
 #include "../includes/ft_cub3d.h"
 
+
 int		main_loop(t_all *all)
 {
 	calculateAndSaveToMap(all);
-	image_draw(info);
+	image_draw(all);
 	return (0);
 }
 
@@ -1146,21 +1147,21 @@ int calculateAndSaveToMap(t_all *all)
 	ft_up_bottom(all);//천장 바닥 color
 	while (x < all->info.win_x)
 	{
-		t_map *map;
-		t_tex *tex;
+		// t_map *map;
+		// t_tex *tex;
 
-		map = malloc(sizeof(t_map));
-		tex = malloc(sizeof(t_tex));
+		// map = malloc(sizeof(t_map));
+		// tex = malloc(sizeof(t_tex));
 		ft_map_init(all, x);
-		ft_side_dist(info, map);
-		ft_hit_side(info, map);
-		ft_draw(info, map);
-		ft_wall(info, map);
-		tex->tex_num = info->tab[map->map_x][map->map_y] - 1;
-		ft_tex_x(map, tex);
-		ft_tex_y(info, map, tex, x);
-		free(map);
-		free(tex);
+		ft_side_dist(all);
+		ft_hit_side(all);
+		ft_draw(all);
+		ft_wall(all);
+		all->tex.tex_num = all->map.tab[all->map.x][all->map.y] - 1;
+		ft_tex_x(all);
+		ft_tex_y(all, x);
+		// free(map);
+		// free(tex);
 		x++;
 	}
 	return (0);
@@ -1191,10 +1192,13 @@ void	ft_init_draw(t_all *all)
 	free(all->img.ptr);
 	free(all->img.data);
 }
+
 int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 {
 	pos->x = 0;
 	pos->y = 0;
+	pos->side_dist_x = 0;
+	pos->side_dist_y = 0;
 	dir->x = 0;
 	dir->y = 0;
 	all->pos = *pos;
@@ -1212,15 +1216,15 @@ int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 	return (1);
 }
 
-void	ft_init_unit(t_all *all, t_map *map, t_spr *spr)
+void	ft_init_unit(t_all *all, t_map *map, t_plane *plane)
 {
 	map->tab = NULL;
-	spr = NULL;
+	plane = NULL;
 	map->x = 0;
 	map->y = 0;
-	map->spr = 0;
+	map->plane = 0;
 	all->map = *map;
-	all->spr = *spr;
+	all->plane = *plane;
 }
 
 void	ft_init(t_all *all, t_info *info, t_img *img)
@@ -1229,11 +1233,26 @@ void	ft_init(t_all *all, t_info *info, t_img *img)
 	info->win = NULL;
 	img->ptr = NULL;
 	img->data = NULL;
+	img->draw_start = 0;
+	img->draw_end = 0;
+
 	info->win_x = 0;
 	info->win_y = 0;
 	img->fsh = 0;
 	all->info = *info;
 	all->img = *img;
+}
+
+void ft_buf_init(t_all *all)
+{
+	all->img.buf = (int **)malloc(sizeof(int *) * all->info.win_y);
+	for (int i = 0; i < all->info.win_y; i++)
+		all->img.buf[i] = (int *)malloc(sizeof(int) * all->info.win_x);
+	
+	for (int i = 0; i < all->info.win_y; i++)
+		for (int j = 0; j < all->info.win_x; j++)
+			all->img.buf[i][j] = 0;
+	
 }
 
 int	ft_check_name(char *a, char *b)
@@ -1260,14 +1279,15 @@ int main(int argc, char *argv[])
 	t_map map;
 	t_pos pos;
 	t_dir dir;
-	t_spr spr;
+	t_plane plane;
 	
 	if (argc == 2 && ft_check_name(argv[1], ".cub"))
 	{
 		ft_init(&all, &info, &img); // 기본 초기화
 		if (ft_parsing(&all, argv[1]) == -1)
 			return (-1); //error
-		ft_init_unit(&all, &map, &spr); //map, tex, spr, 등 초기화
+		ft_buf_init(&all);
+		ft_init_unit(&all, &map, &plane); //map, tex, plane, 등 초기화
 		ft_start(&all, &pos, &dir, argv[1]); //mlx 시작 
 	}
 	else
