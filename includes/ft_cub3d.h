@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/10 17:12:27 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/11 17:12:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ typedef struct		s_map
 {
 	char			**tab;
 	int				x; //map_x: 현재 player가 위치한 맵 내 위치
-	int				y;
+	int				y; 
 	int				plane;
 }					t_map;
 
@@ -188,8 +188,8 @@ typedef struct		s_pos //player position
 {
 	double			x;
 	double			y;
-	double			side_dist_x;
-	double			side_dist_y; // 현재 위치에서 다음 사이드 까지의 거리
+	double			side_dist_x; // 격자와의 교점까지의 거리
+	double			side_dist_y; // 현재 위치에서 다음 사이드 까지의 거리(플레이어 위치 부터 다음 번 격자)
 }					t_pos;
 
 typedef struct		s_dir
@@ -208,7 +208,7 @@ typedef struct		s_ray
 	double			delta_dist_y;
 	double			wall_x; // 광선의 시작점에서 벽까지의 이동거리
 	int				step_x; //어느 방향으로 건너 뛰는가
-	int				step_y;
+	int				step_y; //map.y의 초기값을 정한다.
 	int				i;
 }					t_ray;
 

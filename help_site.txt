@@ -1,4 +1,7 @@
-1. 
+0. 
+https://www.notion.so/1-133e9a36f2a3437a8becf6f90a2f2da3
+
+1.
 https://github.com/365kim/raycasting_tutorial
 
 https://stdbc.tistory.com/62?category=876330
