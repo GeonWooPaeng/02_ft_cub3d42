@@ -6,11 +6,48 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 13:39:03 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/18 17:22:55 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_cub3d.h"
+
+void	ft_player_dir(t_all *all, int col, int row)
+{
+	if (all->map.tab[col][row] == 'N')
+		all->player.dir = NORTH;
+	else if (all->map.tab[col][row] == 'E')
+		all->player.dir = EAST;
+	else if (all->map.tab[col][row] == 'S')
+		all->player.dir = SOUTH;
+	else if (all->map.tab[col][row] == 'W')
+		all->player.dir = WEST;
+}
+
+void	ft_position(t_all *all)
+{
+	int		row;
+	int		col;
+	char	k;
+
+	col = 0;
+	while (col < all->map.y)
+	{
+		row = 0;
+		while (row < all->map.x)
+		{
+			k = all->map.tab[col][row];
+			if (k == 'N' || k == 'E' || k == 'S' || k == 'W')
+			{
+				all->player.x = (double)row + 0.5;
+				all->player.y = (double)col + 0.5;
+				ft_player_dir(all, col, row);
+			}
+			row += 1;
+		}
+		col += 1;
+	}
+}
 
 int		ft_rownum(char *line)
 {// 행 길이

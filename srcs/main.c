@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/10 17:24:28 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/18 17:40:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1131,12 +1131,17 @@
 
 #include "../includes/ft_cub3d.h"
 
-
-int		main_loop(t_all *all)
+int		ft_free(t_all *all, int win_d)
 {
-	calculateAndSaveToMap(all);
-	image_draw(all);
-	return (0);
+	int idx;
+
+	idx = 0;
+	while (idx < all->map.y)
+		free(all->map.tab[idx++]);
+	free(all->map.tab);
+	free(all->info.mlx);
+	exit(0);
+	return (1);
 }
 
 int calculateAndSaveToMap(t_all *all)
@@ -1164,6 +1169,7 @@ int calculateAndSaveToMap(t_all *all)
 		// free(tex);
 		x++;
 	}
+	image_draw(all);
 	return (0);
 }
 
@@ -1187,23 +1193,23 @@ void	ft_init_draw(t_all *all)
 	all->hit = hit;
 	all->img.ptr = mlx_new_image(all->info.mlx, all->info.win_x, all->info.win_y);
 	all->img.data = (int *)mlx_get_data_addr(all->img.ptr, &bpp, &size_l, &endian);
-	mlx_loop_hook(all->info.mlx, &main_loop, all);
+	calculateAndSaveToMap(all);
 	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
 	free(all->img.ptr);
 	free(all->img.data);
 }
 
-int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
+int		ft_start(t_all *all, t_pos pos, t_dir dir) //char *cub
 {
-	pos->x = 0;
-	pos->y = 0;
-	pos->side_dist_x = 0;
-	pos->side_dist_y = 0;
-	dir->x = 0;
-	dir->y = 0;
-	all->pos = *pos;
-	all->dir = *dir;
-	// all->info.mlx = mlx_init();
+	pos.x = 0;
+	pos.y = 0;
+	pos.side_dist_x = 0;
+	pos.side_dist_y = 0;
+	dir.x = 0;
+	dir.y = 0;
+	all->pos = pos;
+	all->dir = dir;
+	all->info.mlx = mlx_init();
 	//
 	//
 	//
@@ -1211,36 +1217,35 @@ int		ft_start(t_all *all, t_pos *pos, t_dir *dir, char *cub)
 	all->info.win = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "cub3D");
 	ft_init_draw(all);
 	mlx_hook(all->info.win, 2, 0, key_press, all);
-	// mlx_hook(all->info.win, 2, 0, ft_key)
+	mlx_hook(all->info.win, 17, 0, ft_free, all); //free 해줘야 한다.
 	mlx_loop(all->info.mlx);
 	return (1);
 }
 
-void	ft_init_unit(t_all *all, t_map *map, t_plane *plane)
+void	ft_init_unit(t_all *all, t_map map, t_plane plane)
 {
-	map->tab = NULL;
-	plane = NULL;
-	map->x = 0;
-	map->y = 0;
-	map->plane = 0;
-	all->map = *map;
-	all->plane = *plane;
+	map.tab = NULL;
+	map.x = 0;
+	map.y = 0;
+	map.plane = 0;
+	all->map = map;
+	all->plane = plane;
 }
 
-void	ft_init(t_all *all, t_info *info, t_img *img)
+void	ft_init(t_all *all, t_info info, t_img img)
 {
-	info->mlx = NULL;
-	info->win = NULL;
-	img->ptr = NULL;
-	img->data = NULL;
-	img->draw_start = 0;
-	img->draw_end = 0;
+	info.mlx = NULL;
+	info.win = NULL;
+	img.ptr = NULL;
+	img.data = NULL;
+	img.draw_start = 0;
+	img.draw_end = 0;
 
-	info->win_x = 0;
-	info->win_y = 0;
-	img->fsh = 0;
-	all->info = *info;
-	all->img = *img;
+	info.win_x = 0;
+	info.win_y = 0;
+	img.fsh = 0;
+	all->info = info;
+	all->img = img;
 }
 
 void ft_buf_init(t_all *all)
@@ -1252,14 +1257,12 @@ void ft_buf_init(t_all *all)
 	for (int i = 0; i < all->info.win_y; i++)
 		for (int j = 0; j < all->info.win_x; j++)
 			all->img.buf[i][j] = 0;
-	
 }
 
 int	ft_check_name(char *a, char *b)
 {
 	int alen;
 	int blen;
-	int idx;
 
 	alen = ft_strlen(a);
 	blen = ft_strlen(b);
@@ -1271,24 +1274,92 @@ int	ft_check_name(char *a, char *b)
 	return (1);
 }
 
+void	ft_init_player(t_all *all)
+{
+	all->player.x = 2;
+	all->player.y = 5;
+	all->player.dir_x = -1.0;
+	all->player.dir_y = 0.0;
+	all->player.plane_x = 0.0;
+	all->player.plane_y = 0.66;
+	all->player.move_speed = 0.1;
+	all->player.rot_speed = 0.1;
+	all->player.dir = 0;
+}
+
+void	ft_init_flag(t_all *all)
+{
+	all->flag.cnt = 0;
+	all->flag.r = 0;
+	all->flag.c = 0;
+	all->flag.no = 0;
+	all->flag.ea = 0;
+	all->flag.so = 0;
+	all->flag.we = 0;
+	all->flag.s = 0;
+	all->flag.f = 0;
+	all->flag.c = 0;
+}
+
+void	ft_init_info(t_all *all)
+{
+	all->info.win_x = 0;
+	all->info.win_y = 0;
+	all->map.width = 0;
+	all->map.height = 0;
+	all->map.tab = NULL;
+	all->map.visited = NULL;
+	all->tex.north_texture = NULL;
+	all->tex.south_texture = NULL;
+	all->tex.west_texture = NULL;
+	all->tex.east_texture = NULL;
+	all->tex.sprite_texture = NULL:
+	all->tex.floor_color = 0;
+	all->tex.ceiling_color = 0;
+	all->tex.buf = NULL;
+	ft_init_flag(all);
+}
+
+void ft_init_player_dir(t_all *all)
+{
+	int rotation;
+
+	rotation = 0;
+	if (all->player.dir == EAST) //동쪽
+		rotation = 0;
+	else if (all->player.dir == SOUTH) //남쪽
+		rotation = 90;
+	else if (all->player.dir == WEST) // 서쪽
+		rotation = 180;
+	else if (all->player.dir == NORTH) //북쪽
+		rotation = 270;
+}
+int	ft_init_cub3d(t_all *all, char *cub)
+{
+	
+	ft_init_info(&all);
+	ft_init_player(&all);
+	if (ft_parsing(&all, cub) != 1)
+		return (-1); //error
+	ft_init_player_dir(all);
+}
+
 int main(int argc, char *argv[])
 {
 	t_all all;
 	t_info info;
 	t_img img;
 	t_map map;
-	t_pos pos;
+	t_tex tex;
+	t_player player;
 	t_dir dir;
-	t_plane plane;
+	t_ray ray;
+	t_hit hit;
 	
-	if (argc == 2 && ft_check_name(argv[1], ".cub"))
+	if (argc == 2) //&& ft_check_name(argv[1], ".cub")
 	{
-		ft_init(&all, &info, &img); // 기본 초기화
-		if (ft_parsing(&all, argv[1]) == -1)
-			return (-1); //error
-		ft_buf_init(&all);
-		ft_init_unit(&all, &map, &plane); //map, tex, plane, 등 초기화
-		ft_start(&all, &pos, &dir, argv[1]); //mlx 시작 
+		ft_init_cub3d(&all, argv[1]);
+		
 	}
 	else
 	{

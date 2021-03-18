@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/08 13:36:03 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:21:47 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,26 @@
 int		ft_check_line(t_all *all, char *line)
 {// 처음 글자에 따라 check 하는 곳
 	int	i;
-	int idx;
 
 	i = 0;
-	idx = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] == 'R')
 		ft_resolution(all, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
-		ft_texture(all, line, &i, &idx);
+		ft_texture(all, line, &i, NORTH);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		ft_texture(all, line, &i, &idx);
+		ft_texture(all, line, &i, SOUTH);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		ft_texture(all, line, &i, &idx);
+		ft_texture(all, line, &i, WEST);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		ft_texture(all, line, &i, &idx);
-	else if (line[i] == 'S')
-		ft_texture(all, line, &i, &idx);
-	else if (line[i] == 'F')
-		ft_color(all, line, &i);
-	else if (line[i] == 'C')
-		ft_color(all, line, &i);
+		ft_texture(all, line, &i,EAST);
+	else if (line[i] == 'S' && line[i] == ' ')
+		ft_texture(all, line, &i, SPRITE);
+	else if (line[i] == 'F' && line[i] == ' ')
+		ft_color(all, line, &i, FLOOR);
+	else if (line[i] == 'C' && line[i] == ' ')
+		ft_color(all, line, &i, CEILING);
 	else if (line[i] != '\0')
 		ft_map(all, line, &i);
 	return (0);
@@ -119,18 +117,16 @@ int		ft_parsing(t_all *all, char *cub)
 	fd = open(cub, O_RDONLY); //cub는 파일 이름
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		if (ft_check_line(all, line) == -1)
-		{
-			printf("Error");//error
-			return (-1);
-		}
+		if (ft_check_line(all, line) == 0)
+			break ;
 		free(line);
 	}
 	close(fd);
-	if (fd < 0)
+	if (ret < 0)
 	{
 		printf("Error"); //error
 		return (-1);
 	}
+	ft_position(all);
 	return (1);
 }

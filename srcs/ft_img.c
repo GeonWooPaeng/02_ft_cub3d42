@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/10 17:10:11 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/13 15:17:07 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	image_draw(t_all *all)
 // 	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
 // }
 
-void	load_image(t_info *info, int *texture, char *path, t_img *img)
+void	load_image(t_all *all, char *file)
 {
 	int x;
 	int y;
-	
-	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
+	int	
+	all->img.ptr = mlx_xpm_file_to_image(all->info.mlx, file, &img->img_width, &img->img_height);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
 	y = 0;
 	while (y < img->img_height)

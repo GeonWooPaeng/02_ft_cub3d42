@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:26:11 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/10 17:18:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/13 14:40:31 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	ft_tex_y(t_all *all, int x)
 
 	y = all->img.draw_start;
 	line_height = (int)(all->info.win_y / all->ray.perp_wall_dist); //스크린에 그릴 line의 높이 계산
-	tex->step = 1.0 * 64 / line_height;
-	tex->tex_pos = (map->draw_start - info->win_height / 2 + line_height / 2) * tex->step;
-	while (y < map->draw_end)
+	all->tex.step = 1.0 * 64 / line_height;
+	all->tex.tex_pos = (all->img.draw_start - all->info.win_y / 2 + line_height / 2) * all->tex.step;
+	while (y < all->img.draw_end)
 	{
-		tex->tex_y = (int)tex->tex_pos & (64 - 1);
-		tex->tex_pos += tex->step;
-		tex->color = info->texture[tex->tex_num][64 * tex->tex_y + tex->tex_x];
-		if (map->side)
-			tex->color = (tex->color >> 1) & 8355711;
-		all->img.buf[y][x] = tex->color;
+		all->tex.y = (int)all->tex.tex_pos & (64 - 1);
+		all->tex.tex_pos += all->tex.step;
+		all->tex.color = all->img.texture[all->tex.tex_num][64 * all->tex.y + all->tex.x];
+		if (all->hit.side)
+			all->tex.color = (all->tex.color >> 1) & 8355711;
+		all->img.buf[y][x] = all->tex.color;
 		y++;
 	}
 }

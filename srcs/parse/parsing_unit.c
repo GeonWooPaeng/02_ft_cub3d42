@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/10 15:50:32 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:34:31 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,46 @@ int		ft_resolution(t_all *all, char *line, int *i)
 		all->info.win_x = 2560;
 	if (all->info.win_y > 1400)
 		all->info.win_y = 1400;
+	all->flag.r = 1;
+	all->flag.cnt += 1;
 	// printf("x: %d, y: %d", all->info.win_width, all->info.win_height);
 	return (1);
 }
 
-int		ft_texture(t_all *all, char *line, int *i, int *idx)
+void	ft_check_flag(t_all *all, int type)
+{
+	if (type == NORTH)
+		all->flag.no = 1;
+	else if (type == EAST)
+		all->flag.ea = 1;
+	else if (type == SOUTH)
+		all->flag.so = 1;
+	else if (type == WEST)
+		all->flag.we = 1;
+	else if (type == SPRITE)
+		all->flag.s = 1;
+	else if (type == FLOOR)
+		all->flag.f = 1;
+	else if (type == CEILING)
+		all->flag.c = 1;
+	all->flag.cnt += 1;
+}
+int		ft_check_texture(t_all *all, char *arr, int type)
+{
+	if (!all->flag.no && type == NORTH)
+		all->tex.north_texture = arr;
+	else if (!all->flag.so && type == SOUTH)
+		all->tex.south_texture = arr;
+	else if (!all->flag.ea && type == EAST)
+		all->tex.east_texture = arr;
+	else if (!all->flag.we && type == WEST)
+		all->tex.west_texture = arr;
+	else if (!all->flag.s && type == SPRITE)
+		all->tex.sprite_texture = arr;
+	ft_check_flag(all, type);
+}
+
+int		ft_texture(t_all *all, char *line, int *i, int type)
 {
 	char	*arr;
 	int		j;
@@ -43,22 +78,21 @@ int		ft_texture(t_all *all, char *line, int *i, int *idx)
 	while (line[*i] != ' ' && line[*i] != '\0')
 		arr[j++] = line[(*i)++];
 	arr[j] = '\0';
-	// load_image(&(all->info), all->info.texture[*idx], arr, &(all->img));
-	(*idx)++;
+	ft_check_texture(all, arr, type); // texture 값 채워주기
+	free(arr);
+	// load_image(all, arr);
+	// (*idx)++;
+	// free(arr);
 	return (1);
 }
 
-int		ft_color(t_all *all, char *line, int *i)
+int		ft_color(t_all *all, char *line, int *i, int type)
 {
 	int r;
 	int g;
 	int b;
 	int color;
-	int fc_check;
 	
-	fc_check = 1;
-	if (line[*i] == 'C')
-		fc_check = 0;
 	(*i)++;
 	ft_isspace(line, i);
 	r = ft_atoi(line, i);
@@ -68,10 +102,11 @@ int		ft_color(t_all *all, char *line, int *i)
 	b = ft_atoi(line, i);
 	// color = ((r << 16) || (g << 8) || b);
 	color = (r * 256 * 256) + g * 256 + b;
-	if (fc_check)
+	if (!all->flag.f && type == FLOOR)
 		all->tex.floor_color = color;
-	else
+	else if (!all->flag.c && type == CEILING)
 		all->tex.ceiling_color = color;
+	ft_check_flag(all, type);
 	return (1);
 }
 
