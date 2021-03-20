@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/18 17:22:55 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 15:46:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	ft_position(t_all *all)
 	char	k;
 
 	col = 0;
-	while (col < all->map.y)
+	while (col < all->map.height)
 	{
 		row = 0;
-		while (row < all->map.x)
+		while (row < all->map.width)
 		{
 			k = all->map.tab[col][row];
 			if (k == 'N' || k == 'E' || k == 'S' || k == 'W')
@@ -98,23 +98,24 @@ int		ft_map(t_all *all, char *line, int *i)
 	int		idx;
 
 	idx = 0;
-	if (!(tmp = (char **)malloc(sizeof(char *) * (all->map.y + 2))))
+	if (!(tmp = (char **)malloc(sizeof(char *) * (all->map.height + 2))))
 		return (-1);
-	while (idx < all->map.y)
+	while (idx < all->map.height)
 	{
 		tmp[idx] = all->map.tab[idx];
 		idx++;
 	}
-	if ((tmp[all->map.y] = ft_row(line, i)) == NULL)
+	if ((tmp[all->map.height] = ft_row(line, i)) == NULL)
 	{
 		free(tmp);
 		return (-1);
 	}
-	tmp[all->map.y + 1] = NULL;
-	if (all->map.y > 0)
+	tmp[all->map.height + 1] = NULL;
+	if (all->map.height > 0)
 		free(all->map.tab);
 	all->map.tab = tmp;
-	all->map.y++;
+	all->map.height++;
+	all->map.width = ft_rownum(line);
 	return (1);
 }
 

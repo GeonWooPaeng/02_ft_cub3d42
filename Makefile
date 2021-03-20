@@ -8,7 +8,6 @@ DIR_S = ./srcs/
 DIR_O = ./
 
 SRC =	main.c					\
-		key_press.c				\
 		parse/get_next_line.c	\
 		parse/parsing_map.c		\
 		parse/parsing_unit.c	\

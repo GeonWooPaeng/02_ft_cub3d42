@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/18 17:19:22 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 14:54:53 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,31 +135,35 @@
 #ifndef FT_CUB3D_H
 # define FT_CUB3D_H
 
-#include "mlx.h"
-#include <math.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include "mlx.h"
+# include <math.h>
+# include <string.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
-#define KEY_W 119
-#define KEY_A 97
-#define KEY_S 115
-#define KEY_D 100
-#define LEFT 123
-#define	RIGHT 124
-#define ESC 65307
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_EXIT 17
+# define PI 3.1415926535897
 
-#define NORTH 0
-#define EAST 1
-#define SOUTH 2
-#define WEST 3
-#define SPRITE 4
-#define FLOOR 5
-#define CEILING 6
-#define COLOR 7
-#define W_SIZE 8
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define LEFT 123
+# define RIGHT 124
+# define ESC 65307
+ 
+# define NORTH 0
+# define EAST 1
+# define SOUTH 2
+# define WEST 3
+# define SPRITE 4
+# define FLOOR 5
+# define CEILING 6
+# define COLOR 7
+# define W_SIZE 8
 
 typedef struct		s_info
 {
@@ -301,17 +305,10 @@ int					ft_resolution(t_all *all, char *line, int *i);
 int					ft_texture(t_all *all, char *line, int *i, int type);
 int					ft_map(t_all *all, char *line, int *i);
 void				ft_position(t_all *all);
-int					ft_check_texture(t_all *all, char *arr, int type);
+void				ft_check_texture(t_all *all, char *arr, int type);
 void				ft_check_flag(t_all *all, int type);
 
 // int					ft_check_name(char *a, char *b);
 
-//key_press
-// #include "key_press.h"
-void	ft_key_w(t_all *all);
-void	ft_key_s(t_all *all);
-void	ft_key_a(t_all *all);
-void	ft_key_d(t_all *all);
-int		key_press(int key, t_all *all);
 
 #endif

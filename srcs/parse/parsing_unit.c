@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/18 15:34:31 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 15:43:25 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_check_flag(t_all *all, int type)
 		all->flag.c = 1;
 	all->flag.cnt += 1;
 }
-int		ft_check_texture(t_all *all, char *arr, int type)
+
+void	ft_check_texture(t_all *all, char *arr, int type)
 {
 	if (!all->flag.no && type == NORTH)
 		all->tex.north_texture = arr;
@@ -79,10 +80,6 @@ int		ft_texture(t_all *all, char *line, int *i, int type)
 		arr[j++] = line[(*i)++];
 	arr[j] = '\0';
 	ft_check_texture(all, arr, type); // texture 값 채워주기
-	free(arr);
-	// load_image(all, arr);
-	// (*idx)++;
-	// free(arr);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/18 15:21:47 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 16:03:01 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int		ft_check_line(t_all *all, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
+	ft_isspace(line, &i);
 	if (line[i] == 'R')
 		ft_resolution(all, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
@@ -37,7 +36,7 @@ int		ft_check_line(t_all *all, char *line)
 		ft_color(all, line, &i, CEILING);
 	else if (line[i] != '\0')
 		ft_map(all, line, &i);
-	return (0);
+	return (1);
 }
 
 char	*ft_make_line(char **arr, int *check)
@@ -114,11 +113,13 @@ int		ft_parsing(t_all *all, char *cub)
 	int		fd;
 	char	*line;
 
+	ret = 1;
 	fd = open(cub, O_RDONLY); //cub는 파일 이름
-	while ((ret = get_next_line(fd, &line)) > 0)
+	while (ret > 0)
 	{
+		ret = get_next_line(fd, &line);
 		if (ft_check_line(all, line) == 0)
-			break ;
+			ret = -1;
 		free(line);
 	}
 	close(fd);
@@ -126,6 +127,14 @@ int		ft_parsing(t_all *all, char *cub)
 	{
 		printf("Error"); //error
 		return (-1);
+	}
+	for (int i = 0; i < all->map.height; i++)
+	{
+		for (int j = 0; j < all->map.width; j++)
+		{
+			printf("%c",all->map.tab[i][j]);
+		}
+		printf("\n");
 	}
 	ft_position(all);
 	return (1);
