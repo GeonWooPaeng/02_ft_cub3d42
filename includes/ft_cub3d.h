@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 14:54:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 17:23:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,5 +310,10 @@ void				ft_check_flag(t_all *all, int type);
 
 // int					ft_check_name(char *a, char *b);
 
+//ft_img.c
+void	image_draw(t_all *all);
+void	ft_up_bottom(t_all *all);
+void	load_image(t_all *all, char *file, char *path, t_img *img);
+int		ft_load_texture(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 15:44:04 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 17:28:20 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1373,6 +1373,33 @@ void	ft_init_buffer(t_all *all)
 	}
 }
 
+
+int	ft_init_texture(t_all *all)
+{
+	int i;
+	int j;
+	
+	if (!(all->tex.texture = (int **)malloc(sizeof(int *) * 5)))
+		return (-1);
+	i = 0;
+	while (i < 5)
+	{
+		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * 64 * 64)))
+			return (-1);
+		i++;
+	}
+	i = 0;
+	while (i < 5)
+	{
+		j = 0;
+		while (j < 64 * 64)
+			all->tex.texture[i][j++] = 0;
+		i++;
+	}
+	ft_load_texture(all);
+	return (0);
+}
+
 void	ft_init_cub3d(t_all *all, char *cub)
 {
 	ft_init_info(all);
@@ -1380,7 +1407,22 @@ void	ft_init_cub3d(t_all *all, char *cub)
 	ft_parsing(all, cub); //error check
 	ft_rotate_player(all, ft_init_player_dir(all));
 	// all->info.mlx = mlx_init();
-	ft_init_buffer(all); // error check 해주기
+	ft_init_buffer(all); // error check
+	ft_init_texture(all); //error check
+	all->img.ptr = mlx_new_image(all->info.mlx, all->info.win_x, all->info.win_y);//이미지 생성
+	all->img.data = (int *)mlx_get_data_addr(all->img.ptr, &all->img.bpp, &all->img.size_l, &all->img.endian); //생성된 이미지에 대한 정보 설정
+}
+
+void ft_raycasting(t_all *all)
+{
+	int x;
+	
+	ft_up_bottom(all);
+	x = 0;
+	while (x < all->info.win_x)
+	{
+		
+	}
 }
 
 int main(int argc, char *argv[])
@@ -1389,15 +1431,18 @@ int main(int argc, char *argv[])
 	
 	all = malloc(sizeof(t_all));
 	
-	if (argc == 2) //&& ft_check_name(argv[1], ".cub")
+	if (argc == 3 && ft_check_name(argv[1], ".cub")) // --save 부분 추가
 	{
 		ft_init_cub3d(all, argv[1]);
-		printf("all->map.height weight >> %d, %d\n", all->map.height, all->map.width);
-		// printf("texture >> %s\n", all->tex.north_texture);
-		// printf("texture >> %s\n", all->tex.south_texture);
-		// printf("texture >> %s\n", all->tex.east_texture);
-		// printf("texture >> %s\n", all->tex.west_texture);
-		
+	}
+	else if (argc == 2 && ft_check_name(argv[1], ".cub"))
+	{
+		ft_init_cub3d(all, argv[1]);
+		all->info.mlx = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "Cub3d");
+		mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, key_press, all);
+		mlx_hook(all->info.win, X_EVENT_KEY_EXIT, 0, ft_exit, 0);
+		mlx_loop_hook(all->info.mlx, main_loop, all);
+		mlx_loop(all->info.mlx);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:26:11 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/13 14:40:31 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 16:45:42 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,3 @@ void	ft_tex_y(t_all *all, int x)
 	}
 }
 
-void	ft_up_bottom(t_all *all)
-{// 하늘과 바닥을 칠해주는 함수
-	int x;
-	int y;
-
-	x = 0;
-	while (x < all->info.win_x)
-	{
-		y = 0;
-		while (y < all->info.win_y)
-		{
-			all->img.buf[y][x] = all->tex.ceiling_color;
-			all->img.buf[all->info.win_y - y - 1][x] = all->tex.floor_color;
-			y++;
-		}
-		x++;
-	}
-}
