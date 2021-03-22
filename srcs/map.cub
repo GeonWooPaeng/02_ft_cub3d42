@@ -1,10 +1,10 @@
 R 640 480
-NO ./textures/brick.xpm
-SO ./textures/blue.xpm
-WE ./textures/wood.xpm
-EA ./textures/grey.xpm
+NO ./textures/barrel.xpm
+SO ./textures/greenlight.xpm
+WE ./textures/mossy.xpm
+EA ./textures/wood.xpm
 
-S ./textures/chest.xpm
+S ./textures/redbrick.xpm
 F 224,172,105
 C 205,249,255
 

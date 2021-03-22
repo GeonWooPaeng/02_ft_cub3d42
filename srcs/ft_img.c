@@ -6,13 +6,13 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 17:22:31 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:58:46 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_cub3d.h"
 
-void	image_draw(t_all *all)
+void	ft_image_draw(t_all *all)
 {
 	int x;
 	int y;
@@ -23,7 +23,7 @@ void	image_draw(t_all *all)
 		x = 0;
 		while (x < all->info.win_x)
 		{	
-			all->img.data[y * all->info.win_x + x] = (int)all->map.tab[y][x];
+			all->img.data[y * all->info.win_x + x] = all->tex.buf[y][x];
 			x++;
 		}
 		y++;
@@ -50,12 +50,12 @@ void	ft_up_bottom(t_all *all)
 	}
 }
 
-void	load_image(t_all *all, char *file, char *path, t_img *img)
+void	load_image(t_all *all, int *file, char *path, t_img *img)
 {
 	int x;
 	int y;
 
-	img->ptr = mlx_xpm_file_to_image(all->info.mlx, file, &img->width, &img->height);
+	img->ptr = mlx_xpm_file_to_image(all->info.mlx, path, &img->width, &img->height);
 	img->data = (int *)mlx_get_data_addr(img->ptr, &img->bpp, &img->size_l, &img->endian);
 	y = 0;
 	while (y < img->height)
@@ -89,6 +89,6 @@ int		ft_load_texture(t_all *all)
 	free(all->tex.north_texture);
 	all->tex.north_texture = NULL;
 	free(all->tex.sprite_texture);
-	all->tex.sprite_texture = NULL:
-	
+	all->tex.sprite_texture = NULL;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 17:23:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/22 20:50:33 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,9 @@
 # define COLOR 7
 # define W_SIZE 8
 
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
+
 typedef struct		s_info
 {
 	void			*mlx;
@@ -207,7 +210,6 @@ typedef struct		s_tex
 	int				**buf; //texture을 color로 변화시켜 저장한 곳
 	int				x; //tex_x: texture의 x좌표
 	int				y;
-	int				color;
 	int				tex_num; //texturing
 	int				floor_color;
 	int				ceiling_color;
@@ -248,6 +250,7 @@ typedef struct		s_ray
 	double			wall_x; // 광선의 시작점에서 벽까지의 이동거리
 	int				step_x; //어느 방향으로 건너 뛰는가
 	int				step_y; //map.y의 초기값을 정한다.
+	int				line_height; //스크린에 그릴 line height
 	int				draw_start; // 선을 그릴 시작점
 	int				draw_end;
 	int				i;
@@ -311,9 +314,15 @@ void				ft_check_flag(t_all *all, int type);
 // int					ft_check_name(char *a, char *b);
 
 //ft_img.c
-void	image_draw(t_all *all);
+void	ft_image_draw(t_all *all);
 void	ft_up_bottom(t_all *all);
-void	load_image(t_all *all, char *file, char *path, t_img *img);
+void	load_image(t_all *all, int *file, char *path, t_img *img);
 int		ft_load_texture(t_all *all);
+
+//ft_key_press.c
+void 	ft_move_ws(t_all *all, double speed);
+void 	ft_move_ad(t_all *all, double speed);
+void 	ft_rotate_player(t_all *all, double speed);
+int		ft_key_press(int key, t_all *all);
 
 #endif

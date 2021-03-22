@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:42:57 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/11 21:03:28 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/20 21:51:29 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_side_dist(t_all *all)
 }
 
 void	ft_hit_side(t_all *all)
-{// 벽과 부딪쳤을 때까지 매번 한 칸씩 광선 이동하는 상황 
+{// 벽과 부딪쳤을 때까지 매번 한 칸씩 광선 이동하는 상황(dda) 
 	while (all->hit.h == 0)
 	{
 		if (all->pos.side_dist_x < all->pos.side_dist_y)
@@ -99,18 +99,4 @@ void	ft_wall(t_all *all)
 	else
 		all->ray.wall_x = all->pos.x + all->ray.perp_wall_dist * all->ray.x;
 	all->ray.wall_x -= floor(all->ray.wall_x);
-}
-
-void	ft_map_init(t_all *all, int x)
-{
-	double	cameraX; // x값이 카메라 평면 상에 있을 때의 좌표
-
-	cameraX = (2 * x / (double)(all->info.win_x)) - 1;
-	all->ray.x = all->dir.x + all->plane.x * cameraX;
-	all->ray.y = all->dir.y + all->plane.y * cameraX;
-	all->map.x = (int)(all->pos.x);
-	all->map.x = (int)(all->pos.y);
-	all->ray.delta_dist_x = fabs(1 / all->ray.x);
-	all->ray.delta_dist_y = fabs(1 / all->ray.y);
-	all->hit.h = 0;
 }
