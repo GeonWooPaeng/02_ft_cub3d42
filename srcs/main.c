@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/22 21:15:11 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 21:45:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1130,7 +1130,7 @@
 // ---------------------------------------------------------
 
 
-#include "../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 int	ft_check_name(char *a, char *b)
 {
@@ -1147,115 +1147,6 @@ int	ft_check_name(char *a, char *b)
 	return (1);
 }
 
-void	ft_init_player(t_all *all)
-{
-	all->player.x = 2;
-	all->player.y = 5;
-	all->player.dir_x = -1.0;
-	all->player.dir_y = 0.0;
-	all->player.plane_x = 0.0;
-	all->player.plane_y = 0.66;
-	all->player.move_speed = 0.1;
-	all->player.rot_speed = 0.1;
-	all->player.dir = 0;
-}
-
-void	ft_init_flag(t_all *all)
-{
-	all->flag.cnt = 0;
-	all->flag.r = 0;
-	all->flag.c = 0;
-	all->flag.no = 0;
-	all->flag.ea = 0;
-	all->flag.so = 0;
-	all->flag.we = 0;
-	all->flag.s = 0;
-	all->flag.f = 0;
-	all->flag.c = 0;
-}
-
-void	ft_init_info(t_all *all)
-{
-	all->info.win_x = 0;
-	all->info.win_y = 0;
-	all->map.width = 0;
-	all->map.height = 0;
-	all->map.tab = NULL;
-	all->map.visited = NULL;
-	all->tex.north_texture = NULL;
-	all->tex.south_texture = NULL;
-	all->tex.west_texture = NULL;
-	all->tex.east_texture = NULL;
-	all->tex.sprite_texture = NULL;
-	all->tex.floor_color = 0;
-	all->tex.ceiling_color = 0;
-	all->tex.buf = NULL;
-	ft_init_flag(all);
-}
-
-double ft_init_player_dir(t_all *all)
-{
-	double rotation;
-
-	rotation = 0;
-	if (all->player.dir == EAST) //동쪽
-		rotation = 0;
-	else if (all->player.dir == SOUTH) //남쪽
-		rotation = 90 * (PI / 180);
-	else if (all->player.dir == WEST) // 서쪽
-		rotation = 180 * (PI / 180);
-	else if (all->player.dir == NORTH) //북쪽
-		rotation = 270 * (PI / 180);
-	return (rotation);
-}
-
-
-void	ft_init_buffer(t_all *all)
-{
-	int i;
-	int j;
-	
-	all->tex.buf = (int **)malloc(sizeof(int *) * all->info.win_y);
-	i = 0;
-	while (i < all->info.win_y)
-		all->tex.buf[i++] = (int *)malloc(sizeof(int) * all->info.win_x);
-	i = 0;
-	while (i < all->info.win_y)
-	{
-		j = 0;
-		while (j < all->info.win_x)
-			all->tex.buf[i][j++] = 0;
-		i++;
-	}
-}
-
-
-int	ft_init_texture(t_all *all)
-{
-	int i;
-	int j;
-	
-	if (!(all->tex.texture = (int **)malloc(sizeof(int *) * 5)))
-		return (-1);
-	i = 0;
-	while (i < 5)
-	{
-		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * TEXTURE_HEIGHT * TEXTURE_WIDTH)))
-			return (-1);
-		i++;
-	}
-	i = 0;
-	while (i < 5)
-	{
-		j = 0;
-		while (j < TEXTURE_HEIGHT * TEXTURE_WIDTH)
-			all->tex.texture[i][j++] = 0;
-		i++;
-	}
-	ft_load_texture(all);
-	return (0);
-}
-
 void	ft_init_cub3d(t_all *all, char *cub)
 {
 	ft_init_info(all);
@@ -1267,140 +1158,6 @@ void	ft_init_cub3d(t_all *all, char *cub)
 	ft_init_texture(all); //error check
 	all->img.ptr = mlx_new_image(all->info.mlx, all->info.win_x, all->info.win_y);//이미지 생성
 	all->img.data = (int *)mlx_get_data_addr(all->img.ptr, &all->img.bpp, &all->img.size_l, &all->img.endian); //생성된 이미지에 대한 정보 설정
-}
-
-void ft_init_ray(t_all *all, int x)
-{
-	all->ray.camera_x = 2 * x / (double)all->info.win_x - 1;
-	all->ray.dir_x = all->player.dir_x + all->player.plane_x * all->ray.camera_x;
-	all->ray.dir_y = all->player.dir_y + all->player.plane_y * all->ray.camera_x;
-	all->map.x = (int)all->player.x;
-	all->map.y = (int)all->player.y;
-	all->ray.delta_dist_x = fabs(1 / all->ray.dir_x);
-	all->ray.delta_dist_y = fabs(1 / all->ray.dir_y);
-	all->hit.h = 0;
-}
-
-void ft_side_dist(t_all *all)
-{	// step_x,y, side_dist_x,y 넣어주는 곳
-	// 플레이어 기준 어느쪽인지 파악
-	//step_x, step_y 계산 방법
-	// x좌표의 부호는 cos@, y좌표의 부호는 sin@와 같다
-	if (all->ray.dir_x < 0)
-	{
-		all->ray.step_x = -1;
-		all->ray.side_dist_x = (all->player.x - all->map.x) * all->ray.delta_dist_x;
-	}
-	else
-	{
-		all->ray.step_x = 1;
-		all->ray.side_dist_x = (all->map.x + 1.0 - all->player.x) * all->ray.delta_dist_x;
-	}
-	if (all->ray.dir_y < 0)
-	{
-		all->ray.step_y = -1;
-		all->ray.side_dist_y = (all->player.y - all->map.y) * all->ray.delta_dist_y;
-	}
-	else
-	{
-		all->ray.step_y = 1;
-		all->ray.side_dist_y = (all->map.y + 1.0 - all->player.y) * all->ray.delta_dist_y;
-	}
-}
-
-void ft_hit_side(t_all *all)
-{
-	while (all->hit.h == 0)
-	{
-		if (all->ray.side_dist_x < all->ray.side_dist_y)
-		{
-			all->ray.side_dist_x += all->ray.delta_dist_x;
-			all->map.x += all->ray.step_x;
-			all->hit.side = 0;
-		}
-		else
-		{
-			all->ray.side_dist_y += all->ray.delta_dist_x;
-			all->map.y += all->ray.step_y;
-			all->hit.side = 1;
-		}
-		if ((int)all->map.tab[all->map.y][all->map.x] == '1')
-			all->hit.h = 1;
-	}
-}
-
-void ft_wall_dist(t_all *all)
-{
-	if (all->hit.side <= 1)
-		all->ray.perp_wall_dist = (all->map.x - all->player.x + (1 - all->ray.step_x) / 2) 
-		/ all->ray.dir_x;
-	else
-		all->ray.perp_wall_dist = (all->map.y - all->player.y + (1 - all->ray.step_y) / 2) 
-		/ all->ray.dir_y;
-}
-
-void ft_wall_height(t_all *all)
-{
-	all->ray.line_height = (int)(all->info.win_y / all->ray.perp_wall_dist);
-	all->ray.draw_start = (-all->ray.line_height / 2) + (all->info.win_y / 2);
-	all->ray.draw_end = (all->ray.line_height / 2) + (all->info.win_y / 2);
-	if (all->ray.draw_start < 0)
-		all->ray.draw_start = 0;
-	if (all->ray.draw_end >= all->info.win_y)
-		all->ray.draw_end = all->info.win_y - 1;
-}
-
-
-void ft_wall_texture(t_all *all)
-{//wall_x이 어느 벽에 부딪쳤는지에 따라 값 구하기
-	if (all->hit.side == 0)
-		all->ray.wall_x = all->player.y + all->ray.perp_wall_dist * all->ray.dir_y;
-	else
-		all->ray.wall_x = all->player.x + all->ray.perp_wall_dist * all->ray.dir_x;
-	all->ray.wall_x -= floor(all->ray.wall_x);
-
-	//texture 계산
-	all->tex.x = (int)(all->ray.wall_x * (double)TEXTURE_WIDTH);
-	if (all->hit.side == 0 && all->ray.dir_x > 0)
-		all->tex.x = TEXTURE_WIDTH - all->tex.x - 1;
-	if (all->hit.side == 1 && all->ray.dir_y < 0)
-		all->tex.x = TEXTURE_WIDTH - all->tex.x - 1;
-}
-
-void ft_wall_color(t_all *all, int x)
-{
-	int y;
-	int color;
-	
-	y = all->ray.draw_start;
-	all->tex.step = 1.0 * TEXTURE_HEIGHT / all->ray.line_height;
-	all->tex.tex_pos = (all->ray.draw_start - all->info.win_y / 2 + all->ray.line_height / 2) * all->tex.step;
-	while (y < all->ray.draw_end)
-	{
-		all->tex.y = (int)all->tex.tex_pos & (TEXTURE_HEIGHT - 1);
-		all->tex.tex_pos += all->tex.step;
-		color = all->tex.texture[all->hit.side][TEXTURE_HEIGHT * all->tex.y + all->tex.x];
-		all->tex.buf[y][x] = color;
-		y++;
-	}
-}
-
-void ft_raycasting(t_all *all)
-{
-	int x;
-	
-	ft_up_bottom(all);
-	x = 0;
-	while (x < all->info.win_x)
-	{
-		ft_init_ray(all, x);
-		ft_side_dist(all);
-		ft_hit_side(all); //dda AL
-		ft_wall_dist(all);
-		ft_wall_height(all);
-		ft_wall_texture(all);
-		ft_wall_color(all, x);
-	}
 }
 
 int ft_main_loop(t_all *all)
@@ -1433,9 +1190,9 @@ int main(int argc, char *argv[])
 	{
 		ft_init_cub3d(all, argv[1]);
 		all->info.mlx = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "Cub3d");
-		mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, ft_key_press, all);
+		mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 1L<<0, ft_key_press, &all->info);
 		mlx_hook(all->info.win, X_EVENT_KEY_EXIT, 0, ft_exit, 0);
-		mlx_loop_hook(all->info.mlx, ft_main_loop, all);
+		mlx_loop_hook(all->info.mlx, ft_main_loop, &all->info);
 		mlx_loop(all->info.mlx);
 	}
 	else

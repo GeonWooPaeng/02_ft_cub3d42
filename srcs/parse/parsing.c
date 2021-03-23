@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 16:03:01 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:37 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 int		ft_check_line(t_all *all, char *line)
 {// 처음 글자에 따라 check 하는 곳

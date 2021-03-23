@@ -1,20 +1,24 @@
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
-CFLAGS += -g -fsanitize=address
+# CFLAGS += -g -fsanitize=address
 NAME = cub3d
 
 DIR_H = ./includes/
 DIR_S = ./srcs/
 DIR_O = ./
 
-SRC =	main.c					\
+SRC =	ft_init.c				\
 		ft_img.c				\
+		ft_init_img.c			\
+		ft_raycasting.c			\
+		ft_tex_xy.c				\
 		ft_key_press.c			\
 		parse/get_next_line.c	\
 		parse/parsing_map.c		\
 		parse/parsing_unit.c	\
 		parse/parsing.c			\
-		parse/util.c
+		parse/util.c			\
+		main.c					\
 
 
 

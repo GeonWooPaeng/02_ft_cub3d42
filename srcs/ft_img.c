@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/22 20:58:46 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:24 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 void	ft_image_draw(t_all *all)
 {
@@ -72,7 +72,7 @@ void	load_image(t_all *all, int *file, char *path, t_img *img)
 }
 
 int		ft_load_texture(t_all *all)
-{
+{	
 	t_img img;
 	
 	load_image(all, all->tex.texture[0], all->tex.east_texture, &img);// 동

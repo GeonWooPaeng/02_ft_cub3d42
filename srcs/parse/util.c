@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:11:01 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/06 20:07:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:42 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 int		ft_isspace(char *line, int *i)
 {

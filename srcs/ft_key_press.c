@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 17:48:23 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/21 17:50:07 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:16 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 void ft_move_ws(t_all *all, double speed)
 {

@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 15:43:25 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:31 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 int		ft_resolution(t_all *all, char *line, int *i)
 {

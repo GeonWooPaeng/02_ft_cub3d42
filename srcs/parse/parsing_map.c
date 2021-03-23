@@ -6,11 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/20 15:46:23 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 20:06:52 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 void	ft_player_dir(t_all *all, int col, int row)
 {

@@ -6,131 +6,9 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/22 20:50:33 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/23 21:50:09 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #ifndef FT_CUB3D_H
-// # define FT_CUB3D_H
-
-// #include "mlx.h"
-// #include <math.h>
-// #include <string.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <fcntl.h>
-// #include <unistd.h>
-
-
-// // #define SCREEN_WIDTH 640
-// // #define SCREEN_HEIGHT 480
-
-// #define X_EVENT_KEY_PRESS 2
-// #define X_EVENT_KEY_EXIT 17
-
-// #define TEX_WIDTH 64
-// #define TEX_HEIGHT 64
-
-// #define MAP_WIDTH 24
-// #define MAP_HEIGHT 24
-
-// //get_img_data_addr 함수에서 쓸 변수를 갖고 있는 구조체
-// typedef struct	s_img
-// {
-// 	void		*img;
-// 	int			*data;
-// 	int			size_l;
-// 	int			bpp;
-// 	int			endian;
-// 	int			img_width;
-// 	int			img_height;
-// }				t_img;
-
-// typedef struct	s_info
-// {
-// 	double		player_position_x;
-// 	double		player_position_y;
-// 	double		direction_vector_x;
-// 	double		direction_vector_y;
-// 	double		plane_x; //카메라 평면X
-// 	double		plane_y; //카메라 평면Y
-// 	void		*mlx;
-// 	void		*win;
-// 	int			win_width;
-// 	int			win_height;
-// 	int			floor_color;
-// 	int			ceiling_color;
-// 	int			map_width;
-// 	int			map_height;
-// 	double		move_speed;
-// 	double		rot_speed;
-// 	t_img		img;
-// 	// int			buf[SCREEN_HEIGHT][SCREEN_WIDTH];
-// 	int			**texture;
-// 	char		**tab;
-// }				t_info;
-
-// // map
-// // extern int		world_map[MAP_WIDTH][MAP_HEIGHT];
-
-
-
-// //setting 
-// #include "ft_img.h"
-// void			image_draw(t_info *info);
-// void			load_texture(t_info *info);
-// void			load_image(t_info *info, int *texture, char *path, t_img *img);
-
-// //key_press
-// #include "key_press.h"
-// // void	ft_key_w(int key, t_info *info);
-// // void	ft_key_s(int key, t_info *info);
-// // void	ft_key_a(int key, t_info *info);
-// // void	ft_key_d(int key, t_info *info);
-// int				key_press(int key, t_info *info);
-
-// //map & ray
-// #include "ft_map.h"
-// void			ft_side_dist(t_info *info, t_map *map);
-// void			ft_hit_side(t_info *info, t_map *map);
-// void			ft_draw(t_info *info, t_map *map);
-// void			ft_wall(t_info *info, t_map *map);
-// void			ft_map_init(t_info *info, t_map *map, int x);
-
-// //texture
-// #include "ft_tex.h"
-// void			ft_tex_x(t_map *map, t_tex *tex);
-// void			ft_tex_y(t_info *info, t_map *map, t_tex *tex, int x);
-// void			ft_up_bottom(t_info *info);
-
-// typedef struct	s_all
-// {
-// 	t_info		info;
-// 	t_img		img;
-// 	t_map		map;
-// 	t_tex		tex;
-// }				t_all;
-
-// //parsing 
-// size_t			ft_strlen(const char *str);
-// char			*ft_strndup(const char *str, size_t num);
-// char			*ft_strjoin(const char *a, const char *b);
-// char			*ft_strchr(const char *str, int c);
-// int				ft_make_arr(char **arr, char *buf, ssize_t nr);
-// char			*ft_make_line(char **arr, int *check);
-// int				get_next_line(int fd, char **line);
-// int				ft_color(t_all *all, char *line, int *i);
-// int				ft_check_line(t_all *all, char *line);
-// int				ft_parse(t_all *all, char *cub);
-// int				ft_isspace(char *line, int *i);
-// int				ft_atoi(char *line, int *i);
-// int				ft_resolution(t_all *all, char *line, int *i);
-// int				ft_texture(t_all *all, char *line, int *i, int *idx);
-// int				ft_map(t_all *all, char *line, int *i);
-
-// #endif
-
-// --------------------------------------
 
 #ifndef FT_CUB3D_H
 # define FT_CUB3D_H
@@ -241,7 +119,7 @@ typedef struct		s_ray
 {
 	double			camera_x;
 	double			dir_x; //ray-direction
-	double			dir_y;
+	double			dir_y;// 광선의 방향 = 방향 벡터 + 카메라 평면 * 배수
 	double			perp_wall_dist; //광선의 이동거리를 계산할 떄 필요한 변수
 	double			delta_dist_x; //다음 X 까지의 광선의 이동거리
 	double			delta_dist_y;
@@ -290,8 +168,24 @@ typedef struct		s_all
 	t_flag			flag;
 }					t_all;
 
+//ft_init.c
+void				ft_init_flag(t_all *all);
+double				ft_init_player_dir(t_all *all);
+void				ft_init_player(t_all *all);
+void				ft_init_info(t_all *all);
+void				ft_init_ray(t_all *all, int x);
 
-//parsing 
+//ft_img.c
+void				ft_up_bottom(t_all *all);
+int					ft_load_texture(t_all *all);
+void				load_image(t_all *all, int *file, char *path, t_img *img);
+void				ft_image_draw(t_all *all);
+
+//ft_init.img.c
+void				ft_init_buffer(t_all *all);
+int					ft_init_texture(t_all *all);
+
+//parse/*
 size_t				ft_strlen(const char *str);
 char				*ft_strndup(const char *str, size_t num);
 char				*ft_strjoin(const char *a, const char *b);
@@ -310,19 +204,31 @@ int					ft_map(t_all *all, char *line, int *i);
 void				ft_position(t_all *all);
 void				ft_check_texture(t_all *all, char *arr, int type);
 void				ft_check_flag(t_all *all, int type);
+int					ft_check_name(char *a, char *b);
 
-// int					ft_check_name(char *a, char *b);
-
-//ft_img.c
-void	ft_image_draw(t_all *all);
-void	ft_up_bottom(t_all *all);
-void	load_image(t_all *all, int *file, char *path, t_img *img);
-int		ft_load_texture(t_all *all);
 
 //ft_key_press.c
-void 	ft_move_ws(t_all *all, double speed);
-void 	ft_move_ad(t_all *all, double speed);
-void 	ft_rotate_player(t_all *all, double speed);
-int		ft_key_press(int key, t_all *all);
+void				ft_move_ws(t_all *all, double speed);
+void				ft_move_ad(t_all *all, double speed);
+void				ft_rotate_player(t_all *all, double speed);
+int					ft_key_press(int key, t_all *all);
+
+//ft_raycasting.c
+void				ft_side_dist(t_all *all);
+void				ft_hit_side(t_all *all);
+void				ft_wall_dist(t_all *all);
+void				ft_wall_height(t_all *all);
+void				ft_raycasting(t_all *all);
+
+// ft_tex_xy.c
+void				ft_wall_texture(t_all *all);
+void				ft_wall_color(t_all *all, int x);
+
+//main.c
+int					ft_check_name(char *a, char *b);
+int					ft_exit(int ret);
+void				ft_init_cub3d(t_all *all, char *cub);
+int					ft_main_loop(t_all *all);
+
 
 #endif
