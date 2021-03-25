@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 21:50:09 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:31:28 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <unistd.h>
 
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 # define PI 3.1415926535897
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 # define KEY_W 119
 # define KEY_A 97
@@ -43,8 +47,6 @@
 # define COLOR 7
 # define W_SIZE 8
 
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
 
 typedef struct		s_info
 {
@@ -168,22 +170,22 @@ typedef struct		s_all
 	t_flag			flag;
 }					t_all;
 
-//ft_init.c
-void				ft_init_flag(t_all *all);
-double				ft_init_player_dir(t_all *all);
-void				ft_init_player(t_all *all);
-void				ft_init_info(t_all *all);
-void				ft_init_ray(t_all *all, int x);
-
 //ft_img.c
 void				ft_up_bottom(t_all *all);
-int					ft_load_texture(t_all *all);
+void				ft_load_texture(t_all *all);
 void				load_image(t_all *all, int *file, char *path, t_img *img);
 void				ft_image_draw(t_all *all);
 
 //ft_init.img.c
 void				ft_init_buffer(t_all *all);
 int					ft_init_texture(t_all *all);
+
+//ft_init.c
+void				ft_init_flag(t_all *all);
+double				ft_init_player_dir(t_all *all);
+void				ft_init_player(t_all *all);
+void				ft_init_info(t_all *all);
+void				ft_init_ray(t_all *all, int x);
 
 //parse/*
 size_t				ft_strlen(const char *str);

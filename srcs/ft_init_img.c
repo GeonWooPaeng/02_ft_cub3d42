@@ -6,31 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 21:48:24 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:30:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-void	ft_init_buffer(t_all *all)
-{
-	int i;
-	int j;
-	
-	all->tex.buf = (int **)malloc(sizeof(int *) * all->info.win_y);
-	i = 0;
-	while (i < all->info.win_y)
-		all->tex.buf[i++] = (int *)malloc(sizeof(int) * all->info.win_x);
-	i = 0;
-	while (i < all->info.win_y)
-	{
-		j = 0;
-		while (j < all->info.win_x)
-			all->tex.buf[i][j++] = 0;
-		i++;
-	}
-}
-
 
 int		ft_init_texture(t_all *all)
 {
@@ -57,3 +37,24 @@ int		ft_init_texture(t_all *all)
 	ft_load_texture(all);
 	return (0);
 }
+
+void	ft_init_buffer(t_all *all)
+{
+	int i;
+	int j;
+	
+	all->tex.buf = (int **)malloc(sizeof(int *) * all->info.win_y);
+	i = 0;
+	while (i < all->info.win_y)
+		all->tex.buf[i++] = (int *)malloc(sizeof(int) * all->info.win_x);
+	i = 0;
+	while (i < all->info.win_y)
+	{
+		j = 0;
+		while (j < all->info.win_x)
+			all->tex.buf[i][j++] = 0;
+		i++;
+	}
+}
+
+

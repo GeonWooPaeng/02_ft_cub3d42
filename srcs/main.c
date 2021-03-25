@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 21:45:49 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:56:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1183,8 +1183,7 @@ int main(int argc, char *argv[])
 	{
 		ft_init_cub3d(all, argv[1]);
 		ft_raycasting(all);
-		exit(0); // 종료
-		
+		ft_exit(0);
 	}
 	else if (argc == 2 && ft_check_name(argv[1], ".cub"))
 	{

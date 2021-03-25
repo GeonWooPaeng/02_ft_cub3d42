@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 20:06:24 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/25 17:18:25 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	load_image(t_all *all, int *file, char *path, t_img *img)
 	mlx_destroy_image(all->info.mlx, img->ptr);
 }
 
-int		ft_load_texture(t_all *all)
+void		ft_load_texture(t_all *all)
 {	
 	t_img img;
 	
@@ -90,5 +90,4 @@ int		ft_load_texture(t_all *all)
 	all->tex.north_texture = NULL;
 	free(all->tex.sprite_texture);
 	all->tex.sprite_texture = NULL;
-	return (1);
 }

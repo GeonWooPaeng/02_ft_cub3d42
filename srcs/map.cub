@@ -5,8 +5,8 @@ WE ./textures/mossy.xpm
 EA ./textures/wood.xpm
 
 S ./textures/redbrick.xpm
-F 224,172,105
-C 205,249,255
+F 30,255,0
+C 0,0,255
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
