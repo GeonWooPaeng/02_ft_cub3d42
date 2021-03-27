@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/25 15:31:28 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/27 16:35:50 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,6 @@ void				ft_check_texture(t_all *all, char *arr, int type);
 void				ft_check_flag(t_all *all, int type);
 int					ft_check_name(char *a, char *b);
 
-
 //ft_key_press.c
 void				ft_move_ws(t_all *all, double speed);
 void				ft_move_ad(t_all *all, double speed);
@@ -231,6 +230,5 @@ int					ft_check_name(char *a, char *b);
 int					ft_exit(int ret);
 void				ft_init_cub3d(t_all *all, char *cub);
 int					ft_main_loop(t_all *all);
-
 
 #endif

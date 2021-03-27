@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/25 17:18:25 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/27 16:57:03 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_up_bottom(t_all *all)
 	}
 }
 
-void	load_image(t_all *all, int *file, char *path, t_img *img)
+void	load_image(t_all *all, int *texture, char *path, t_img *img)
 {
 	int x;
 	int y;
@@ -63,7 +63,7 @@ void	load_image(t_all *all, int *file, char *path, t_img *img)
 		x = 0;
 		while (x < img->width)
 		{	
-			file[img->width * y + x] = img->data[img->width * y + x];
+			texture[img->width * y + x] = img->data[img->width * y + x];
 			x++;
 		}
 		y++;
@@ -79,7 +79,7 @@ void		ft_load_texture(t_all *all)
 	load_image(all, all->tex.texture[1], all->tex.west_texture, &img);// 서
 	load_image(all, all->tex.texture[2], all->tex.south_texture, &img);// 남
 	load_image(all, all->tex.texture[3], all->tex.north_texture, &img);// 북
-	load_image(all, all->tex.texture[4], all->tex.sprite_texture, &img);// 장애물
+	// load_image(all, all->tex.texture[4], all->tex.sprite_texture, &img);// 장애물
 	free(all->tex.east_texture);
 	all->tex.east_texture = NULL;
 	free(all->tex.west_texture);
@@ -88,6 +88,6 @@ void		ft_load_texture(t_all *all)
 	all->tex.south_texture = NULL;
 	free(all->tex.north_texture);
 	all->tex.north_texture = NULL;
-	free(all->tex.sprite_texture);
-	all->tex.sprite_texture = NULL;
+	// free(all->tex.sprite_texture);
+	// all->tex.sprite_texture = NULL;
 }

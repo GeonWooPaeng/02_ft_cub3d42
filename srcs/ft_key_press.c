@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 17:48:23 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 20:06:16 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/25 21:46:29 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void ft_move_ws(t_all *all, double speed)
 {
-    if (all->map.tab[(int)all->player.y]
-    [(int)(all->player.x + all->player.dir_x * speed)] != '1')
-        all->player.x += all->player.dir_x * speed;
-    if (all->map.tab[(int)(all->player.y + all->player.dir_y * speed)]
-    [(int)all->player.x] != '1')
-        all->player.y += all->player.dir_y * speed;
+	if (all->map.tab[(int)all->player.y]
+	[(int)(all->player.x + all->player.dir_x * speed)] != '1')
+		all->player.x += all->player.dir_x * speed;
+	if (all->map.tab[(int)(all->player.y + all->player.dir_y * speed)]
+	[(int)all->player.x] != '1')
+		all->player.y += all->player.dir_y * speed;
 }
 
 void ft_move_ad(t_all *all, double speed)
 {
-    if (all->map.tab[(int)all->player.y]
-    [(int)(all->player.x + all->player.dir_y * speed)] != '1')
-        all->player.x += all->player.dir_y * speed;
-    if (all->map.tab[(int)(all->player.y + -all->player.dir_x * speed)]
-    [(int)all->player.x] != '1')
-        all->player.y += -all->player.dir_x * speed;
+	if (all->map.tab[(int)all->player.y]
+	[(int)(all->player.x + all->player.dir_y * speed)] != '1')
+		all->player.x += all->player.dir_y * speed;
+	if (all->map.tab[(int)(all->player.y + -all->player.dir_x * speed)]
+	[(int)all->player.x] != '1')
+		all->player.y += -all->player.dir_x * speed;
 }
 
 void ft_rotate_player(t_all *all, double speed)

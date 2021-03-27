@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/25 15:56:49 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/03/27 17:29:47 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -989,147 +989,6 @@
 
 
 
-
-
-// #include "ft_cub3d.h"
-
-
-// int	calculateAndSaveToMap(t_info *info);
-// // void	image_draw(t_info *info);
-
-// int		world_map[MAP_WIDTH][MAP_HEIGHT] = 
-// {
-// 	{8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
-// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
-// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},
-// 	{8,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6},
-// 	{8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
-// 	{8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,6,6,6,0,6,4,6},
-// 	{8,8,8,8,0,8,8,8,8,8,8,4,4,4,4,4,4,6,0,0,0,0,0,6},
-// 	{7,7,7,7,0,7,7,7,7,0,8,0,8,0,8,0,8,4,0,4,0,6,0,6},
-// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,0,0,0,0,0,6},
-// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,0,0,0,0,4},
-// 	{7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,6,0,6,0,6,0,6},
-// 	{7,7,0,0,0,0,0,0,7,8,0,8,0,8,0,8,8,6,4,6,0,6,6,6},
-// 	{7,7,7,7,0,7,7,7,7,8,8,4,0,6,8,4,8,3,3,3,0,3,3,3},
-// 	{2,2,2,2,0,2,2,2,2,4,6,4,0,0,6,0,6,3,0,0,0,0,0,3},
-// 	{2,2,0,0,0,0,0,2,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
-// 	{2,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,4,3,0,0,0,0,0,3},
-// 	{1,0,0,0,0,0,0,0,1,4,4,4,4,4,6,0,6,3,3,0,0,0,3,3},
-// 	{2,0,0,0,0,0,0,0,2,2,2,1,2,2,2,6,6,0,0,5,0,5,0,5},
-// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
-// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
-// 	{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
-// 	{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
-// 	{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
-// };
-
-// int		main_loop(t_info *info)
-// {
-// 	calculateAndSaveToMap(info);
-// 	image_draw(info);
-// 	return (0);
-// }
-
-// int calculateAndSaveToMap(t_info *info)
-// {
-// 	int x;
-
-// 	x = 0;
-// 	ft_up_bottom(info);
-// 	while (x < info->win_width)
-// 	{
-// 		t_map *map;
-// 		t_tex *tex;
-
-// 		map = malloc(sizeof(t_map));
-// 		tex = malloc(sizeof(t_tex));
-// 		ft_map_init(info, map, x);
-// 		ft_side_dist(info, map);
-// 		ft_hit_side(info, map);
-// 		ft_draw(info, map);
-// 		ft_wall(info, map);
-// 		tex->tex_num = info->tab[map->map_x][map->map_y] - 1;
-// 		ft_tex_x(map, tex);
-// 		ft_tex_y(info, map, tex, x);
-// 		free(map);
-// 		free(tex);
-// 		x++;
-// 	}
-// 	return (0);
-// }
-
-// void info_init(t_info *info)
-// {
-// 	info->mlx = mlx_init();
-// 	info->player_position_x = 22.0;
-// 	info->player_position_y = 11.5;
-// 	info->direction_vector_x = -1.0;
-// 	info->direction_vector_y = 0.0;
-// 	info->plane_x = 0.0;
-// 	info->plane_y = 0.66;
-// 	info->move_speed = 0.05;
-// 	info->rot_speed = 0.05;
-// }
-
-// int info_texture(t_info *info)
-// {
-// 	int i;
-// 	int j;
-	
-// 	if (!(info->texture = (int **)malloc(sizeof(int *) * 8)))
-// 		return (-1);
-// 	i = 0;
-// 	while (i < 8)
-// 	{
-// 		if (!((info->texture)[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT * TEX_WIDTH))))
-// 			return (-1);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < 8)
-// 	{
-// 		j = 0;
-// 		while (j < TEX_HEIGHT * TEX_WIDTH)
-// 		{	
-// 			(info->texture)[i][j] = 0;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (1);
-// }
-
-
-// int main(int argc, char *argv[])
-// {
-// 	t_all	*all;
-// 	t_info	info;
-// 	int		check_err;
-
-// 	printf("argc >> %d", argc);
-// 	all = malloc(sizeof(t_all));
-// 	ft_parse(all, argv[1]);
-// 	info_init(&info);
-// 	check_err = info_texture(&info);
-// 	if (check_err == -1)
-// 		return (-1);
-// 	// load_texture(&info);
-// 	// info.win = mlx_new_window(info.mlx, all->info.win_x, SCREEN_HEIGHT, "mlx");
-// 	info.win = mlx_new_window(info.mlx, info.win_width, info.win_height, "mlx");
-// 	info.img.img = mlx_new_image(info.mlx, info.win_width, info.win_height);
-// 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
-// 	mlx_loop_hook(info.mlx, &main_loop, &info);
-// 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 1L<<0, &key_press, &info);
-// 	mlx_loop(info.mlx);
-// 	free(all);
-// 	return (0);
-// }
-
-// ---------------------------------------------------------
-
-
 #include "ft_cub3d.h"
 
 int	ft_check_name(char *a, char *b)
@@ -1156,8 +1015,6 @@ void	ft_init_cub3d(t_all *all, char *cub)
 	all->info.mlx = mlx_init();
 	ft_init_buffer(all); // error check
 	ft_init_texture(all); //error check
-	all->img.ptr = mlx_new_image(all->info.mlx, all->info.win_x, all->info.win_y);//이미지 생성
-	all->img.data = (int *)mlx_get_data_addr(all->img.ptr, &all->img.bpp, &all->img.size_l, &all->img.endian); //생성된 이미지에 대한 정보 설정
 }
 
 int ft_main_loop(t_all *all)
@@ -1175,24 +1032,26 @@ int ft_exit(int ret)
 
 int main(int argc, char *argv[])
 {
-	t_all *all;
-	
-	all = malloc(sizeof(t_all));
+	t_all all;
 	
 	if (argc == 3 && ft_check_name(argv[1], ".cub")) // --save 부분 추가
-	{
-		ft_init_cub3d(all, argv[1]);
-		ft_raycasting(all);
-		ft_exit(0);
+	{//bmp 저장 하는 공간
+		ft_init_cub3d(&all, argv[1]);
+		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
+		all.img.data = (int *)mlx_get_data_addr(all.img.ptr, &all.img.bpp, &all.img.size_l, &all.img.endian); //생성된 이미지에 대한 정보 설정
+		ft_raycasting(&all);
+		exit(0);
 	}
 	else if (argc == 2 && ft_check_name(argv[1], ".cub"))
 	{
-		ft_init_cub3d(all, argv[1]);
-		all->info.mlx = mlx_new_window(all->info.mlx, all->info.win_x, all->info.win_y, "Cub3d");
-		mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 1L<<0, ft_key_press, &all->info);
-		mlx_hook(all->info.win, X_EVENT_KEY_EXIT, 0, ft_exit, 0);
-		mlx_loop_hook(all->info.mlx, ft_main_loop, &all->info);
-		mlx_loop(all->info.mlx);
+		ft_init_cub3d(&all, argv[1]);
+		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
+		all.img.data = (int *)mlx_get_data_addr(all.img.ptr, &all.img.bpp, &all.img.size_l, &all.img.endian); //생성된 이미지에 대한 정보 설정
+		all.info.mlx = mlx_new_window(all.info.mlx, all.info.win_x, all.info.win_y, "Cub3d");
+		mlx_hook(all.info.win, X_EVENT_KEY_PRESS, 1L<<0, &ft_key_press, &all);
+		// mlx_hook(all.info.win, X_EVENT_KEY_EXIT, 0, &ft_exit, &all);
+		mlx_loop_hook(all.info.mlx, &ft_main_loop, &all);
+		mlx_loop(all.info.mlx);
 	}
 	else
 	{
