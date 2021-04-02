@@ -6,11 +6,12 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 20:06:37 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 14:09:47 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+// #include "ft_cub3d.h"
+#include "../../includes/ft_cub3d.h"
 
 int		ft_check_line(t_all *all, char *line)
 {// 처음 글자에 따라 check 하는 곳
@@ -21,21 +22,21 @@ int		ft_check_line(t_all *all, char *line)
 	if (line[i] == 'R')
 		ft_resolution(all, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
-		ft_texture(all, line, &i, NORTH);
+		all->info.error_n = ft_texture(all, line, &i, NORTH);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		ft_texture(all, line, &i, SOUTH);
+		all->info.error_n = ft_texture(all, line, &i, SOUTH);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		ft_texture(all, line, &i, WEST);
+		all->info.error_n = ft_texture(all, line, &i, WEST);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		ft_texture(all, line, &i,EAST);
-	else if (line[i] == 'S' && line[i] == ' ')
-		ft_texture(all, line, &i, SPRITE);
-	else if (line[i] == 'F' && line[i] == ' ')
-		ft_color(all, line, &i, FLOOR);
-	else if (line[i] == 'C' && line[i] == ' ')
-		ft_color(all, line, &i, CEILING);
+		all->info.error_n = ft_texture(all, line, &i,EAST);
+	else if (line[i] == 'S')
+		all->info.error_n = ft_texture(all, line, &i, SPRITE);
+	else if (line[i] == 'F')
+		all->info.error_n = ft_color(all, line, &i, FLOOR);
+	else if (line[i] == 'C')
+		all->info.error_n = ft_color(all, line, &i, CEILING);
 	else if (line[i] != '\0')
-		ft_map(all, line, &i);
+		all->info.error_n = ft_map(all, line, &i);
 	return (1);
 }
 

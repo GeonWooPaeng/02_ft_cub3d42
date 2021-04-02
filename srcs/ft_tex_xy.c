@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:27:48 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 14:29:33 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:04:38 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void ft_wall_color(t_all *all, int x)
 {//tex_y 지정하는 곳
 	int y;
 	int color;
-	
+
 	y = all->ray.draw_start;
 	all->tex.step = 1.0 * TEXTURE_HEIGHT / all->ray.line_height;
 	all->tex.tex_pos = (all->ray.draw_start - all->info.win_y / 2 + all->ray.line_height / 2) * all->tex.step;

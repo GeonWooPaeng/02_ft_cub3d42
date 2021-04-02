@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/27 16:35:50 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 14:08:37 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define LEFT 123
-# define RIGHT 124
+# define LEFT 65361
+# define RIGHT 65363
 # define ESC 65307
  
-# define NORTH 0
-# define EAST 1
-# define SOUTH 2
-# define WEST 3
-# define SPRITE 4
-# define FLOOR 5
-# define CEILING 6
-# define COLOR 7
-# define W_SIZE 8
+# define NORTH 3
+# define EAST 4
+# define SOUTH 5
+# define WEST 6
+# define SPRITE 7
+# define FLOOR 8
+# define CEILING 9
+# define COLOR 10
+# define W_SIZE 11
 
 
 typedef struct		s_info
@@ -54,6 +54,7 @@ typedef struct		s_info
 	void			*win;
 	int				win_x; //width
 	int				win_y; //height
+	int				error_n; //error check
 	// int				dir;
 }					t_info;
 
@@ -170,6 +171,13 @@ typedef struct		s_all
 	t_flag			flag;
 }					t_all;
 
+//ft_init.c
+void				ft_init_flag(t_all *all);
+double				ft_init_player_dir(t_all *all);
+void				ft_init_player(t_all *all);
+void				ft_init_info(t_all *all);
+void				ft_init_ray(t_all *all, int x);
+
 //ft_img.c
 void				ft_up_bottom(t_all *all);
 void				ft_load_texture(t_all *all);
@@ -179,13 +187,6 @@ void				ft_image_draw(t_all *all);
 //ft_init.img.c
 void				ft_init_buffer(t_all *all);
 int					ft_init_texture(t_all *all);
-
-//ft_init.c
-void				ft_init_flag(t_all *all);
-double				ft_init_player_dir(t_all *all);
-void				ft_init_player(t_all *all);
-void				ft_init_info(t_all *all);
-void				ft_init_ray(t_all *all, int x);
 
 //parse/*
 size_t				ft_strlen(const char *str);

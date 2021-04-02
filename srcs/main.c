@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 14:05:44 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 13:19:29 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,17 +320,10 @@
 
 
 
-
-
-
 // ------------------------------
 // ------------------------------
 // ------------------------------
 // ------------------------------
-
-
-
-
 
 
 
@@ -531,7 +524,7 @@
 // 		// 1을 빼주는 이유: 0번째 텍스쳐도 0, 벽이 없어도 0이기 때문
 // 		// 1을 안빼주면 시작하자마자 뒷방향으로 이동하면 segmentation fault
 // 		int tex_num = world_map[map_x][map_y] - 1;
-		
+
 // 		//wallX의 값: 벽의 x면과 부딪힌 경우(side == 0), 텍스처의 x좌표에 대해서만 사용
 // 		// 벽의 Y좌표가 된다.
 // 		double wall_x;
@@ -548,7 +541,7 @@
 // 			tex_x = TEX_WIDTH - tex_x - 1;
 // 		if (side == 1 && ray_direction_y < 0)
 // 			tex_x = TEX_WIDTH - tex_x - 1;
-		
+
 // 		/*
 // 		tex_y를 지정하는 부분
 // 		step은 스크린 픽셀당 texture 좌표를 얼마나 증가시켜줄 건지 결정
@@ -988,8 +981,8 @@
 //--------------------------------------
 
 
-
-#include "ft_cub3d.h"
+// #include "ft_cub3d.h"
+#include "../includes/ft_cub3d.h"
 
 int	ft_check_name(char *a, char *b)
 {
@@ -1033,7 +1026,7 @@ int ft_exit(int ret)
 int main(int argc, char *argv[])
 {
 	t_all all;
-	
+
 	if (argc == 3 && ft_check_name(argv[1], ".cub")) // --save 부분 추가
 	{//bmp 저장 하는 공간
 		ft_init_cub3d(&all, argv[1]);
@@ -1048,8 +1041,8 @@ int main(int argc, char *argv[])
 		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
 		all.img.data = (int *)mlx_get_data_addr(all.img.ptr, &all.img.bpp, &all.img.size_l, &all.img.endian); //생성된 이미지에 대한 정보 설정
 		all.info.win = mlx_new_window(all.info.mlx, all.info.win_x, all.info.win_y, "Cub3d");
-		mlx_hook(all.info.win, X_EVENT_KEY_PRESS, 0, ft_key_press, &all);
-		mlx_loop_hook(all.info.mlx, ft_main_loop, &all);
+		mlx_hook(all.info.win, X_EVENT_KEY_PRESS, 1L<<0, &ft_key_press, &all);
+		mlx_loop_hook(all.info.mlx, &ft_main_loop, &all);
 		// mlx_hook(all.info.win, X_EVENT_KEY_EXIT, 0, &ft_exit, &all);
 		mlx_loop(all.info.mlx);
 	}
@@ -1059,3 +1052,5 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
+
+

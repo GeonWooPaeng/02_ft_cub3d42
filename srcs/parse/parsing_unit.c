@@ -6,11 +6,12 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 14:15:32 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 14:12:15 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+// #include "ft_cub3d.h"
+#include "../../includes/ft_cub3d.h"
 
 int		ft_resolution(t_all *all, char *line, int *i)
 {
@@ -24,7 +25,6 @@ int		ft_resolution(t_all *all, char *line, int *i)
 		all->info.win_y = 1400;
 	all->flag.r = 1;
 	all->flag.cnt += 1;
-	// printf("x: %d, y: %d", all->info.win_width, all->info.win_height);
 	return (1);
 }
 
@@ -49,15 +49,15 @@ void	ft_check_flag(t_all *all, int type)
 
 void	ft_check_texture(t_all *all, char *arr, int type)
 {
-	if (!all->flag.no && type == NORTH)
+	if (type == NORTH)
 		all->tex.north_texture = arr;
-	else if (!all->flag.so && type == SOUTH)
+	else if (type == SOUTH)
 		all->tex.south_texture = arr;
-	else if (!all->flag.ea && type == EAST)
+	else if (type == EAST)
 		all->tex.east_texture = arr;
-	else if (!all->flag.we && type == WEST)
+	else if (type == WEST)
 		all->tex.west_texture = arr;
-	else if (!all->flag.s && type == SPRITE)
+	else if (type == SPRITE)
 		all->tex.sprite_texture = arr;
 	ft_check_flag(all, type);
 }
@@ -97,13 +97,13 @@ int		ft_color(t_all *all, char *line, int *i, int type)
 	g = ft_atoi(line, i);
 	(*i)++;
 	b = ft_atoi(line, i);
-	// color = ((r << 16) || (g << 8) || b);
 	color = (r * 256 * 256) + g * 256 + b;
-	if (!all->flag.f && type == FLOOR)
+	if (type == FLOOR)
 		all->tex.floor_color = color;
-	else if (!all->flag.c && type == CEILING)
+	else if (type == CEILING)
 		all->tex.ceiling_color = color;
 	ft_check_flag(all, type);
 	return (1);
 }
+
 

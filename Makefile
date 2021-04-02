@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
-CFLAGS += -g #-fsanitize=address
+CFLAGS += -g 
 NAME = cub3d
 
 DIR_H = ./includes

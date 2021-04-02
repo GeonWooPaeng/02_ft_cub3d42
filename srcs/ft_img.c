@@ -6,30 +6,11 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/27 16:57:03 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:49:52 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-void	ft_image_draw(t_all *all)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y < all->info.win_y)
-	{
-		x = 0;
-		while (x < all->info.win_x)
-		{	
-			all->img.data[y * all->info.win_x + x] = all->tex.buf[y][x];
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
-}
 
 void	ft_up_bottom(t_all *all)
 {// 하늘과 바닥을 칠해주는 함수
@@ -48,6 +29,25 @@ void	ft_up_bottom(t_all *all)
 		}
 		x++;
 	}
+}
+
+void	ft_image_draw(t_all *all)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < all->info.win_y)
+	{
+		x = 0;
+		while (x < all->info.win_x)
+		{	
+			all->img.data[all->info.win_x * y + x] = all->tex.buf[y][x];
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(all->info.mlx, all->info.win, all->img.ptr, 0, 0);
 }
 
 void	load_image(t_all *all, int *texture, char *path, t_img *img)
@@ -91,3 +91,4 @@ void		ft_load_texture(t_all *all)
 	// free(all->tex.sprite_texture);
 	// all->tex.sprite_texture = NULL;
 }
+

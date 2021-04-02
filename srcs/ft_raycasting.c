@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:58:04 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 14:36:57 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/02 17:12:39 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void ft_hit_side(t_all *all)
 		{
 			all->ray.side_dist_x += all->ray.delta_dist_x;
 			all->map.x += all->ray.step_x;
-			all->hit.side = 0;
+			all->hit.side = (all->ray.step_x == -1) ? 0 : 1; 
 		}
 		else
 		{
 			all->ray.side_dist_y += all->ray.delta_dist_x;
 			all->map.y += all->ray.step_y;
-			all->hit.side = 1;
+			all->hit.side = (all->ray.step_y == -1) ? 2 : 3;
 		}
 		if ((int)all->map.tab[all->map.y][all->map.x] == '1')
 			all->hit.h = 1;
@@ -76,20 +76,18 @@ void ft_hit_side(t_all *all)
 
 void ft_wall_dist(t_all *all)
 { //벽과의 거리 구하기
-	if (all->hit.side == 1)
-		all->ray.perp_wall_dist = (all->map.x - all->player.x + (1 - all->ray.step_x) / 2) 
-		/ all->ray.dir_x;
+	if (all->hit.side <= 1)
+		all->ray.perp_wall_dist = (all->map.x - all->player.x + (1 - all->ray.step_x) / 2) / all->ray.dir_x;
 	else
-		all->ray.perp_wall_dist = (all->map.y - all->player.y + (1 - all->ray.step_y) / 2) 
-		/ all->ray.dir_y;
+		all->ray.perp_wall_dist = (all->map.y - all->player.y + (1 - all->ray.step_y) / 2) / all->ray.dir_y;
 }
 
 void ft_wall_height(t_all *all)
 {// 선을 그릴 시작점과 끝점 구하기
 // 스크린에 그릴 line의 높이 계산(line_height)
 	all->ray.line_height = (int)(all->info.win_y / all->ray.perp_wall_dist);
-	all->ray.draw_start = (-all->ray.line_height / 2) + (all->info.win_y / 2);
-	all->ray.draw_end = (all->ray.line_height / 2) + (all->info.win_y / 2);
+	all->ray.draw_start = -all->ray.line_height / 2 + all->info.win_y / 2;
+	all->ray.draw_end = all->ray.line_height / 2 + all->info.win_y / 2;
 	if (all->ray.draw_start < 0)
 		all->ray.draw_start = 0;
 	if (all->ray.draw_end >= all->info.win_y)
@@ -114,3 +112,4 @@ void ft_raycasting(t_all *all)
 		x++;
 	}
 }
+

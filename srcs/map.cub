@@ -1,12 +1,12 @@
 R 640 480
-NO ./textures/barrel.xpm
-SO ./textures/greenlight.xpm
+NO ./textures/bluestone.xpm
+SO ./textures/greystone.xpm
 WE ./textures/mossy.xpm
 EA ./textures/wood.xpm
 
 S ./textures/redbrick.xpm
-F 30,255,0
-C 0,0,255
+F 0,255,255
+C 255,0,255
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
