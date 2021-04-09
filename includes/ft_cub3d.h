@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/02 14:08:37 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/07 17:50:45 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ typedef struct		s_ray
 {
 	double			camera_x;
 	double			dir_x; //ray-direction
-	double			dir_y;// 광선의 방향 = 방향 벡터 + 카메라 평면 * 배수
-	double			perp_wall_dist; //광선의 이동거리를 계산할 떄 필요한 변수
+	double			dir_y; //광선의 방향 = 방향 벡터 + 카메라 평면 * 배수
+	double			perp_wall_dist; //광선의 이동거리를 계산할 떄 필요한 변수 , 광선이 x방향으로 몇칸이나 지나갔는지를 나타내는 수 / rayDirX;
 	double			delta_dist_x; //다음 X 까지의 광선의 이동거리
 	double			delta_dist_y;
 	double			side_dist_x; // 격자와의 교점까지의 거리

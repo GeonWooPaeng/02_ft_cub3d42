@@ -1,13 +1,12 @@
 0. 
 https://www.notion.so/1-133e9a36f2a3437a8becf6f90a2f2da3
-
+https://profq.tistory.com/28
 1.
 https://github.com/365kim/raycasting_tutorial
-
 https://stdbc.tistory.com/62?category=876330
-
-2.
 https://42kchoi.tistory.com/232?category=886844
+
+https://humonnom.tistory.com/entry/cub3d-%EA%B3%BC%EC%A0%9C-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0
 
 github
 https://github.com/Glagan/42-cub3d
@@ -19,3 +18,7 @@ parsing
 https://velog.io/@seomoon/TIL-210117-
 
 https://velog.io/@du0928/cub3D
+
+
+parsing tester
+https://github.com/Dustin42Codam/cub3d_destroyer

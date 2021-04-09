@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:10:24 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/03/23 20:14:49 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/09 17:22:49 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_init_info(t_all *all)
 	all->tex.floor_color = 0;
 	all->tex.ceiling_color = 0;
 	all->tex.buf = NULL;
-	ft_init_flag(all);
 }
 
 void ft_init_ray(t_all *all, int x)

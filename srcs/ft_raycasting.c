@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:58:04 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/02 17:12:39 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/09 16:46:57 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void ft_side_dist(t_all *all)
 	if (all->ray.dir_x < 0)
 	{
 		all->ray.step_x = -1;
+		//광선의 시작점부터 왼쪽으로 이동하다 처음 만나는 x면까지의 거리
 		all->ray.side_dist_x = (all->player.x - all->map.x) * all->ray.delta_dist_x;
 	}
 	else
 	{
 		all->ray.step_x = 1;
+		//광선의 시작점부터 오른쪽으로 이동하다 처음 만나는 x면까지의 거리
 		all->ray.side_dist_x = (all->map.x + 1.0 - all->player.x) * all->ray.delta_dist_x;
 	}
 	if (all->ray.dir_y < 0)
@@ -61,15 +63,15 @@ void ft_hit_side(t_all *all)
 		{
 			all->ray.side_dist_x += all->ray.delta_dist_x;
 			all->map.x += all->ray.step_x;
-			all->hit.side = (all->ray.step_x == -1) ? 0 : 1; 
+			all->hit.side = (all->ray.step_x == -1) ? 1 : 0; 
 		}
 		else
 		{
 			all->ray.side_dist_y += all->ray.delta_dist_x;
 			all->map.y += all->ray.step_y;
-			all->hit.side = (all->ray.step_y == -1) ? 2 : 3;
+			all->hit.side = (all->ray.step_y == -1) ? 3 : 2;
 		}
-		if ((int)all->map.tab[all->map.y][all->map.x] == '1')
+		if (all->map.tab[all->map.y][all->map.x] == '1')
 			all->hit.h = 1;
 	}
 }
@@ -83,8 +85,8 @@ void ft_wall_dist(t_all *all)
 }
 
 void ft_wall_height(t_all *all)
-{// 선을 그릴 시작점과 끝점 구하기
-// 스크린에 그릴 line의 높이 계산(line_height)
+{	// 선을 그릴 시작점과 끝점 구하기
+	// 스크린에 그릴 line의 높이 계산(line_height)
 	all->ray.line_height = (int)(all->info.win_y / all->ray.perp_wall_dist);
 	all->ray.draw_start = -all->ray.line_height / 2 + all->info.win_y / 2;
 	all->ray.draw_end = all->ray.line_height / 2 + all->info.win_y / 2;
