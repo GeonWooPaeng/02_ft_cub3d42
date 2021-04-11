@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 21:24:26 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 15:58:48 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_position(t_all *all)
 				all->player.y = (double)col + 0.5;
 				ft_player_dir(all, col, row);
 			}
+			if (k == '2')
+				all->info.sprite_num += 1;
 			row += 1;
 		}
 		col += 1;

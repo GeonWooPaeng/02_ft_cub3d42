@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/02 14:09:47 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 15:58:52 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,7 @@ int		ft_parsing(t_all *all, char *cub)
 		printf("Error"); //error
 		return (-1);
 	}
-	for (int i = 0; i < all->map.height; i++)
-	{
-		for (int j = 0; j < all->map.width; j++)
-		{
-			printf("%c",all->map.tab[i][j]);
-		}
-		printf("\n");
-	}
 	ft_position(all);
+	ft_init_sprite(all);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/02 14:12:15 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 14:33:20 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ int		ft_resolution(t_all *all, char *line, int *i)
 		all->info.win_x = 2560;
 	if (all->info.win_y > 1400)
 		all->info.win_y = 1400;
-	all->flag.r = 1;
-	all->flag.cnt += 1;
+	// all->flag.r = 1;
+	// all->flag.cnt += 1;
 	return (1);
 }
 
-void	ft_check_flag(t_all *all, int type)
-{
-	if (type == NORTH)
-		all->flag.no = 1;
-	else if (type == EAST)
-		all->flag.ea = 1;
-	else if (type == SOUTH)
-		all->flag.so = 1;
-	else if (type == WEST)
-		all->flag.we = 1;
-	else if (type == SPRITE)
-		all->flag.s = 1;
-	else if (type == FLOOR)
-		all->flag.f = 1;
-	else if (type == CEILING)
-		all->flag.c = 1;
-	all->flag.cnt += 1;
-}
+// void	ft_check_flag(t_all *all, int type)
+// {
+// 	if (type == NORTH)
+// 		all->flag.no = 1;
+// 	else if (type == EAST)
+// 		all->flag.ea = 1;
+// 	else if (type == SOUTH)
+// 		all->flag.so = 1;
+// 	else if (type == WEST)
+// 		all->flag.we = 1;
+// 	else if (type == SPRITE)
+// 		all->flag.s = 1;
+// 	else if (type == FLOOR)
+// 		all->flag.f = 1;
+// 	else if (type == CEILING)
+// 		all->flag.c = 1;
+// 	all->flag.cnt += 1;
+// }
 
 void	ft_check_texture(t_all *all, char *arr, int type)
 {
@@ -59,7 +59,7 @@ void	ft_check_texture(t_all *all, char *arr, int type)
 		all->tex.west_texture = arr;
 	else if (type == SPRITE)
 		all->tex.sprite_texture = arr;
-	ft_check_flag(all, type);
+	// ft_check_flag(all, type);
 }
 
 int		ft_texture(t_all *all, char *line, int *i, int type)
@@ -102,7 +102,7 @@ int		ft_color(t_all *all, char *line, int *i, int type)
 		all->tex.floor_color = color;
 	else if (type == CEILING)
 		all->tex.ceiling_color = color;
-	ft_check_flag(all, type);
+	// ft_check_flag(all, type);
 	return (1);
 }
 

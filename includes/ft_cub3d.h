@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/07 17:50:45 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 16:00:45 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_info
 	int				win_x; //width
 	int				win_y; //height
 	int				error_n; //error check
+	int				sprite_num;
 	// int				dir;
 }					t_info;
 
@@ -89,6 +90,7 @@ typedef struct		s_tex
 	char			*sprite_texture;
 	int				**texture; //img.data를 color로 바꾸기 위해 변경해주는 곳
 	int				**buf; //texture을 color로 변화시켜 저장한 곳
+	double			*zbuf; //sprite의 수직 거리
 	int				x; //tex_x: texture의 x좌표
 	int				y;
 	int				tex_num; //texturing
@@ -110,6 +112,20 @@ typedef struct		s_player //player position
 	double			rot_speed;
 	int				dir;
 }					t_player;
+
+typedef struct		s_sprite
+{
+	double			x;
+	double			y;
+	double			distance;
+}					t_sprite;
+
+typedef struct		s_sprite_ray
+{
+	double			x;
+	double			y;
+	
+}					t_sprite_ray;
 
 typedef struct		s_dir
 {
@@ -169,6 +185,7 @@ typedef struct		s_all
 	t_hit			hit;
 	t_tex			tex;
 	t_flag			flag;
+	t_sprite		*sprite;
 }					t_all;
 
 //ft_init.c
@@ -231,5 +248,9 @@ int					ft_check_name(char *a, char *b);
 int					ft_exit(int ret);
 void				ft_init_cub3d(t_all *all, char *cub);
 int					ft_main_loop(t_all *all);
+
+//ft_sprite.c
+void ft_sprite(t_all *all);
+void ft_init_sprite(t_all *all);
 
 #endif
