@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:10:24 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/09 17:22:49 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 16:11:11 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	ft_init_player(t_all *all)
 	all->player.dir = 0;
 }
 
-void	ft_init_flag(t_all *all)
-{
-	all->flag.cnt = 0;
-	all->flag.r = 0;
-	all->flag.c = 0;
-	all->flag.no = 0;
-	all->flag.ea = 0;
-	all->flag.so = 0;
-	all->flag.we = 0;
-	all->flag.s = 0;
-	all->flag.f = 0;
-	all->flag.c = 0;
-}
+// void	ft_init_flag(t_all *all)
+// {
+// 	all->flag.cnt = 0;
+// 	all->flag.r = 0;
+// 	all->flag.c = 0;
+// 	all->flag.no = 0;
+// 	all->flag.ea = 0;
+// 	all->flag.so = 0;
+// 	all->flag.we = 0;
+// 	all->flag.s = 0;
+// 	all->flag.f = 0;
+// 	all->flag.c = 0;
+// }
 
 void	ft_init_info(t_all *all)
 {

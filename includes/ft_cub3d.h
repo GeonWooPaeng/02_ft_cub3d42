@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/11 16:00:45 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/11 16:12:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,18 +161,18 @@ typedef struct		s_hit
 	int				side; //어느 면에 부딪혔는지 파악(x == 0, y == 1)
 }					t_hit;
 
-typedef struct		s_flag
-{
-	int				cnt;
-	int				r;
-	int				no;
-	int				so;
-	int				we;
-	int				ea;
-	int				s;
-	int				f;
-	int				c;
-}					t_flag;
+// typedef struct		s_flag
+// {
+// 	int				cnt;
+// 	int				r;
+// 	int				no;
+// 	int				so;
+// 	int				we;
+// 	int				ea;
+// 	int				s;
+// 	int				f;
+// 	int				c;
+// }					t_flag;
 
 typedef struct		s_all
 {
@@ -184,12 +184,12 @@ typedef struct		s_all
 	t_ray			ray;
 	t_hit			hit;
 	t_tex			tex;
-	t_flag			flag;
+	// t_flag			flag;
 	t_sprite		*sprite;
 }					t_all;
 
 //ft_init.c
-void				ft_init_flag(t_all *all);
+// void				ft_init_flag(t_all *all);
 double				ft_init_player_dir(t_all *all);
 void				ft_init_player(t_all *all);
 void				ft_init_info(t_all *all);
@@ -223,7 +223,7 @@ int					ft_texture(t_all *all, char *line, int *i, int type);
 int					ft_map(t_all *all, char *line, int *i);
 void				ft_position(t_all *all);
 void				ft_check_texture(t_all *all, char *arr, int type);
-void				ft_check_flag(t_all *all, int type);
+// void				ft_check_flag(t_all *all, int type);
 int					ft_check_name(char *a, char *b);
 
 //ft_key_press.c

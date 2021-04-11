@@ -14,7 +14,6 @@ SRC =	ft_init.c				\
 		parse/parsing.c			\
 		parse/util.c			\
 		ft_key_press.c			\
-		ft_sprite.c				\
 		ft_img.c				\
 		ft_init_img.c			\
 		ft_raycasting.c			\
