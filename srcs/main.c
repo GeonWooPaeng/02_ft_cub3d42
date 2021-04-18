@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/11 16:12:45 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/18 16:11:01 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1008,13 +1008,14 @@ void	ft_init_cub3d(t_all *all, char *cub)
 	ft_rotate_player(all, ft_init_player_dir(all));
 	all->info.mlx = mlx_init();
 	ft_init_buffer(all); // error check
+	ft_init_zbuffer(all); //error check
 	ft_init_texture(all); //error check
 }
 
 int ft_main_loop(t_all *all)
 {
 	ft_raycasting(all);
-	// ft_sprite(all);
+	ft_sprite(all);
 	ft_image_draw(all);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/11 16:12:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/18 17:32:31 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct		s_tex
 	char			*sprite_texture;
 	int				**texture; //img.data를 color로 바꾸기 위해 변경해주는 곳
 	int				**buf; //texture을 color로 변화시켜 저장한 곳
-	double			*zbuf; //sprite의 수직 거리
+	double			*zbuf; //sprite의 수직 줄무늬의 벽까지의 거리
 	int				x; //tex_x: texture의 x좌표
 	int				y;
 	int				tex_num; //texturing
@@ -124,8 +124,24 @@ typedef struct		s_sprite_ray
 {
 	double			x;
 	double			y;
+	double			inv_det; //inversion_detection
+	double			transform_x;
+	double			transform_y;
+	int				screen_x;
+	int				height;
+	int				width;
+	int				draw_start_x;
+	int				draw_start_y;
+	int				draw_end_x;
+	int				draw_end_y;
 	
 }					t_sprite_ray;
+
+typedef struct		s_sprite_tex
+{
+	int				x;
+	int				y;
+}					t_sprite_tex;
 
 typedef struct		s_dir
 {
@@ -186,6 +202,8 @@ typedef struct		s_all
 	t_tex			tex;
 	// t_flag			flag;
 	t_sprite		*sprite;
+	t_sprite_ray	sprite_ray;
+	t_sprite_tex	sprite_tex;
 }					t_all;
 
 //ft_init.c
@@ -203,6 +221,7 @@ void				ft_image_draw(t_all *all);
 
 //ft_init.img.c
 void				ft_init_buffer(t_all *all);
+void				ft_init_zbuffer(t_all *all);
 int					ft_init_texture(t_all *all);
 
 //parse/*
@@ -249,8 +268,17 @@ int					ft_exit(int ret);
 void				ft_init_cub3d(t_all *all, char *cub);
 int					ft_main_loop(t_all *all);
 
-//ft_sprite.c
-void ft_sprite(t_all *all);
+//ft_sprite_utils.c
+void ft_rsort_sprite(t_all *all);
 void ft_init_sprite(t_all *all);
+void ft_set_sprite(t_all *all);
+
+//ft_sprite.c
+void ft_sprite_dist(t_all *all);
+void ft_sprite_conversion(t_all *all, int x);
+void ft_sprite_hw(t_all *all);
+void ft_sprite_color(t_all *all, int sprite);
+void ft_sprite(t_all *all);
+
 
 #endif

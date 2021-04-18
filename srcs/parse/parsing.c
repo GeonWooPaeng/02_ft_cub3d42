@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/11 16:09:46 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/18 16:22:16 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ int		ft_parsing(t_all *all, char *cub)
 		return (-1);
 	}
 	ft_position(all);
-	// ft_init_sprite(all);
+	ft_set_sprite(all);
 	return (1);
 }

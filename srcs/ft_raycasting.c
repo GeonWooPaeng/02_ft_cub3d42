@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:58:04 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/09 16:46:57 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/18 15:26:35 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void ft_raycasting(t_all *all)
 		ft_wall_height(all);
 		ft_wall_texture(all);
 		ft_wall_color(all, x);
+		all->tex.zbuf[x] = all->ray.perp_wall_dist;
 		x++;
 	}
 }

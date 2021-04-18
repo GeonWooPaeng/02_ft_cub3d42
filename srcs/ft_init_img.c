@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/02 16:11:57 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/18 16:12:36 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ void	ft_init_buffer(t_all *all)
 		j = 0;
 		while (j < all->info.win_x)
 			all->tex.buf[i][j++] = 0;
+		i++;
+	}
+}
+
+void	ft_init_zbuffer(t_all *all)
+{
+	int i;
+
+	all->tex.zbuf = (double *)malloc(sizeof(double) * all->info.win_y);
+	i = 0;
+	while (i < all->info.win_y)
+	{
+		all->tex.zbuf[i] = 0;
 		i++;
 	}
 }
