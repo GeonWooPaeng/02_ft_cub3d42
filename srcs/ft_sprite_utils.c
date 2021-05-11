@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:16:54 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/18 17:33:43 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 12:30:22 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void ft_init_sprite(t_all *all)
 	int idx;
 
 	idx = 0;
-	while (idx < all->info.sprite_num)
+	while (idx < all->info.sprite_num - 1)
 	{
 		all->sprite[idx].x = 0;
 		all->sprite[idx].y = 0;
 		all->sprite[idx].distance = 0;
-		idx++;
+		idx += 1;
 	}
 }
 
@@ -72,10 +72,10 @@ void ft_set_sprite(t_all *all)
 			{
 				all->sprite[idx].x = (double)row + 0.5;
 				all->sprite[idx].y = (double)col + 0.5;
-				idx++;
+				idx += 1;
 			}
-			row++;
+			row += 1;
 		}
-		col++;
+		col += 1;
 	}
 }

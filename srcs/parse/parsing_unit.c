@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/22 16:42:28 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/22 17:02:31 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,8 @@ int		ft_resolution(t_all *all, char *line, int *i)
 		all->info.win_x = 2560;
 	if (all->info.win_y > 1400)
 		all->info.win_y = 1400;
-	// all->flag.r = 1;
-	// all->flag.cnt += 1;
 	return (1);
 }
-
-// void	ft_check_flag(t_all *all, int type)
-// {
-// 	if (type == NORTH)
-// 		all->flag.no = 1;
-// 	else if (type == EAST)
-// 		all->flag.ea = 1;
-// 	else if (type == SOUTH)
-// 		all->flag.so = 1;
-// 	else if (type == WEST)
-// 		all->flag.we = 1;
-// 	else if (type == SPRITE)
-// 		all->flag.s = 1;
-// 	else if (type == FLOOR)
-// 		all->flag.f = 1;
-// 	else if (type == CEILING)
-// 		all->flag.c = 1;
-// 	all->flag.cnt += 1;
-// }
 
 void	ft_check_texture(t_all *all, char *arr, int type)
 {
@@ -59,7 +38,8 @@ void	ft_check_texture(t_all *all, char *arr, int type)
 		all->tex.west_texture = arr;
 	else if (type == SPRITE)
 		all->tex.sprite_texture = arr;
-	// ft_check_flag(all, type);
+	else
+		ft_error("[Error] more type texture");
 }
 
 int		ft_texture(t_all *all, char *line, int *i, int type)
@@ -73,7 +53,7 @@ int		ft_texture(t_all *all, char *line, int *i, int type)
 	while (line[*i] != ' ' && line[*i] != '\0')
 		(*i)++;
 	if (!(arr = (char *)malloc(sizeof(char) * (*i - j + 1))))
-		return (-1);
+		ft_error("[Error] texture malloc");
 	*i = j;
 	j = 0;
 	while (line[*i] != ' ' && line[*i] != '\0')
@@ -85,7 +65,7 @@ int		ft_texture(t_all *all, char *line, int *i, int type)
 	return (1);
 }
 
-int		ft_color(t_all *all, char *line, int *i, int type)
+void		ft_color(t_all *all, char *line, int *i, int type)
 {
 	int r;
 	int g;
@@ -99,12 +79,13 @@ int		ft_color(t_all *all, char *line, int *i, int type)
 	g = ft_atoi(line, i);
 	(*i)++;
 	b = ft_atoi(line, i);
+	if (line[*i] != '\0' || r > 255 || g > 255 || b > 255)
+		ft_error("[Error] parsing color");
 	color = (r * 256 * 256) + g * 256 + b;
 	if (type == FLOOR)
 		all->tex.floor_color = color;
 	else if (type == CEILING)
 		all->tex.ceiling_color = color;
-	return (1);
 }
 
 

@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
 CFLAGS += -g 
-NAME = cub3d
+NAME = cub3D
 
 DIR_H = ./includes
 DIR_S = ./srcs/

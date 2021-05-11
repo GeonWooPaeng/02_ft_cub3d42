@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:58:25 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/18 16:11:01 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 13:45:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -984,32 +984,19 @@
 // #include "ft_cub3d.h"
 #include "../includes/ft_cub3d.h"
 
-int	ft_check_name(char *a, char *b)
-{
-	int alen;
-	int blen;
-
-	alen = ft_strlen(a);
-	blen = ft_strlen(b);
-	while (blen > 0)
-	{
-		if (a[alen--] != b[blen--])
-			return (0);
-	}
-	return (1);
-}
-
 void	ft_init_cub3d(t_all *all, char *cub)
 {
 	ft_init_info(all);
-	// ft_init_flag(all);
 	ft_init_player(all);
-	ft_parsing(all, cub); //error check
+	ft_parsing(all, cub);
 	ft_rotate_player(all, ft_init_player_dir(all));
 	all->info.mlx = mlx_init();
-	ft_init_buffer(all); // error check
-	ft_init_zbuffer(all); //error check
-	ft_init_texture(all); //error check
+	if(!ft_init_buffer(all))
+		ft_error("[Error] init buffer malloc");
+	if (!ft_init_zbuffer(all))
+		ft_error("[Error] init zbuffer malloc");
+	if (!ft_init_texture(all))
+		ft_error("[Error] init texture malloc");
 }
 
 int ft_main_loop(t_all *all)
@@ -1020,26 +1007,32 @@ int ft_main_loop(t_all *all)
 	return (0);
 }
 
-int ft_exit(int ret)
+void ft_free(t_all *all)
 {
-	exit(ret);
-	return (ret);
+	if (all->img.ptr)
+		mlx_destroy_image(all->info.mlx, all->img.ptr);
+	if (all->sprite)
+	{
+		free(all->sprite);
+		all->sprite = NULL;
+	}
+	exit(0);
 }
 
 int main(int argc, char *argv[])
 {
 	t_all all;
 
-	if (argc == 3 && ft_check_name(argv[1], ".cub")) // --save 부분 추가
+	if (argc == 3 && ft_name_check(argv[1], ".cub")) // --save 부분 추가
 	{//bmp 저장 하는 공간
 		ft_init_cub3d(&all, argv[1]);
 		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
 		all.img.data = (int *)mlx_get_data_addr(all.img.ptr, &all.img.bpp, &all.img.size_l, &all.img.endian); //생성된 이미지에 대한 정보 설정
 		ft_raycasting(&all);
-		// ft_sprite(&all);
+		ft_sprite(&all);
 		exit(0);
 	}
-	else if (argc == 2) //&& ft_check_name(argv[1], ".cub")
+	else if (argc == 2 && ft_name_check(argv[1], ".cub"))
 	{
 		ft_init_cub3d(&all, argv[1]);
 		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
@@ -1052,7 +1045,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		printf("Error");
+		ft_error("[Error] Check argv and files");
 	}
 	return (0);
 }

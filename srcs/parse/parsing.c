@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/18 16:22:16 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 14:12:43 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int		ft_check_line(t_all *all, char *line)
 	if (line[i] == 'R')
 		ft_resolution(all, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
-		all->info.error_n = ft_texture(all, line, &i, NORTH);
+		ft_texture(all, line, &i, NORTH);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		all->info.error_n = ft_texture(all, line, &i, SOUTH);
+		ft_texture(all, line, &i, SOUTH);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		all->info.error_n = ft_texture(all, line, &i, WEST);
+		ft_texture(all, line, &i, WEST);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		all->info.error_n = ft_texture(all, line, &i,EAST);
+		ft_texture(all, line, &i, EAST);
 	else if (line[i] == 'S')
-		all->info.error_n = ft_texture(all, line, &i, SPRITE);
+		ft_texture(all, line, &i, SPRITE);
 	else if (line[i] == 'F')
-		all->info.error_n = ft_color(all, line, &i, FLOOR);
+		ft_color(all, line, &i, FLOOR);
 	else if (line[i] == 'C')
-		all->info.error_n = ft_color(all, line, &i, CEILING);
+		ft_color(all, line, &i, CEILING);
 	else if (line[i] != '\0')
-		all->info.error_n = ft_map(all, line, &i);
+		ft_map(all, line, &i);
 	return (1);
 }
 
@@ -91,6 +91,7 @@ int		get_next_line(int fd, char **line)
 
 	if (!line || fd < 0 || fd >= 256)
 		return (-1); //error
+	*line = NULL;
 	while ((nr = read(fd, buf, 4096)) >= 0)
 	{
 		buf[nr] = '\0';
@@ -125,11 +126,9 @@ int		ft_parsing(t_all *all, char *cub)
 	}
 	close(fd);
 	if (ret < 0)
-	{
-		printf("Error"); //error
-		return (-1);
-	}
+		ft_error("[Error] parsing");
 	ft_position(all);
 	ft_set_sprite(all);
+	
 	return (1);
 }

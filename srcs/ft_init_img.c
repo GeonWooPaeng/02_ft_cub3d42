@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/18 16:12:36 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/04/22 16:50:40 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int		ft_init_texture(t_all *all)
 	int j;
 	
 	if (!(all->tex.texture = (int **)malloc(sizeof(int *) * 5)))
-		return (-1);
+		return (0);
 	i = 0;
 	while (i < 5)
 	{
 		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * TEXTURE_WIDTH * TEXTURE_HEIGHT)))
-			return (-1);
+			return (0);
 		i++;
 	}
 	i = 0;
@@ -35,18 +35,20 @@ int		ft_init_texture(t_all *all)
 		i++;
 	}
 	ft_load_texture(all);
-	return (0);
+	return (1);
 }
 
-void	ft_init_buffer(t_all *all)
+int		ft_init_buffer(t_all *all)
 {
 	int i;
 	int j;
 	
-	all->tex.buf = (int **)malloc(sizeof(int *) * all->info.win_y);
+	if (!(all->tex.buf = (int **)malloc(sizeof(int *) * all->info.win_y)))
+		return (0);
 	i = 0;
 	while (i < all->info.win_y)
-		all->tex.buf[i++] = (int *)malloc(sizeof(int) * all->info.win_x);
+		if (!(all->tex.buf[i++] = (int *)malloc(sizeof(int) * all->info.win_x)))
+			return (0);
 	i = 0;
 	while (i < all->info.win_y)
 	{
@@ -55,19 +57,22 @@ void	ft_init_buffer(t_all *all)
 			all->tex.buf[i][j++] = 0;
 		i++;
 	}
+	return (1);
 }
 
-void	ft_init_zbuffer(t_all *all)
+int	ft_init_zbuffer(t_all *all)
 {
 	int i;
 
-	all->tex.zbuf = (double *)malloc(sizeof(double) * all->info.win_y);
+	if (!(all->tex.zbuf = (double *)malloc(sizeof(double) * all->info.win_y)))
+		return (0);
 	i = 0;
 	while (i < all->info.win_y)
 	{
 		all->tex.zbuf[i] = 0;
 		i++;
 	}
+	return (1);
 }
 
 

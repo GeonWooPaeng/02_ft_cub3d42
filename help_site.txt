@@ -24,3 +24,7 @@ https://velog.io/@du0928/cub3D
 
 parsing tester
 https://github.com/Dustin42Codam/cub3d_destroyer
+
+
+bmp 파일
+https://dojang.io/mod/page/view.php?id=702

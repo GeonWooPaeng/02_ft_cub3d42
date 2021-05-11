@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/11 16:14:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 14:38:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char		*ft_row(char *line, int *i)
 	
 	idx = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (ft_rownum(line) + 1))))
-		return (NULL);
+		ft_error("[Error] rownum malloc");
 	while (line[*i] != '\0')
 	{
 		if (line[*i] == '0' || line[*i] == '1' || line[*i] == '2' || 
@@ -99,7 +99,7 @@ int		ft_map(t_all *all, char *line, int *i)
 {
 	char	**tmp;
 	int		idx;
-
+	
 	idx = 0;
 	if (!(tmp = (char **)malloc(sizeof(char *) * (all->map.height + 2))))
 		return (-1);
@@ -119,6 +119,21 @@ int		ft_map(t_all *all, char *line, int *i)
 	all->map.tab = tmp;
 	all->map.height++;
 	all->map.width = ft_rownum(line);
+	
+	// int col;
+	// int row;
+	// col = 0;
+	// while (col < all->map.height)
+	// {
+	// 	row = 0;
+	// 	printf("\n");
+	// 	while (row < all->map.width)
+	// 	{
+	// 		printf("%c",all->map.tab[col][row]);
+	// 		row += 1;
+	// 	}
+	// 	col+= 1;
+	// }
 	return (1);
 }
 
