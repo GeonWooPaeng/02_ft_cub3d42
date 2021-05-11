@@ -6,16 +6,15 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:11:01 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/22 17:01:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:50:09 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_cub3d.h"
 #include "../../includes/ft_cub3d.h"
 
 int		ft_isspace(char *line, int *i)
 {
-	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n' 
+	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n'
 	|| line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
 		(*i)++;
 	return (1);
@@ -42,16 +41,16 @@ int		ft_error(char *error)
 	return (0);
 }
 
-int ft_exit(int ret)
+int		ft_exit(int ret)
 {
 	exit(ret);
 	return (ret);
 }
 
-int	ft_name_check(char *a, char *b)
+int		ft_name_check(char *a, char *b)
 {
 	int idx;
-	
+
 	idx = 0;
 	while (a[idx] != '\0')
 		idx++;

@@ -6,13 +6,13 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/22 16:50:40 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:54:45 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-int		ft_init_texture(t_all *all)
+int	ft_init_texture(t_all *all)
 {
 	int i;
 	int j;
@@ -38,7 +38,7 @@ int		ft_init_texture(t_all *all)
 	return (1);
 }
 
-int		ft_init_buffer(t_all *all)
+int	ft_init_buffer(t_all *all)
 {
 	int i;
 	int j;
@@ -74,5 +74,3 @@ int	ft_init_zbuffer(t_all *all)
 	}
 	return (1);
 }
-
-

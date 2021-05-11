@@ -6,11 +6,10 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:38:02 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/01 21:23:45 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:43:45 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_cub3d.h"
 #include "../../includes/ft_cub3d.h"
 
 size_t		ft_strlen(const char *str)

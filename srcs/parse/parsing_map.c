@@ -6,11 +6,10 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 14:38:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 16:16:27 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_cub3d.h"
 #include "../../includes/ft_cub3d.h"
 
 void	ft_player_dir(t_all *all, int col, int row)
@@ -61,7 +60,7 @@ int		ft_rownum(char *line)
 	cnt = 0;
 	while (line[idx] != '\0')
 	{
-		if (line[idx] == '0' || line[idx] == '1' || line[idx] == '2' || 
+		if (line[idx] == '0' || line[idx] == '1' || line[idx] == '2' ||
 		line[idx] == 'N' || line[idx] == 'S' || line[idx] == 'W' ||
 		line[idx] == 'E')
 			cnt++;
@@ -70,18 +69,18 @@ int		ft_rownum(char *line)
 	return (cnt);
 }
 
-char		*ft_row(char *line, int *i)
+char	*ft_row(char *line, int *i)
 {// 행 malloc
 	char	*tmp;
 	int		idx;
-	
+
 	idx = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (ft_rownum(line) + 1))))
 		ft_error("[Error] rownum malloc");
 	while (line[*i] != '\0')
 	{
-		if (line[*i] == '0' || line[*i] == '1' || line[*i] == '2' || 
-		line[*i] == 'N' || line[*i] == 'S' || line[*i] == 'W' || 
+		if (line[*i] == '0' || line[*i] == '1' || line[*i] == '2' ||
+		line[*i] == 'N' || line[*i] == 'S' || line[*i] == 'W' ||
 		line[*i] == 'E')
 			tmp[idx++] = line[*i];
 		else if (line[*i] != ' ')
@@ -99,7 +98,7 @@ int		ft_map(t_all *all, char *line, int *i)
 {
 	char	**tmp;
 	int		idx;
-	
+
 	idx = 0;
 	if (!(tmp = (char **)malloc(sizeof(char *) * (all->map.height + 2))))
 		return (-1);
@@ -119,21 +118,5 @@ int		ft_map(t_all *all, char *line, int *i)
 	all->map.tab = tmp;
 	all->map.height++;
 	all->map.width = ft_rownum(line);
-	
-	// int col;
-	// int row;
-	// col = 0;
-	// while (col < all->map.height)
-	// {
-	// 	row = 0;
-	// 	printf("\n");
-	// 	while (row < all->map.width)
-	// 	{
-	// 		printf("%c",all->map.tab[col][row]);
-	// 		row += 1;
-	// 	}
-	// 	col+= 1;
-	// }
 	return (1);
 }
-

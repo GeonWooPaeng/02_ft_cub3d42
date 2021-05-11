@@ -6,14 +6,13 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:10:24 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 14:45:19 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:53:36 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-
-double ft_init_player_dir(t_all *all)
+double	ft_init_player_dir(t_all *all)
 {
 	double rotation;
 
@@ -36,8 +35,8 @@ void	ft_init_player(t_all *all)
 	all->player.dir_x = -1.0;
 	all->player.dir_y = 0.0;
 	all->player.plane_x = 0.0;
-	all->player.plane_y = 0.66;
-	all->player.move_speed = 0.1;
+	all->player.plane_y = 1.0;
+	all->player.move_speed = 0.66;
 	all->player.rot_speed = 0.1;
 	all->player.dir = 0;
 }
@@ -62,7 +61,7 @@ void	ft_init_info(t_all *all)
 	all->tex.zbuf = NULL;
 }
 
-void ft_init_ray(t_all *all, int x)
+void	ft_init_ray(t_all *all, int x)
 {
 	all->ray.camera_x = 2 * x / (double)all->info.win_x - 1;
 	all->ray.dir_x = all->player.dir_x + all->player.plane_x * all->ray.camera_x;
@@ -73,4 +72,3 @@ void ft_init_ray(t_all *all, int x)
 	all->ray.delta_dist_y = fabs(1 / all->ray.dir_y);
 	all->hit.h = 0;
 }
-

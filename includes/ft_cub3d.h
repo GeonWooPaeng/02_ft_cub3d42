@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:31 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 16:22:18 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
- 
+
 # define NORTH 3
 # define EAST 4
 # define SOUTH 5
@@ -46,7 +46,6 @@
 # define CEILING 9
 # define COLOR 10
 # define W_SIZE 11
-
 
 typedef struct		s_info
 {
@@ -265,6 +264,5 @@ void				ft_sprite_conversion(t_all *all, int x);
 void				ft_sprite_hw(t_all *all);
 void				ft_sprite_color(t_all *all, int sprite);
 void				ft_sprite(t_all *all);
-
 
 #endif

@@ -6,21 +6,19 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:16:54 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 12:30:22 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 16:01:04 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../includes/ft_cub3d.h"
 
-void ft_rsort_sprite(t_all *all)
+void	ft_rsort_sprite(t_all *all)
 { //원거리 -> 가까운 순
 	int i;
 	int j;
 	int max_idx;
 	t_sprite tmp;
-	
+
 	i = 0;
 	while (i < all->info.sprite_num - 1)
 	{
@@ -39,7 +37,7 @@ void ft_rsort_sprite(t_all *all)
 	}
 }
 
-void ft_init_sprite(t_all *all)
+void	ft_init_sprite(t_all *all)
 {
 	int idx;
 
@@ -53,7 +51,7 @@ void ft_init_sprite(t_all *all)
 	}
 }
 
-void ft_set_sprite(t_all *all)
+void	ft_set_sprite(t_all *all)
 {
 	int col;
 	int row;

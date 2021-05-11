@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/09 14:12:29 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:52:58 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_image_draw(t_all *all)
 	{
 		x = 0;
 		while (x < all->info.win_x)
-		{	
+		{
 			all->img.data[all->info.win_x * y + x] = all->tex.buf[y][x];
 			x++;
 		}
@@ -55,8 +55,10 @@ void	load_image(t_all *all, int *texture, char *path, t_img *img)
 	int x;
 	int y;
 
-	img->ptr = mlx_xpm_file_to_image(all->info.mlx, path, &img->width, &img->height);
-	img->data = (int *)mlx_get_data_addr(img->ptr, &img->bpp, &img->size_l, &img->endian);
+	img->ptr = mlx_xpm_file_to_image(all->info.mlx, path,
+										&img->width, &img->height);
+	img->data = (int *)mlx_get_data_addr(img->ptr, &img->bpp,
+											&img->size_l, &img->endian);
 	y = 0;
 	while (y < img->height)
 	{
@@ -71,7 +73,7 @@ void	load_image(t_all *all, int *texture, char *path, t_img *img)
 	mlx_destroy_image(all->info.mlx, img->ptr);
 }
 
-void		ft_load_texture(t_all *all)
+void	ft_load_texture(t_all *all)
 {	
 	t_img img;
 	
@@ -91,4 +93,3 @@ void		ft_load_texture(t_all *all)
 	free(all->tex.sprite_texture);
 	all->tex.sprite_texture = NULL;
 }
-

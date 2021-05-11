@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 14:12:43 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 16:02:09 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_make_line(char **arr, int *check)
 int		ft_make_arr(char **arr, char *buf, ssize_t nr)
 {
 	char *backup;
-	
+
 	if (*arr == NULL)
 	{
 		backup = ft_strndup(buf, nr);
@@ -129,6 +129,5 @@ int		ft_parsing(t_all *all, char *cub)
 		ft_error("[Error] parsing");
 	ft_position(all);
 	ft_set_sprite(all);
-	
 	return (1);
 }

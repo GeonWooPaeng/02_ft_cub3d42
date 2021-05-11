@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:58:04 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/04/18 15:26:35 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/11 15:59:22 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // 	원근법에 따라 벽 세로선의 높이를 계산하여 화면에 그리기
 // }
 
-void ft_side_dist(t_all *all)
+void	ft_side_dist(t_all *all)
 {	// step_x,y, side_dist_x,y 넣어주는 곳
 	// 플레이어 기준 어느쪽인지 파악
 	//step_x, step_y 계산 방법
@@ -35,18 +35,21 @@ void ft_side_dist(t_all *all)
 	{
 		all->ray.step_x = -1;
 		//광선의 시작점부터 왼쪽으로 이동하다 처음 만나는 x면까지의 거리
-		all->ray.side_dist_x = (all->player.x - all->map.x) * all->ray.delta_dist_x;
+		all->ray.side_dist_x = (all->player.x - all->map.x)
+		* all->ray.delta_dist_x;
 	}
 	else
 	{
 		all->ray.step_x = 1;
 		//광선의 시작점부터 오른쪽으로 이동하다 처음 만나는 x면까지의 거리
-		all->ray.side_dist_x = (all->map.x + 1.0 - all->player.x) * all->ray.delta_dist_x;
+		all->ray.side_dist_x = (all->map.x + 1.0 - all->player.x)
+		* all->ray.delta_dist_x;
 	}
 	if (all->ray.dir_y < 0)
 	{
 		all->ray.step_y = -1;
-		all->ray.side_dist_y = (all->player.y - all->map.y) * all->ray.delta_dist_y;
+		all->ray.side_dist_y = (all->player.y - all->map.y)
+		* all->ray.delta_dist_y;
 	}
 	else
 	{
@@ -55,7 +58,7 @@ void ft_side_dist(t_all *all)
 	}
 }
 
-void ft_hit_side(t_all *all)
+void	ft_hit_side(t_all *all)
 {// 벽과 부딪쳤을 때까지 매번 한 칸씩 광선 이동하는 상황(dda) 
 	while (all->hit.h == 0)
 	{
@@ -76,15 +79,17 @@ void ft_hit_side(t_all *all)
 	}
 }
 
-void ft_wall_dist(t_all *all)
+void	ft_wall_dist(t_all *all)
 { //벽과의 거리 구하기
 	if (all->hit.side <= 1)
-		all->ray.perp_wall_dist = (all->map.x - all->player.x + (1 - all->ray.step_x) / 2) / all->ray.dir_x;
+		all->ray.perp_wall_dist = (all->map.x - all->player.x
+		+ (1 - all->ray.step_x) / 2) / all->ray.dir_x;
 	else
-		all->ray.perp_wall_dist = (all->map.y - all->player.y + (1 - all->ray.step_y) / 2) / all->ray.dir_y;
+		all->ray.perp_wall_dist = (all->map.y - all->player.y
+		+ (1 - all->ray.step_y) / 2) / all->ray.dir_y;
 }
 
-void ft_wall_height(t_all *all)
+void	ft_wall_height(t_all *all)
 {	// 선을 그릴 시작점과 끝점 구하기
 	// 스크린에 그릴 line의 높이 계산(line_height)
 	all->ray.line_height = (int)(all->info.win_y / all->ray.perp_wall_dist);
@@ -96,7 +101,7 @@ void ft_wall_height(t_all *all)
 		all->ray.draw_end = all->info.win_y - 1;
 }
 
-void ft_raycasting(t_all *all)
+void	ft_raycasting(t_all *all)
 {
 	int x;
 	
@@ -115,4 +120,3 @@ void ft_raycasting(t_all *all)
 		x++;
 	}
 }
-
