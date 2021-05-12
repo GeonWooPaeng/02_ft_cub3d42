@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 16:22:18 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:06:16 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,8 @@ void				ft_wall_color(t_all *all, int x);
 
 //main.c
 void				ft_init_cub3d(t_all *all, char *cub);
+void				ft_argc_2(t_all *all);
+void				ft_argc_3(t_all *all);
 int					ft_main_loop(t_all *all);
 
 //ft_sprite_utils.c
