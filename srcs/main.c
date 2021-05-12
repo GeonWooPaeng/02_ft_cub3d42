@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:26:41 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 17:13:34 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:11:27 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,6 @@ int		ft_main_loop(t_all *all)
 	ft_sprite(all);
 	ft_image_draw(all);
 	return (0);
-}
-
-void	ft_free(t_all *all)
-{
-	if (all->img.ptr)
-		mlx_destroy_image(all->info.mlx, all->img.ptr);
-	if (all->sprite)
-	{
-		free(all->sprite);
-		all->sprite = NULL;
-	}
-	exit(0);
 }
 
 void	ft_argc_2(t_all *all)
@@ -66,16 +54,18 @@ void	ft_init_cub3d(t_all *all, char *cub)
 int		main(int argc, char *argv[])
 {
 	t_all all;
-	
-	if ((argc == 2 || argc == 3) && ft_name_check(argv[1], ".cub"))
+
+	if ((argc == 2 || argc == 3) && ft_name_check(argv[1], ".cub", 4))
 	{
 		ft_init_cub3d(&all, argv[1]);
 		all.img.ptr = mlx_new_image(all.info.mlx, all.info.win_x, all.info.win_y);//이미지 생성
 		all.img.data = (int *)mlx_get_data_addr(all.img.ptr, &all.img.bpp, &all.img.size_l, &all.img.endian); //생성된 이미지에 대한 정보 설정
-		if (argc == 3 && ft_name_check(argv[2], "--save"))
+		if (argc == 3 && ft_name_check(argv[2], "--save", 6))
 			ft_argc_3(&all);
 		else
 			ft_argc_2(&all);
+		ft_free(&all);
+		ft_exit(0);
 	}
 	else
 	{

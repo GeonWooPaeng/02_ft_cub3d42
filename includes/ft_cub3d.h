@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 17:06:16 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:07:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct		s_info
 	int				win_x; //width
 	int				win_y; //height
 	int				sprite_num;
-	// int				dir;
 }					t_info;
 
 typedef struct		s_img
@@ -66,13 +65,11 @@ typedef struct		s_img
 	int				endian;
 	int				width;
 	int				height;
-	// int				fsh;
 }					t_img;
 
 typedef struct		s_map
 {
 	char			**tab;
-	char			**visited;
 	int				x; //map_x: 현재 player가 위치한 맵 내 위치
 	int				y;
 	int				width;
@@ -209,6 +206,13 @@ int					ft_init_buffer(t_all *all);
 int					ft_init_zbuffer(t_all *all);
 int					ft_init_texture(t_all *all);
 
+// utils.c
+void				ft_free_1(void *arr);
+void				ft_free_2(char **arr);
+void				ft_free(t_all *all);
+int					ft_error(char *error);
+int					ft_exit(int ret);
+
 //parse/*
 size_t				ft_strlen(const char *str);
 char				*ft_strndup(const char *str, size_t num);
@@ -227,9 +231,8 @@ int					ft_texture(t_all *all, char *line, int *i, int type);
 int					ft_map(t_all *all, char *line, int *i);
 void				ft_position(t_all *all);
 void				ft_check_texture(t_all *all, char *arr, int type);
-int					ft_name_check(char *a, char *b);
+int					ft_name_check(char *a, char *b, int num);
 int					ft_error(char *error);
-int					ft_name_check(char *a, char *b);
 int					ft_exit(int ret);
 
 //ft_key_press.c

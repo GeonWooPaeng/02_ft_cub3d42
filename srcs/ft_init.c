@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:10:24 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 15:53:36 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:50:48 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_init_info(t_all *all)
 	all->map.width = 0;
 	all->map.height = 0;
 	all->map.tab = NULL;
-	all->map.visited = NULL;
 	all->tex.north_texture = NULL;
 	all->tex.south_texture = NULL;
 	all->tex.west_texture = NULL;

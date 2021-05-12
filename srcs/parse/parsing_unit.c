@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:23:52 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 16:16:37 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:24:20 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		ft_texture(t_all *all, char *line, int *i, int type)
 	while (line[*i] != ' ' && line[*i] != '\0')
 		arr[j++] = line[(*i)++];
 	arr[j] = '\0';
-	if (!ft_name_check(arr, ".xpm"))
+	if (!ft_name_check(arr, ".xpm", 4))
 		return (ft_error("[Error] check .xpm file"));
 	ft_check_texture(all, arr, type); // texture 값 채워주기
 	return (1);

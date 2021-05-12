@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 17:11:01 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 15:50:09 by gpaeng           ###   ########.fr       */
+/*   Created: 2021/05/12 18:00:27 by gpaeng            #+#    #+#             */
+/*   Updated: 2021/05/12 18:02:53 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/ft_cub3d.h"
 
@@ -34,28 +35,17 @@ int		ft_atoi(char *line, int *i)
 	return (num);
 }
 
-int		ft_error(char *error)
-{
-	printf("%s", error);
-	exit(0);
-	return (0);
-}
-
-int		ft_exit(int ret)
-{
-	exit(ret);
-	return (ret);
-}
-
-int		ft_name_check(char *a, char *b)
+int		ft_name_check(char *a, char *b, int num)
 {
 	int idx;
 
 	idx = 0;
 	while (a[idx] != '\0')
 		idx++;
-	if (a[idx - 4] == b[0] && a[idx - 3] == b[1]
-	&& a[idx - 2] == b[2] && a[idx - 1] == b[3])
-		return (1);
-	return (0);
+	while(num > 0)
+	{
+		if (a[idx--] != b[num--])
+			return (0);
+	}
+	return (1);
 }

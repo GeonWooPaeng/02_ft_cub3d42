@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:38:02 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 15:43:45 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:47:29 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char		*ft_strndup(const char *str, size_t num)
 	size_t	idx;
 
 	if (!(arr = (char *)malloc(sizeof(char) * (num + 1))))
-		return (0);
+		ft_error("[Error] malloc error");
 	idx = 0;
 	while (*str && idx < num)
 	{
@@ -52,7 +52,7 @@ char		*ft_strjoin(const char *a, const char *b)
 	alen = ft_strlen(a);
 	blen = ft_strlen(b);
 	if (!(arr = (char *)malloc(sizeof(char) * (alen + blen + 1))))
-		return (0);
+		ft_error("[Error] malloc error");
 	idx = 0;
 	while (a[idx] && idx < alen)
 	{

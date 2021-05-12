@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:16:54 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 16:01:04 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:46:42 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	ft_set_sprite(t_all *all)
 	int row;
 	int idx;
 
-	all->sprite = (t_sprite *)malloc(sizeof(t_sprite) * all->info.sprite_num);
+	if(!(all->sprite = (t_sprite *)malloc(sizeof(t_sprite) * all->info.sprite_num)))
+		ft_error("[Error] malloc error");
 	ft_init_sprite(all);
 	col = 0;
 	idx = 0;
