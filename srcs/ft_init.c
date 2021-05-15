@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:10:24 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 17:50:48 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:59:26 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_init_player(t_all *all)
 	all->player.move_speed = 0.66;
 	all->player.rot_speed = 0.1;
 	all->player.dir = 0;
+	all->player.player_num = 0;
 }
 
 void	ft_init_info(t_all *all)

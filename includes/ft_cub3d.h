@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 18:07:23 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/14 17:44:53 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct		s_player //player position
 	double			move_speed;
 	double			rot_speed;
 	int				dir;
+	int				player_num;
 }					t_player;
 
 
@@ -143,7 +144,6 @@ typedef struct		s_tex
 	double			tex_pos;
 }					t_tex;
 
-
 typedef struct		s_sprite
 {
 	double			x;
@@ -165,7 +165,6 @@ typedef struct		s_sprite_ray
 	int				draw_start_y;
 	int				draw_end_x;
 	int				draw_end_y;
-	
 }					t_sprite_ray;
 
 typedef struct		s_sprite_tex

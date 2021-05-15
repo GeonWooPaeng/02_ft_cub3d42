@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:26:41 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 18:11:27 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:34:30 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_argc_3(t_all *all)
 {
 	ft_raycasting(all);
 	ft_sprite(all);
+	// ft_make_bmp(all);
 	ft_exit(0);
 }
 

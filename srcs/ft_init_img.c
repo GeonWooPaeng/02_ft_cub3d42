@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 18:46:04 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/14 19:43:26 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	ft_init_texture(t_all *all)
 {
 	int i;
 	int j;
-	
+
 	if (!(all->tex.texture = (int **)malloc(sizeof(int *) * 5)))
 		ft_error("[Error] malloc error");
 	i = 0;
 	while (i < 5)
 	{
-		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * TEXTURE_WIDTH * TEXTURE_HEIGHT)))
+		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_WIDTH * TEXTURE_HEIGHT))))
 			ft_error("[Error] malloc error");
 		i++;
 	}
@@ -30,7 +30,7 @@ int	ft_init_texture(t_all *all)
 	while (i < 5)
 	{
 		j = 0;
-		while (j < TEXTURE_HEIGHT * TEXTURE_WIDTH)
+		while (j < (TEXTURE_HEIGHT * TEXTURE_WIDTH))
 			all->tex.texture[i][j++] = 0;
 		i++;
 	}
@@ -64,10 +64,10 @@ int	ft_init_zbuffer(t_all *all)
 {
 	int i;
 
-	if (!(all->tex.zbuf = (double *)malloc(sizeof(double) * all->info.win_y)))
+	if (!(all->tex.zbuf = (double *)malloc(sizeof(double) * all->info.win_x)))
 		ft_error("[Error] malloc error");
 	i = 0;
-	while (i < all->info.win_y)
+	while (i < all->info.win_x)
 	{
 		all->tex.zbuf[i] = 0;
 		i++;
