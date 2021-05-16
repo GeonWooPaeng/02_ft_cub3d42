@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 14:15:41 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/14 21:25:59 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/16 20:20:46 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_sprite_color(t_all *all, int stripe)
 		draw_s_y = all->sprite_ray.draw_start_y;
 		while (draw_s_y < all->sprite_ray.draw_end_y)
 		{
-			draw = (draw_s_y - 1) * 256 - all->info.win_y * 128 
+			draw = draw_s_y * 256 - all->info.win_y * 128 
 			+ all->sprite_ray.height * 128;
 			all->sprite_tex.y = ((draw * TEXTURE_HEIGHT)
 			/ all->sprite_ray.height) / 256;

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:34:46 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/15 19:25:29 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:44:35 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_bmp_header(t_all *all, int fd, int bmp_size)
 {
 	unsigned char	bmp_head[54];
 	int				idx;
-	
+
 	idx = 0;
 	while (idx < 54)
 	{
@@ -50,7 +50,7 @@ void	ft_make_bmp(t_all *all)
 
 	bmp_size = 54 + 3 * all->info.win_x * all->info.win_y;
 	if ((fd = open("cub3D.bmp", O_WRONLY | O_CREAT |
-	O_TRUNC | O_APPEND, 00755)) < 0)
+	O_TRUNC ,00777)) < 0)
 		return (0);
 	ft_bmp_header(all, fd, bmp_size);
 	ft_bmp_data(all, fd);

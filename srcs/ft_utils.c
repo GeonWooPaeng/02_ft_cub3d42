@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:04:16 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/14 18:22:37 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:09:40 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ void	ft_free(t_all *all)
 		ft_free_1(all->tex.zbuf);
 	if (all->sprite)
 		ft_free_1(all->sprite);
+	if (all->tex.east_texture)
+		ft_free_1(all->tex.east_texture);
+	if (all->tex.west_texture)
+		ft_free_1(all->tex.west_texture);
+	if (all->tex.south_texture)
+		ft_free_1(all->tex.south_texture);
+	if (all->tex.sprite_texture)
+		ft_free_1(all->tex.sprite_texture);
 }
 
 int		ft_error(char *error)

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:17:06 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/14 19:43:26 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/16 20:02:21 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	ft_init_texture(t_all *all)
 	i = 0;
 	while (i < 5)
 	{
-		if (!(all->tex.texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_WIDTH * TEXTURE_HEIGHT))))
+		if (!(all->tex.texture[i++] = (int *)malloc(sizeof(int) * (TEXTURE_WIDTH * TEXTURE_HEIGHT))))
 			ft_error("[Error] malloc error");
-		i++;
 	}
 	i = 0;
 	while (i < 5)

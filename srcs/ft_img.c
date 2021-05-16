@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:09:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 15:52:58 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:10:43 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,4 @@ void	ft_load_texture(t_all *all)
 	load_image(all, all->tex.texture[2], all->tex.south_texture, &img);// 남
 	load_image(all, all->tex.texture[3], all->tex.north_texture, &img);// 북
 	load_image(all, all->tex.texture[4], all->tex.sprite_texture, &img);// 장애물
-	free(all->tex.east_texture);
-	all->tex.east_texture = NULL;
-	free(all->tex.west_texture);
-	all->tex.west_texture = NULL;
-	free(all->tex.south_texture);
-	all->tex.south_texture = NULL;
-	free(all->tex.north_texture);
-	all->tex.north_texture = NULL;
-	free(all->tex.sprite_texture);
-	all->tex.sprite_texture = NULL;
 }
