@@ -17,6 +17,8 @@ https://stdbc.tistory.com/62?category=876330
 bmp 파일
 https://lmcnulty.gitlab.io/blog/bmp-output/
 https://dojang.io/mod/page/view.php?id=702
+open 옵션
+https://www.it-note.kr/19
 
 <github>
 https://github.com/Glagan/42-cub3d

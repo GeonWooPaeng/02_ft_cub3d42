@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:34:46 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/16 18:44:35 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:43:46 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,32 @@ void	ft_bmp_header(t_all *all, int fd, int bmp_size)
 	write(fd, bmp_head, 54);
 }
 
+void	ft_bmp_data(t_all *all, int fd)
+{
+	int				win_h;
+	int				win_w;
+	int				pad_width;
+	unsigned char	color_zero[3];
+
+	color_zero[0] = 0;
+	color_zero[1] = 0;
+	color_zero[2] = 0;
+	pad_width = (4 - (all->info.win_x * 3) % 4) % 4;
+	win_h = 0;
+	while (win_h < all->info.win_y)
+	{
+		win_w = 0;
+		while (win_w < all->info.win_x)
+		{
+			write(fd, &(all->tex.buf[win_h][win_w]), 3);
+			if (pad_width > 0)
+				write(fd, &color_zero, pad_width);
+			win_w += 1;
+		}
+		win_h += 1;
+	}
+}
+
 void	ft_make_bmp(t_all *all)
 {
 	int	fd;
@@ -50,8 +76,8 @@ void	ft_make_bmp(t_all *all)
 
 	bmp_size = 54 + 3 * all->info.win_x * all->info.win_y;
 	if ((fd = open("cub3D.bmp", O_WRONLY | O_CREAT |
-	O_TRUNC ,00777)) < 0)
-		return (0);
+	O_TRUNC , 00700)) < 0)
+		ft_error("[ERROR] bmp file error");
 	ft_bmp_header(all, fd, bmp_size);
 	ft_bmp_data(all, fd);
 }
