@@ -9,6 +9,7 @@ DIR_O = ./
 
 SRC =	ft_init.c				\
 		parse/get_next_line.c	\
+		parse/parsing_check.c	\
 		parse/parsing_map.c		\
 		parse/parsing_unit.c	\
 		parse/parsing.c			\
@@ -21,6 +22,7 @@ SRC =	ft_init.c				\
 		ft_raycasting.c			\
 		ft_tex_xy.c				\
 		ft_utils.c				\
+		ft_make_bmp.c			\
 		main.c					\
 
 

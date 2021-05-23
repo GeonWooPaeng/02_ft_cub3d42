@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:00:27 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/12 18:02:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/20 18:08:14 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,3 @@ int		ft_atoi(char *line, int *i)
 	return (num);
 }
 
-int		ft_name_check(char *a, char *b, int num)
-{
-	int idx;
-
-	idx = 0;
-	while (a[idx] != '\0')
-		idx++;
-	while(num > 0)
-	{
-		if (a[idx--] != b[num--])
-			return (0);
-	}
-	return (1);
-}

@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:45:07 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/14 17:10:36 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/20 17:20:43 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,12 @@ void	ft_position(t_all *all)
 		while (row < all->map.width)
 		{
 			k = all->map.tab[col][row];
-			if (all->player.player_num > 0)
-				ft_error("[Error] check player number");
 			if (k == 'N' || k == 'E' || k == 'S' || k == 'W')
 			{
-				all->player.player_num += 1;
 				all->player.x = (double)row + 0.5;
 				all->player.y = (double)col + 0.5;
 				ft_player_dir(all, col, row);
 			}
-			
 			if (k == '2')
 				all->info.sprite_num += 1;
 			row += 1;

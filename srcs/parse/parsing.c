@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 10:48:17 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/11 16:02:09 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/20 18:36:23 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_check_line(t_all *all, char *line)
 		ft_color(all, line, &i, FLOOR);
 	else if (line[i] == 'C')
 		ft_color(all, line, &i, CEILING);
-	else if (line[i] != '\0')
+	else if (line[i] == '1' && line[i] != '\0')
 		ft_map(all, line, &i);
 	return (1);
 }
@@ -127,6 +127,8 @@ int		ft_parsing(t_all *all, char *cub)
 	close(fd);
 	if (ret < 0)
 		ft_error("[Error] parsing");
+	ft_map_check(all);
+	ft_player_check(all);
 	ft_position(all);
 	ft_set_sprite(all);
 	return (1);

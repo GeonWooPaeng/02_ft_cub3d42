@@ -6,7 +6,7 @@
 /*   By: gpaeng <gpaeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:38:56 by gpaeng            #+#    #+#             */
-/*   Updated: 2021/05/14 17:44:53 by gpaeng           ###   ########.fr       */
+/*   Updated: 2021/05/20 18:36:51 by gpaeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,8 @@ void				ft_check_texture(t_all *all, char *arr, int type);
 int					ft_name_check(char *a, char *b, int num);
 int					ft_error(char *error);
 int					ft_exit(int ret);
+void				ft_player_check(t_all *all);
+void				ft_map_check(t_all *all);
 
 //ft_key_press.c
 void				ft_move_ws(t_all *all, double speed);
@@ -262,11 +264,18 @@ void				ft_rsort_sprite(t_all *all);
 void				ft_init_sprite(t_all *all);
 void				ft_set_sprite(t_all *all);
 
+
 //ft_sprite.c
 void				ft_sprite_dist(t_all *all);
 void				ft_sprite_conversion(t_all *all, int x);
 void				ft_sprite_hw(t_all *all);
 void				ft_sprite_color(t_all *all, int sprite);
 void				ft_sprite(t_all *all);
+
+//ft_make_bmp.c
+void				ft_int_to_char(unsigned char *tmp, int value);
+void				ft_bmp_header(t_all *all, int fd, int bmp_size);
+void				ft_bmp_data(t_all *all, int fd);
+void				ft_make_bmp(t_all *all);
 
 #endif
